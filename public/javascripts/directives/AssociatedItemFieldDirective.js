@@ -9,6 +9,7 @@ app
                 label:'@',
                 addUrl:'@',
                 selectUrl:'@',
+                template:'=',
                 max:'@',
                 validationErrors:'='
             },
@@ -26,6 +27,15 @@ app
                     handle: '.grab-handle',
                     forceFallback: true,
                 };
+
+                $scope.$watch('model',function (newValue,oldValue) {
+
+                    console.log(newValue);
+                    console.log(oldValue);
+
+                })
+
+
                 /*
                 if(!$scope.ref)
                 {

@@ -23,6 +23,21 @@ html,body{
   width: 100%;
 }
 
+.fade-in {
+  transition: 180ms all;
+  -webkit-transition: 180ms all;
+}
+.fade-in.ng-enter {
+  opacity: 0;
+}
+
+.fade-in.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+
+
+
 
 .fade-static {
   transition: 180ms all;
@@ -197,7 +212,7 @@ main list th
 main list tbody tr
 {
   transition: all 150ms;
- //background-color: #EEEEEE; ;
+  //background-color: #EEEEEE; ;
   background: white;
   border-bottom: 1px solid #E0E0E0;
 }
@@ -298,7 +313,7 @@ main  footer
 .open-actions + .actions li
 {
   cursor: pointer;
-   padding: @padding2;
+  padding: @padding2;
 
 }
 .open-actions + .actions li:hover
@@ -377,6 +392,33 @@ lightbox .confirmation-dialog .options span:last-child
   padding-bottom: 0;
   position: relative;
 }
+top + form > field:first-child > .form-field
+{
+  padding-top: 0;
+}
+top + form > field:first-child   label
+{
+  top: 15px;
+}
+
+
+top + form > field:first-child > .always-focused + label
+{
+  top:-15px;
+}
+top + form > field:first-child > .form-field select:hover + label,top + form > field:first-child > .form-field select + label:hover ,top + form > field:first-child > .form-field select.ng-not-empty + label,top + form > field:first-child > .form-field > input:focus +  label,top + form > field:first-child > .form-field input.ng-not-empty + label,top + form > field:first-child > .form-field > textarea:focus +  label,top + form > field:first-child > .form-field textarea.ng-not-empty + label
+{
+
+  top:-15px;
+
+}
+
+
+
+
+
+
+
 form footer
 {
   padding-top:@padding;
@@ -389,7 +431,8 @@ form footer
   position: absolute;
   //left: 20px;
   transition:all 0.15s ease-in;
-  top: 45px;
+  //top: 45px;
+  top:35px;
   color: @mainColor;
   font-size: 20px;
   font-weight: 300;
@@ -409,7 +452,7 @@ input[type=file]::-webkit-file-upload-button:hover
 
 .form-field > *:focus
 {
- border-bottom-color: @focusedInputColor;
+  border-bottom-color: @focusedInputColor;
 }
 .form-field > *:focus + label
 {
@@ -425,75 +468,75 @@ input[type=file]::-webkit-file-upload-button:hover
   padding-right: 0;
   font-size: 20px;
   border: 0;
-  margin-top: 20px;
+  //margin-top: 20px;
   border-bottom: 2px solid @mainColor;
   background: transparent;
 }
 
 .always-focused + label
 {
-  top:25px;
+  top:5px;
 }
 .form-field select:hover + label,.form-field select + label:hover ,.form-field select.ng-not-empty + label,.form-field > input:focus +  label,.form-field input.ng-not-empty + label,.form-field > textarea:focus +  label,.form-field textarea.ng-not-empty + label
 {
   font-size: 15px;
-    font-weight: 600;
-  top: 25px;
+  font-weight: 600;
+  top: 5px;
 }
-  .form-field .tags
-  {
-    flex-wrap: wrap;
-    display: flex;
-  }
-  .form-field .tags li
-  {    align-items: center;
-    display: flex;
-    margin-right: @padding2;
-    padding: @padding2;/*
+.form-field .tags
+{
+  flex-wrap: wrap;
+  display: flex;
+}
+.form-field .tags li
+{    align-items: center;
+  display: flex;
+  margin-right: @padding2;
+  padding: @padding2;/*
     padding-left: 0;
     padding-right: 0;*/
-    margin-top: @padding2;
-    background-color: #E0E0E0;
-  }
+  margin-top: @padding2;
+  background-color: #E0E0E0;
+}
 
 .form-field .tags .delete-tag
 {
   margin-left: 10px;
 }
-  .form-field .tags .delete-tag img
-  {
-    width: 15px;
-  }
+.form-field .tags .delete-tag img
+{
+  width: 15px;
+}
 
-  .form-field .day-options
-  {
-    display: flex;
-    margin-bottom: @padding2;
-  }
-  .form-field .day-options span
-  {
-    display: flex;
-    margin-right: 30px;
-    align-items: center;
-  }
-  .form-field .day-options input
-  {
-    width: auto;
-    margin: 0;
-    margin-left: 10px;
-  }
-  frecuency-field .form-field > label
-  {
-    position: static;
-    margin-bottom: @padding2;
-  }
-  frecuency-field .form-field .sublabel
-  {
-    margin-bottom: @padding2;
-    display: block;
-    color: @mainColor;
-    font-weight: 600;
-  }
+.form-field .day-options
+{
+  display: flex;
+  margin-bottom: @padding2;
+}
+.form-field .day-options span
+{
+  display: flex;
+  margin-right: 30px;
+  align-items: center;
+}
+.form-field .day-options input
+{
+  width: auto;
+  margin: 0;
+  margin-left: 10px;
+}
+frecuency-field .form-field > label
+{
+  position: static;
+  margin-bottom: @padding2;
+}
+frecuency-field .form-field .sublabel
+{
+  margin-bottom: @padding2;
+  display: block;
+  color: @mainColor;
+  font-weight: 600;
+}
 frecuency-field .form-field [type='number']
 {
   margin-top: 0;
@@ -528,6 +571,10 @@ frecuency-field .form-field [type='number']
   float: left;
   width: 100%;
   margin-bottom: @padding;
+}
+.associated-files-list
+{
+  margin-bottom: @padding2;
 }
 .files-preview li,.associated-files-list li
 {
@@ -574,7 +621,7 @@ frecuency-field .form-field [type='number']
 
   width: 100%;
 }
-.associated-files li
+.associated-files .associated-files-list li
 {
   padding: 20px;
   background: #EEEEEE;
@@ -594,7 +641,7 @@ frecuency-field .form-field [type='number']
 .associated-files .form-field > .col
 {position: relative;
   //top: -@padding2;
- // margin-top: @padding;
+  // margin-top: @padding;
   order: 2
 }
 
@@ -633,7 +680,7 @@ frecuency-field .form-field [type='number']
 
 body.popup aside
 {
-display: none;
+  display: none;
 }
 body.popup main
 {
@@ -730,7 +777,9 @@ frecuency-field .time-unit input
 form .validation-errors
 {
   display: flex;
-  position: absolute;
+  margin-bottom: 5px;
+
+  //position: absolute;
 }
 
 form .validation-errors .validation-error
@@ -851,7 +900,7 @@ input[type='file']
 @media all and (max-width: 1024px) {
   body.save header
   {
-     padding-bottom: 0;
+    //padding-bottom: 0;
   }
 
   body.overflow-hidden
@@ -1030,6 +1079,10 @@ input[type='file']
     float: left;
     margin-bottom: @padding;
   }
+  table tr:last-child
+  {
+    margin-bottom: 0;
+  }
   table tr:nth-child(2n)
   {
     margin-right: 0;
@@ -1186,4 +1239,44 @@ lightbox .hide-close .close
   right: 0;
   bottom: -20px;
   z-index: 1;
+}
+.form-field.has-error input,.form-field.has-error select,.form-field.has-error textarea
+{
+  border-color: @errorColor!important;
+}
+.has-error > *
+{
+  color: @errorColor!important;
+}
+
+.key
+{
+  width: 100%;
+  float: left;
+  font-weight: 600;
+  padding-top: @padding2;
+  padding-bottom: @padding2;
+
+}
+.value
+{
+  width: 100%;
+  float: left;
+  font-weight: 300;
+  padding-bottom: @padding2 / 2;
+}
+.key-value
+{
+  border-bottom: 1px solid #BDBDBD;
+  float: left;
+  width: 100%;
+}
+.key-value:last-child
+{
+  border-bottom: 0;
+}
+
+.item-preview
+{
+  padding-top: 30px
 }

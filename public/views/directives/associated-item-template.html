@@ -1,50 +1,55 @@
-<div class="associated-items associated-files">
+<div class="associated-items associated-files" data-ng-class="{'has-error':(validationErrors.length > 0)}">
     <field data-type="custom" data-label="{{label}}" data-ng-class="{'with-files':model.length}">
 
 
         <div data-ng-if="model && (model | isArray) && model.length > 0" class="col">
             <ul   ng-sortable="sortableConf" class="row associated-files-list">
 
-                <li  class="col" data-ng-repeat="(k,item) in model" >
+                <li  class="col fade-in" data-ng-repeat="(k,item) in model" >
                     <span class="grab-handle"><img src="/images/drag.svg"></span>
                     <span  data-ng-click="deleteAssociatedItem(k)" class="delete-preview"><img src="/images/trash.svg"></span>
 
-                    <div class="item-preview" data-ng-if="ref">
-                        {{associatedPreviews[modelName][item[ref]]}}
+                    <div class="item-preview" data-ng-if="ref" data-ng-init="" >
+
+                        <div data-ng-include="template" data-ng-init="data = associatedPreviews[modelName][item[ref]]"></div>
 
                     </div>
                     <div class="item-preview" data-ng-if="!ref">
-                        {{associatedPreviews[modelName][item]}}
+
+                        <div data-ng-include="template" data-ng-init="data = associatedPreviews[modelName][item]"></div>
 
                     </div>
 
-                    <ng-transclude></ng-transclude>
+                    <!--
+                    <ng-transclude></ng-transclude>-->
                     <!-- transclude -->
                 </li>
             </ul>
         </div>
-        <div data-ng-if="model && !(model | isArray)" class="col">
+        <div data-ng-if="model && !(model | isArray)" class="col fade-in">
             <ul   ng-sortable="sortableConf" class="row associated-files-list">
 
                 <li  class="col"   >
                     <span  data-ng-click="deleteAssociatedItem(k)" class="delete-preview"><img src="/images/trash.svg"></span>
 
                     <div class="item-preview" data-ng-if="ref">
-                        {{associatedPreviews[modelName][model[ref]]}}
+                        <div data-ng-include="template" data-ng-init="data = associatedPreviews[modelName][model[ref]]"></div>
 
                     </div>
                     <div class="item-preview" data-ng-if="!ref">
-                        {{associatedPreviews[modelName][model]}}
+                          <div data-ng-include="template" data-ng-init="data = associatedPreviews[modelName][model]"></div>
 
                     </div>
 
-                    <ng-transclude></ng-transclude>
+
+                    <!--
+                    <ng-transclude></ng-transclude>-->
                     <!-- transclude -->
                 </li>
             </ul>
         </div>
 
-        <p class="empty-associated-files" data-ng-if="!model || model.length == 0">{{'associated.items.empty' | translate}}</p>
+        <p class="empty-associated-files fade-in" data-ng-if="!model || model.length == 0">{{'associated.items.empty' | translate}}</p>
 
 
         <div class="col upload-from-wrapper">
@@ -59,7 +64,7 @@
 
         </div>
 
-        <lightbox   data-options="lightboxOptions" class=" responsive-lightbox " data-ng-show="lightboxOptions.open">
+        <lightbox   data-options="lightboxOptions" class="responsive-lightbox " data-ng-show="lightboxOptions.open">
             <iframe data-id="{{modelName}}" data-ng-src="{{lightboxOptions.src || trusted}}"></iframe>
 
         </lightbox>

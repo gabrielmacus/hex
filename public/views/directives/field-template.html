@@ -1,7 +1,7 @@
 
 
 
-<div   class="form-field" data-ng-if="type != 'submit' && type != 'textarea' && type != 'tags'" >
+<div data-ng-class="{'has-error':(validationErrors.length > 0)}"   class="form-field" data-ng-if="type != 'submit' && type != 'textarea' && type != 'tags'" >
     <input   id="{{$parent.label}}" data-ng-if="$parent.type != 'custom'"  data-ng-model="$parent.$parent.model" type="{{$parent.type}}">
     <label for="{{$parent.label}}">{{ $parent.label | translate}}</label>
 <!--$parent.validationErrors = []-->
@@ -9,18 +9,18 @@
 
 
 
-<div   class="form-field" data-ng-if="type == 'textarea'">
+<div  data-ng-class="{'has-error':(validationErrors.length > 0)}"  class="form-field" data-ng-if="type == 'textarea'">
     <textarea id="{{$parent.label}}"   data-ng-model="$parent.model"></textarea>
     <label  for="{{$parent.label}}">{{ $parent.label | translate}}</label>
 </div>
 
-<div class="form-field" data-ng-if="type == 'tags'">
+<div data-ng-class="{'has-error':(validationErrors.length > 0)}" class="form-field" data-ng-if="type == 'tags'">
     <input   data-ng-init="$parent.model= (!$parent.model)?[]:$parent.model" id="{{$parent.label}}"  data-ng-keyup="processTagInput($event,$parent.model)" type="text">
     <label  for="{{$parent.label}}">{{ $parent.label | translate}} <!--<b style="font-size: 15px;font-weight: 600">({{'commaSeparated' | translate}})</b>--></label>
 
     <p class="field-footer" data-ng-if="!$parent.model || $parent.model.length == 0">Valores separados por coma</p>
-    <ul class="tags"  >
-        <li data-ng-repeat="(k,t) in $parent.model">{{t}} <span style="cursor: pointer"  data-ng-click="$parent.model.splice(k,1)" class="delete-tag"><img src="/images/icons-delete.svg"></span></li>
+    <ul class="tags "  >
+        <li data-ng-repeat="(k,t) in $parent.model" class="fade-in">{{t}} <span style="cursor: pointer"  data-ng-click="$parent.model.splice(k,1)" class="delete-tag"><img src="/images/icons-delete.svg"></span></li>
     </ul>
 </div>
 

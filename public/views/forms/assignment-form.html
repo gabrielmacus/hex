@@ -17,9 +17,36 @@
 </field>
 -->
 
+<script type="text/ng-template" id="associated-type-template">
 
-<associated-item-field   data-model="item.type"  data-validation-errors="validationErrors['type']"   data-max="1"  data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/?model=item.type" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/save?model=item.type" data-label="type"></associated-item-field>
-<associated-item-field   data-model="item.persons"  data-validation-errors="validationErrors['persons']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/person/?model=item.persons" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/person/save?model=item.persons" data-label="person.plural"></associated-item-field>
+    <div class="key-value">
+        <span class="key">{{'name' | translate}}</span>
+        <span class="value">{{data.name}}</span>
+    </div>
+
+
+</script>
+
+
+<associated-item-field data-template="'associated-type-template'"  data-model="item.type"  data-validation-errors="validationErrors['type']"   data-max="1"  data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/?model=item.type" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/save?model=item.type" data-label="type"></associated-item-field>
+
+
+<script type="text/ng-template" id="associated-person-template">
+
+    <div class="key-value">
+        <span class="key">{{'name' | translate}}</span>
+        <span class="value">{{data.name}}</span>
+    </div>
+    <div class="key-value">
+        <span class="key">{{'surname' | translate}}</span>
+        <span class="value">{{data.surname}}</span>
+    </div>
+
+
+</script>
+
+
+<associated-item-field data-template="'associated-person-template'"   data-model="item.persons"  data-validation-errors="validationErrors['persons']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/person/?model=item.persons" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/person/save?model=item.persons" data-label="person.plural"></associated-item-field>
 
 <!--
 <lightbox data-options="assignmentType" data-ng-if="assignmentType.open" class="responsive-lightbox fade-static">
