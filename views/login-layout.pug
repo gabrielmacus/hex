@@ -1,0 +1,54 @@
+doctype html
+html
+    head
+        include head
+
+        script.
+
+            app.config(function ($routeProvider) {
+                $routeProvider
+                    .when("/", {
+                        templateUrl: "views/main-login.html",
+                        controller:"login-controller"
+                    })
+
+            });
+
+
+            app.controller('login-controller', function ($rootScope,$scope, $cookies) {
+
+
+                $scope.login=function () {
+
+                    $scope.errorMsg = "";
+                    axios.post('/auth/token', $scope.user)
+                        .then(function (response) {
+
+                            $cookies.put('access_token',response.data.access_token,{path:'/'});
+                            location.href = "/?access_token="+response.data.access_token;
+
+                        })
+                        .catch(function (error) {
+
+
+                            if(error.response.status == 400)
+                            {
+                                $scope.errorMsg = "login.incorrectData";
+                            }
+                            else
+                            {
+                                $scope.errorMsg = "login.unknownError";
+                            }
+                            $scope.$apply();
+
+                        });
+
+                }
+
+
+            });
+
+    body.login(data-ng-app="app" )
+
+        main
+            block content

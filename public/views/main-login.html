@@ -1,0 +1,14 @@
+<form data-ng-submit="login()">
+
+    <top data-title="'login.title'"></top>
+
+    <field data-label="username" data-model="user.username"></field>
+
+    <field data-label="password" data-type="password" data-model="user.password"></field>
+
+    <field data-type="submit" data-label="login"></field>
+
+    <div class="login-error fade-static" data-ng-if="errorMsg && errorMsg != ''">
+        <p>{{errorMsg | translate}}</p>
+    </div>
+</form>

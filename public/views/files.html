@@ -1,0 +1,16 @@
+
+<div data-ng-controller="file-list-controller">
+
+    <top  data-title-object="{galleryName:currentGallery}" data-title="'fileGallery.plural'"></top>
+
+    <list data-items="items" data-get-actions="actions" data-list-status="status" data-fields="fields"></list>
+
+    <footer>
+        <a   data-ng-click="goToSave()" class="new-item button">{{'list.newItem' | translate}}</a>
+        <a   data-ng-click="acceptSelected()"   class="show-on-popup button">{{'accept' | translate}}</a>
+
+        <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+    </footer>
+
+
+</div>

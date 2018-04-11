@@ -1,0 +1,86 @@
+{
+
+  "Root":
+  {
+    "*":
+    {
+      "GET":{"access_level":3},
+      "POST":{"access_level":3},
+      "PUT":{"access_level":3},
+      "DELETE":{"access_level":3}
+    }
+  },
+  "Publisher":
+  {
+    "post.*":
+    {
+      "GET":{"access_level":2},
+      "POST":{},
+      "PUT":{"access_level":1},
+      "DELETE":{"access_level":1}
+    },
+    "api.post.*":
+    {
+      "GET":{"access_level":2},
+      "POST":{},
+      "PUT":{"access_level":1},
+      "DELETE":{"access_level":1}
+    },
+    "api.*.delete-friend.*":
+    {
+      "DELETE":{"access_level":1}
+    }
+  },
+  "Api Manager":
+  {
+    "api.streaming.$":
+    {
+      "GET":{"access_level":3},
+      "PUT":{"access_level":2}
+    },
+    "api.streaming.$.play":
+    {
+      "GET":{"access_level":1}
+    },
+    "api.*":
+    {
+      "GET":{"access_level":3},
+      "POST":{},
+      "PUT":{"access_level":3},
+      "DELETE":{"access_level":3}
+
+    }
+
+  },
+  "User":
+  {
+    "api.person":
+    {
+      "POST":{}
+    },
+    "api.person.$":
+    {
+
+      "PUT":{"access_level":3}
+    },
+    "api.user":
+    {
+      "GET":{"access_level":1}
+    },
+    "api.user.find-friends.$":
+    {
+      "GET":{"access_level":2}
+    },
+    "api.user.delete-friend.$":
+    {
+      "DELETE":{"access_level":3}
+    }
+  ,
+    "api.user.$":
+    {
+      "DELETE":{"access_level":2},
+      "PUT":{"access_level":3}
+
+    }
+  }
+}

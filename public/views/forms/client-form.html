@@ -1,0 +1,20 @@
+<field data-validation-errors="validationErrors['name']" data-model="item.name" data-label="name"></field>
+
+<field data-validation-errors="validationErrors['surname']"  data-model="item.surname" data-label="surname"></field>
+
+<field data-validation-errors="validationErrors['emails']" data-type="tags" data-model="item.emails" data-label="email.plural"></field>
+
+<field data-validation-errors="validationErrors['phones']" data-type="tags" data-model="item.phones" data-label="phone.plural"></field>
+
+<associated-file-field data-label="images" data-gallery="'5ac779819a2e883719f9cba0'" data-ref='image' data-model="item.images">
+    <field data-label="text" data-model="$parent.item.text"></field>
+</associated-file-field>
+
+<associated-file-field data-label="documents" data-gallery="'5ac7c8083e9a30521882bb84'" data-ref='document' data-model="item.documents">
+    <field data-label="text" data-model="$parent.item.text"></field>
+</associated-file-field>
+
+<field   data-label="submit" data-type="submit">
+
+</field>
+

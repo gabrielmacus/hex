@@ -1,0 +1,37 @@
+<div class="associated-files">
+    <field data-type="custom" data-label="{{label}}" data-ng-class="{'with-files':model.length}">
+
+        <div data-ng-if="model && model.length > 0" class="col">
+            <ul   ng-sortable="sortableConf" class="row associated-files-list">
+                <li class="col" data-ng-repeat="(k,item) in model" >
+                    <file-preview data-file="item[ref]">
+                        <span class="grab-handle"><img src="/images/drag.svg"></span>
+                        <span  data-ng-click="deleteAssociatedFile(k)" class="delete-preview"><img src="/images/trash.svg"></span>
+                        <ng-transclude></ng-transclude>
+                    </file-preview>
+                    <!-- transclude -->
+                </li>
+            </ul>
+        </div>
+
+        <p class="empty-associated-files" data-ng-if="!model || model.length == 0">{{'associated.empty' | translate}}</p>
+
+
+        <div class="col upload-from-wrapper">
+
+            <span class="upload-from">{{'associated.uploadFrom' | translate}}</span>
+            <a class="link" data-ng-click="openUploadFromGallery()">{{'associated.addFromGallery' | translate}}</a>
+
+            {{'or' | translate}}
+            <a class="link" data-ng-click="openUploadFromDevice()">{{'associated.uploadFromDevice' | translate}}</a>
+
+        </div>
+
+        <lightbox   data-options="lightboxOptions" class=" responsive-lightbox " data-ng-if="lightboxOptions.open">
+            <iframe data-ng-src="{{lightboxOptions.src}}"></iframe>
+
+         </lightbox>
+
+
+    </field>
+</div>

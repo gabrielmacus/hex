@@ -1,0 +1,24 @@
+{
+    "User":[
+        {
+            "text":"menu.products",
+            "href":"/products"
+        },
+        {
+            "text":"Demo",
+            "href":"/demo"
+        },
+        {
+            "text":"Demo 1",
+            "href":"/demo1"
+        }
+
+    ],
+    "Viewer":[
+        {
+            "text":"Demo 1",
+            "href":"/demo1"
+        }
+
+    ]
+}

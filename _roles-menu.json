@@ -1,0 +1,24 @@
+{
+    "User":[
+        {
+          "text":"menu.home",
+           "href":"#!/"
+        },
+        {
+            "text":"menu.products",
+            "href":"#!/product"
+        },
+      {
+        "text":"menu.galleries",
+        "href":"#!/gallery"
+      },
+      {
+        "text":"menu.facebookPosts",
+        "href":"#!/facebook-post"
+      },
+      {
+        "text":"menu.persons",
+        "href":"#!/person"
+      }
+    ]
+}

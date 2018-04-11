@@ -1,0 +1,14 @@
+<figure class="file-preview ">
+
+    <img data-ng-if="getType(file.contentType) == 'image'" data-ng-src="{{file.path}}">
+
+    <video controls preload="metadata" data-ng-if="getType(file.contentType) == 'video'" data-ng-src="{{file.path}}"></video>
+    <audio data-ng-if="getType(file.contentType) == 'audio'"  data-ng-src="{{file.path}}"   controls>
+    </audio>
+    <iframe data-ng-if="getType(file.path) == 'doc'"   data-ng-src="{{'https://docs.google.com/viewer?url='+file.path+'&embedded=true'| trusted}}" ></iframe>
+
+    <span CLASS="filename">{{file.filename}}</span>
+
+</figure>
+
+<ng-transclude></ng-transclude>

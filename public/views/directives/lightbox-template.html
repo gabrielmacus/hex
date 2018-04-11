@@ -1,0 +1,15 @@
+<div class="overlay fade" data-ng-class="options.class" >
+
+    <div class="confirmation-dialog">
+        <span style="z-index: 1233;" data-ng-click="closeLightbox()" class="close show-on-popup"><img src="/images/icons-delete.svg"></span>
+
+        <header>
+
+            <h3 data-ng-bind-html="options.title | translate:options.titleData"></h3>
+        </header>
+        <div data-ng-transclude class="body">
+
+        </div>
+
+    </div>
+</div>

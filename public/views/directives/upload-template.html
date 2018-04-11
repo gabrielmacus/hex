@@ -1,0 +1,23 @@
+<div class="form-field upload-field">
+
+    <label>{{label | translate}}</label>
+
+    <input multiple type="file" >
+
+    <ul data-ng-if="uploadedFiles && uploadedFiles.length" class="upladed-files">
+
+        <li data-ng-repeat="(j,file) in uploadedFiles">
+
+            <file-preview data-file="file">
+            </file-preview>
+
+
+            <!--
+            <figure>
+                <img data-ng-src="{{file.url}}">
+            </figure>
+            -->
+        </li>
+    </ul>
+
+</div>

@@ -1,0 +1,13 @@
+<top title="model+'.plural'"></top>
+
+<list data-items="items" data-get-actions="actions" data-list-status="status" data-fields="fields"></list>
+
+<footer data-ng-show="!footer">
+    <a   data-ng-click="goToSave()" class="hide-on-popup new-item button">{{'list.newItem' | translate}}</a>
+    <a   data-ng-click="acceptSelected()"   class="show-on-popup button">{{'accept' | translate}}</a>
+    <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+
+</footer>
+
+<footer data-ng-if="footer" data-ng-include="footer"></footer>

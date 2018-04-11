@@ -1,0 +1,5 @@
+<ol class="paginator" data-ng-if="paginator.pages.length > 1">
+    <li class="paginator-prev" data-ng-if="paginator.prev" data-ng-click="goto(paginator.prev)"><img src="/images/arrow.svg"></li>
+    <li  class="paginator-page" data-ng-repeat="p in paginator.pages" data-ng-class="{active:(p == paginator.next -1 || p == paginator.prev + 1)}" data-ng-click="goto(p)">{{p}}</li>
+    <li class="paginator-next" data-ng-if="paginator.next" data-ng-click="goto(paginator.next)"><img src="/images/arrow.svg"></li>
+</ol>

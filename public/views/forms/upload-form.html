@@ -1,0 +1,41 @@
+    <top data-title="'upload.title'" data-title-object="{'gallery':currentGallery.name}">
+    </top>
+    <div class="allowed-extensions" data-ng-if="currentGallery.extensions && currentGallery.extensions.length > 0">
+        {{'gallery.allowedExtensions' | translate}}: <span class="extensions" >{{currentGallery.extensions.join(', ')}}</span><!--<span class="ext" data-ng-repeat="ext in currentGallery.extensions">{{ext}}</span>-->
+    </div>
+
+    <upload-field  data-model="files" data-gallery="gallery"   data-upload-url="/api/file/upload" data-save-url="/api/file/"></upload-field>
+
+
+     <ul data-ng-if="files.length > 0" class="files-preview">
+        <li data-ng-repeat='(k,file) in files'>
+            <file-preview data-file="file">
+
+                <field data-model="file.filename" data-label="fileName"></field>
+                <field data-model="file.description" data-type="textarea" data-label="fileDescription"></field>
+
+                <span  data-ng-click="validationErrors['files'].splice(k,1);files.splice(k,1)" class="delete-preview"><img src="/images/trash.svg"></span>
+            </file-preview>
+
+            <ul data-ng-if="validationErrors['files']" class="fade-static validation-errors">
+
+                <li data-ng-repeat="(k,error) in validationErrors['files']" data-ng-if="k == file.path" class="validation-error" >{{ 'validation.'+error.message | translate:error.data}}</li>
+            </ul>
+
+             <!--
+            <ul data-ng-if="validationErrors['files'][k] && validationErrors['files'][k].length > 0" class="fade-static validation-errors">
+
+                <li class="validation-error" data-ng-repeat="(j,error) in validationErrors['files'][k] ">{{ 'validation.'+error.message | translate:error.data}}</li>
+            </ul>
+-->
+
+        </li>
+    </ul>
+
+    <field data-ng-show="files.length > 0" data-type="submit" data-label="submit"></field>
+
+   <!--
+    <field data-type="custom">
+        <select data-ng-options="g.name as g  for g in galeries"></select>
+    </field>
+-->

@@ -1,0 +1,40 @@
+<div class="form-field">
+    <label data-ng-if="label">{{label | translate}}</label>
+    <span class="sublabel">{{"frecuency.the.days" | translate}}</span>
+
+    <!--
+    <select data-ng-model="model.days" multiple data-ng-options="'day.'+day | translate for day in dayOptions">
+    </select>-->
+
+    <div class="day-options"  >
+
+        <span data-ng-repeat="(k,v) in dayOptions">
+              <label>{{'day.'+v | translate}}</label>
+              <input  checklist-model="model.days" checklist-value="k"  type="checkbox">
+
+        </span>
+
+
+    </div>
+
+    <span class="sublabel">{{"frecuency.each.time" | translate}}</span>
+    <input data-ng-model="model.time.number" type="number" >
+   <!--
+    <select placeholder="{{'frecuency.selectUnit' | translate}}" data-ng-model="model.time.unit"  data-ng-options="k as v | translate for (k,v) in timeOptions"></select>
+-->
+<!--
+    <span class="time-units"  >
+        <span class="time-unit" data-ng-repeat="(k,t) in timeOptions">
+                <label>{{t | translate}}</label>
+        <input   type="radio" data-ng-model="model.time.unit" value="{{k}}">
+        </span>
+
+    </span>-->
+
+
+    <select   data-ng-model="model.time.unit">
+        <option  disabled selected>{{'frecuency.selectUnit' | translate}}</option>
+        <option data-ng-repeat="(k,t) in timeOptions" value="{{k}}">{{t | translate}}</option>
+    </select>
+
+</div>

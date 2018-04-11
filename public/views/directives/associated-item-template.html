@@ -1,0 +1,74 @@
+<div class="associated-items associated-files">
+    <field data-type="custom" data-label="{{label}}" data-ng-class="{'with-files':model.length}">
+
+
+        <div data-ng-if="model && (model | isArray) && model.length > 0" class="col">
+            <ul   ng-sortable="sortableConf" class="row associated-files-list">
+
+                <li  class="col" data-ng-repeat="(k,item) in model" >
+                    <span class="grab-handle"><img src="/images/drag.svg"></span>
+                    <span  data-ng-click="deleteAssociatedItem(k)" class="delete-preview"><img src="/images/trash.svg"></span>
+
+                    <div class="item-preview" data-ng-if="ref">
+                        {{associatedPreviews[modelName][item[ref]]}}
+
+                    </div>
+                    <div class="item-preview" data-ng-if="!ref">
+                        {{associatedPreviews[modelName][item]}}
+
+                    </div>
+
+                    <ng-transclude></ng-transclude>
+                    <!-- transclude -->
+                </li>
+            </ul>
+        </div>
+        <div data-ng-if="model && !(model | isArray)" class="col">
+            <ul   ng-sortable="sortableConf" class="row associated-files-list">
+
+                <li  class="col"   >
+                    <span  data-ng-click="deleteAssociatedItem(k)" class="delete-preview"><img src="/images/trash.svg"></span>
+
+                    <div class="item-preview" data-ng-if="ref">
+                        {{associatedPreviews[modelName][model[ref]]}}
+
+                    </div>
+                    <div class="item-preview" data-ng-if="!ref">
+                        {{associatedPreviews[modelName][model]}}
+
+                    </div>
+
+                    <ng-transclude></ng-transclude>
+                    <!-- transclude -->
+                </li>
+            </ul>
+        </div>
+
+        <p class="empty-associated-files" data-ng-if="!model || model.length == 0">{{'associated.items.empty' | translate}}</p>
+
+
+        <div class="col upload-from-wrapper">
+
+            <!--
+            <span class="upload-from">{{'associated.uploadFrom' | translate}}</span>
+            -->
+            <a class="link" data-ng-click="openSelectExistant()">{{'associated.item.selectExistant' | translate}}</a>
+
+            {{'or' | translate}}
+            <a class="link" data-ng-click="openAddNew()">{{'associated.item.addNew' | translate}}</a>
+
+        </div>
+
+        <lightbox   data-options="lightboxOptions" class=" responsive-lightbox " data-ng-show="lightboxOptions.open">
+            <iframe data-id="{{modelName}}" data-ng-src="{{lightboxOptions.src || trusted}}"></iframe>
+
+        </lightbox>
+
+
+    </field>
+
+    <ul data-ng-if="validationErrors && validationErrors.length > 0" class="fade-static validation-errors">
+
+        <li class="validation-error" data-ng-repeat="(k,error) in validationErrors ">{{ 'validation.'+error.message | translate:error.data}}</li>
+    </ul>
+</div>

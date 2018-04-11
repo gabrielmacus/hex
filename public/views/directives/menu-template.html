@@ -1,0 +1,6 @@
+<nav>
+    <a data-ng-repeat="i in menuItems" data-ng-class="{ 'active': i.active}" href="{{i.href}}">
+        <span class="text">{{i.text | translate}}</span>
+    </a>
+    <a href data-ng-click="logout()">{{ 'logout' | translate}}</a>
+</nav>

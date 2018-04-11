@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    script.
+        var user  = !{JSON.stringify(user)};
+
+        var media_url = "#{media_url}";
+    include head
+    // routes
+    script(src="javascripts/routes.js")
+
+  body(class=(popup)?'popup':'',data-ng-app="app",data-ng-controller="main-controller",data-ng-class="bodyClass")
+
+    aside
+
+
+        .menu-mobile#menu-mobile
+          img.open.close(src='/images/icon-menu.svg',onclick="toggleMenu()")
+          //img.close(src='/images/close-button-menu.svg',onclick='toggleMenu()')
+        menu(data-source="'/api/user/menu'")
+
+
+    main(data-ng-view,class="fade")
+
+    lightbox(data-options="confirmDialog",data-ng-if="confirmDialog.open",class="fade-static")
+      .options
+        span.yes(data-ng-click="$parent.options.yes()") {{ 'yes' | translate}}
+        span.no(data-ng-click="$parent.options.open = false") {{ 'no' | translate}}
+
+    script.
+            var body = document.querySelector('body');
+            var aside = document.querySelector("aside");
+            var main = document.querySelector('main');
+
+            toggleMenu = function () {
+                if (aside.classList.contains('open')) {
+                    closeMenu();
+                }
+                else {
+                    openMenu();
+                }
+
+
+            }
+
+            closeMenu = function () {
+                body.classList.remove('overflow-hidden');
+                aside.classList.remove("open");
+            }
+
+            openMenu = function () {
+                body.classList.add('overflow-hidden');
+                aside.classList.add("open");
+            }
+
+
+            var mc = new Hammer(body);
+
+
+            mc.on("swiperight", function (ev) {
+                openMenu();
+            });
+            mc.on("swipeleft", function (ev) {
+                closeMenu();
+            });

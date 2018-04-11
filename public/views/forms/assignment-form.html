@@ -1,0 +1,45 @@
+<field data-validation-errors="validationErrors['title']"  data-model="item.title" data-label="title"></field>
+
+
+<field data-validation-errors="validationErrors['date']"  data-type="custom" data-label="date" >
+
+
+    <input  data-ng-value="item.date | date: 'yyyy-MM-dd'" class="always-focused" data-ng-model="item.date"  type="date">
+
+</field>
+
+<!--
+<field data-type="custom"  data-validation-errors="validationErrors['type']"  data-label="type">
+
+    <select  data-ng-init="load('/api/assignment-type/all','types')" data-ng-model="item.type" data-ng-options="item._id as item.name for item  in types track by item._id"   ></select>
+
+    <a class="add-option" data-ng-click="$parent.$parent.assignmentType = {open:true,src:'#!/assignment-type/save'}">Cargar tipo de asignación</a>
+</field>
+-->
+
+
+<associated-item-field   data-model="item.type"  data-validation-errors="validationErrors['type']"   data-max="1"  data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/?model=item.type" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/assignment-type/save?model=item.type" data-label="type"></associated-item-field>
+<associated-item-field   data-model="item.persons"  data-validation-errors="validationErrors['persons']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/person/?model=item.persons" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/person/save?model=item.persons" data-label="person.plural"></associated-item-field>
+
+<!--
+<lightbox data-options="assignmentType" data-ng-if="assignmentType.open" class="responsive-lightbox fade-static">
+    <iframe data-ng-src="{{assignmentType.src}}"></iframe>
+
+</lightbox>
+
+
+
+<field data-type="custom" data-validation-errors="validationErrors['persons']"   data-label="person/s">
+    <select multiple class="always-focused"    data-ng-init="load('/api/person/all','persons')" data-ng-model="item.persons" data-ng-options="item.name+' '+item.surname for item in persons track by item._id"   ></select>
+
+</field>
+    -->
+
+<field data-type="number"  data-validation-errors="validationErrors['place']"  data-model="item.place" data-label="assignmentPlace"></field>
+
+<field data-type="textarea"  data-validation-errors="validationErrors['description']"  data-model="item.description" data-label="description"></field>
+
+
+<field   data-label="submit" data-type="submit"></field>
+{{item}}
+<!--item._id as -->

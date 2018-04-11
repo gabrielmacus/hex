@@ -1,0 +1,57 @@
+{
+
+  "User":
+  {
+    "api.user":
+    {
+      "GET":{"access_level":1},
+      "PUT":{"access_level":1},
+      "POST":{},
+      "DELETE":{"access_level":1}
+    },
+    "api.person.*.assignments":
+    {
+      "GET":{"access_level":1}
+    }
+    ,
+    "api.person.demo":
+    {
+      "POST":{},
+      "GET":{"access_level":0}
+    }
+    ,
+    "api.person.$":
+    {
+      "GET":{"access_level":1},
+      "PUT":{"access_level":1},
+      "DELETE":{"access_level":1}
+    },
+    "api.person":
+    {
+      "GET":{"access_level":1},
+      "POST":{}
+    },
+    "api.post-demo.$":
+    {
+      "GET":{"access_level":2},
+      "PUT":{"access_level":2},
+      "DELETE":{"access_level":2}
+    },
+    "api.post-demo":
+    {
+      "POST":{}
+    }
+
+  },
+  "Premium User":
+  {
+    "api.post-demo.$":
+    {
+      "GET":{"access_level":2}
+    },
+    "api.post-demo":
+    {
+      "POST":{}
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<field data-model="item.title" data-label="title"></field>
+<field data-model="item.description" data-label="description" data-type="textarea"></field>
+<field data-model="item.price" data-label="price" data-type="number"></field>
+
+<field data-type="tags" data-model="item.groups" data-label="facebook.groupsId"></field>
+
+<!--
+<field data-type="custom" data-label="facebook.groupsId">
+    <tags-input  data-use-strings="true" data-ng-model="item.groups"></tags-input>
+</field>
+-->
+<frecuency-field data-label="frecuency" data-model="item.frecuency" data-day-options='[1,2,3,4,5,6,7]' data-time-options="{m:'minutes',h:'hours'}"></frecuency-field>
+
+<field   data-label="submit" data-type="submit"></field>
+

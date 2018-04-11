@@ -1,0 +1,1189 @@
+
+@errorColor:#E53935;
+@import "teal-theme";
+
+@import url('../style.css');
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+body *{
+  font-family: @mainFont!important;
+  color: @mainTypoColor;
+  word-wrap: break-word;
+}
+
+
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+
+.fade-static {
+  transition: 180ms all;
+  -webkit-transition: 180ms all;
+}
+
+.fade-static.ng-enter {
+  opacity: 0;
+}
+
+.fade-static.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.fade-static.ng-leave {
+  opacity: 1;
+}
+
+.fade-static.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+
+
+.fade {
+  position: absolute;
+
+  opacity: 1;
+}
+
+.fade.ng-enter,
+.fade.ng-leave {
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+.fade.ng-enter {
+  opacity: 0;
+}
+.fade.ng-enter-active {
+  opacity: 1;
+}
+.fade.ng-leave {
+  opacity: 1;
+}
+.fade.ng-leave-active {
+  opacity: 0;
+}
+
+
+
+paginator ol
+{
+  background: #EEEEEE;
+  /* color: white; */
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin-top: @padding;
+}
+paginator ol > li
+{
+  padding: @padding2;
+}
+paginator ol > li.active{
+  color: @mainColor;
+}
+paginator ol > .paginator-page
+{
+
+  font-size: 20px;
+}
+paginator ol  .paginator-prev img,paginator ol .paginator-next img
+{
+  width: 16px;
+  position: relative;
+  top: 1px;
+}
+
+paginator ol  .paginator-prev
+{
+  transform: scale(-1);
+}
+
+
+
+body > aside
+{
+
+  min-height: 100%;
+  transition: left 150ms ease-out;
+  width: 30%;
+  float: left;
+  position: fixed;
+  z-index: 3;
+  background-color: @mainColor;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+}
+body > main{
+
+  transition: all 250ms;
+  width: 70%;
+  top: 0;
+  right: 0;
+  float: left;
+  background: @mainBackColor;
+  position: absolute;
+  left: 30%;
+  min-height: 100%;
+  padding-left: @padding;
+  padding-right: @padding;
+}
+body > aside > menu a
+{
+  transition:all 200ms;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  padding: @padding;
+  color: white;
+}
+body > aside > menu
+{
+  position: absolute;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+body > aside > menu nav
+{
+
+  width: 100%;
+}
+body > aside > menu a.active
+{
+  background-color: white;
+  color: @mainColor;
+}
+main  top header
+{
+  transition:all 120ms;
+  padding-top: @padding;
+  padding-bottom: @padding;
+  //padding: @padding;
+}
+main  top header h2
+{
+  font-size: 40px;
+}
+main list > *
+{
+
+  padding: @padding;
+  padding-right: 0;
+  padding-left: 0;
+}
+main list  td,main list  th
+{
+  position: relative;
+  vertical-align: middle;
+  text-align: left;
+  padding: @padding2;
+  padding-left: @padding;
+}
+main list th
+{
+  background-color: @theadColor;
+  color: white;
+  font-weight: 600;
+
+}
+main list tbody tr
+{
+  transition: all 150ms;
+ //background-color: #EEEEEE; ;
+  background: white;
+  border-bottom: 1px solid #E0E0E0;
+}
+main list tbody tr:nth-child(even)
+{
+  //background-color: white;
+}
+main list > table{
+
+  width: 100%;//~"calc(100% - 40px)";
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin: auto;
+}
+main list > table tbody tr.active{
+
+  background-color:  @focusedInputColor;
+
+}
+
+
+main list > table tbody tr.active .button{
+
+  background-color: white;
+  color: @buttonColor;
+
+}
+main list > table tbody tr.active .button img
+{
+  filter: invert(100%);
+}
+
+
+
+
+
+
+main list > table tbody tr.active .select{
+
+  display: none;
+
+}
+main list > table tbody tr:not(.active) .unselect{
+
+  display: none;
+
+}
+
+
+.button
+{
+  outline: 0;
+  border:0;
+
+  letter-spacing: 0.05em;
+  background: @buttonColor;
+  padding: 10px;
+  color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition:all 0.1s;
+  cursor: pointer;
+
+  font-weight: 600;
+  text-decoration: none;
+}
+.button:hover
+{
+  background-color: @buttonHoverColor;
+
+}
+table .open-actions
+{
+  float: left;
+}
+table td > span >  img
+{
+  width: 30%;
+}
+.button:active
+{
+  box-shadow: none;
+}
+main  footer
+{
+  padding: @padding;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.open-actions + .actions{
+
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background-color: #E0E0E0;
+  position: absolute;
+  top: 36px;
+  min-width: 130px;
+}
+.open-actions + .actions li
+{
+  cursor: pointer;
+   padding: @padding2;
+
+}
+.open-actions + .actions li:hover
+{
+  background-color: @mainColor;
+  color: white;
+}
+.open-actions
+{
+  display: flex;
+  align-items: center;
+}
+.open-actions.opened{
+  background-color: @buttonHoverColor;
+}
+
+.open-actions.opened > img
+{
+  transform: scale(-1);
+}
+.open-actions > img
+{
+  transition:all 0.15s;
+  margin-left: 15px;
+  height: 12px;
+}
+
+lightbox > .overlay
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+}
+lightbox .confirmation-dialog
+{margin: auto;
+  background: white;
+  position: relative;
+
+}
+lightbox .confirmation-dialog header
+{
+  padding:@padding;
+}
+lightbox h3
+{
+  line-height: 1.3em;
+}
+lightbox .confirmation-dialog .options
+{
+  padding-top: @padding2;
+  padding-left: @padding;
+  padding-bottom: @padding;
+}
+lightbox .confirmation-dialog .options span, .link
+{
+  cursor: pointer;
+  text-decoration: underline;
+  color: @buttonColor;
+}
+lightbox .confirmation-dialog .options span:last-child
+{
+  margin-left: 10px;
+}
+.form-field
+{
+  width: 100%;
+  padding: 20px;
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+form footer
+{
+  padding-top:@padding;
+  //padding-top: (@padding * 2);
+}
+.form-field > label{
+
+  width: 100%;//~"calc(100% - 40px)";
+  display: block;
+  position: absolute;
+  //left: 20px;
+  transition:all 0.15s ease-in;
+  top: 45px;
+  color: @mainColor;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  border: none;
+  background: @buttonColor;
+  color: white;
+  padding: @padding2;
+}
+input[type=file]::-webkit-file-upload-button:hover
+{
+  background: @buttonHoverColor;
+}
+
+
+.form-field > *:focus
+{
+ border-bottom-color: @focusedInputColor;
+}
+.form-field > *:focus + label
+{
+  color: @focusedInputColor;
+}
+
+.form-field  input,.form-field textarea,.form-field select
+{
+  width: 100%;
+  outline: 0;
+  padding: 5px;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 20px;
+  border: 0;
+  margin-top: 20px;
+  border-bottom: 2px solid @mainColor;
+  background: transparent;
+}
+
+.always-focused + label
+{
+  top:25px;
+}
+.form-field select:hover + label,.form-field select + label:hover ,.form-field select.ng-not-empty + label,.form-field > input:focus +  label,.form-field input.ng-not-empty + label,.form-field > textarea:focus +  label,.form-field textarea.ng-not-empty + label
+{
+  font-size: 15px;
+    font-weight: 600;
+  top: 25px;
+}
+  .form-field .tags
+  {
+    flex-wrap: wrap;
+    display: flex;
+  }
+  .form-field .tags li
+  {    align-items: center;
+    display: flex;
+    margin-right: @padding2;
+    padding: @padding2;/*
+    padding-left: 0;
+    padding-right: 0;*/
+    margin-top: @padding2;
+    background-color: #E0E0E0;
+  }
+
+.form-field .tags .delete-tag
+{
+  margin-left: 10px;
+}
+  .form-field .tags .delete-tag img
+  {
+    width: 15px;
+  }
+
+  .form-field .day-options
+  {
+    display: flex;
+    margin-bottom: @padding2;
+  }
+  .form-field .day-options span
+  {
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+  }
+  .form-field .day-options input
+  {
+    width: auto;
+    margin: 0;
+    margin-left: 10px;
+  }
+  frecuency-field .form-field > label
+  {
+    position: static;
+    margin-bottom: @padding2;
+  }
+  frecuency-field .form-field .sublabel
+  {
+    margin-bottom: @padding2;
+    display: block;
+    color: @mainColor;
+    font-weight: 600;
+  }
+frecuency-field .form-field [type='number']
+{
+  margin-top: 0;
+}
+.actions-cell
+{
+  width: 10%;
+}
+
+.actions-cell .actions-wrapper
+{
+  position: relative;
+}
+.file-preview > *
+{width: 100%;
+
+  background: white;
+}
+.file-preview img
+{
+  height: 300px;
+  //min-height: 300px;
+  object-fit: cover;
+}
+.file-preview
+{
+  overflow:hidden;
+}
+.files-preview{
+
+
+  float: left;
+  width: 100%;
+  margin-bottom: @padding;
+}
+.files-preview li,.associated-files-list li
+{
+  float: left;
+  width: 49%;
+  /* clear: both; */
+  margin-right: 1%;
+  margin-top: @padding;
+}
+.files-preview li:nth-child(2n),associated-files-list li:nth-child(2n)
+{
+
+  margin-right: 0;
+}
+
+.row
+{
+  float:left;
+  width: 100%;
+}
+
+
+
+/*
+@media all and (max-width: ) {
+
+}*/
+.associated-files .form-field
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+.associated-files .form-field > .col + * + label{
+  position: static;
+  //margin-bottom:  @padding2;
+  order: 0;
+}
+.associated-files .form-field > .col + *
+{
+  order: 1
+}
+.associated-files .form-field > .col
+{
+
+  width: 100%;
+}
+.associated-files li
+{
+  padding: 20px;
+  background: #EEEEEE;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.col
+{
+  position: relative;
+}
+
+.with-files .col
+{
+
+  //top:@padding2!important;
+}
+
+.associated-files .form-field > .col
+{position: relative;
+  //top: -@padding2;
+ // margin-top: @padding;
+  order: 2
+}
+
+
+.associated-files .empty-associated-files
+{
+  margin-top: @padding2;
+  background: white;
+  width: 100%;
+  display: block;
+  float: left;
+  //margin-bottom: @padding;
+  padding:  @padding;
+  color: @mainColor;
+  font-weight: 600;
+  border: 2px solid @mainColor;
+}
+.responsive-lightbox .confirmation-dialog
+{
+  width: 60%;
+  height: 60vh;
+}
+.responsive-lightbox [data-ng-transclude]
+{
+  height: 100%;
+}
+.responsive-lightbox iframe
+{
+  width: 100%;
+  height: 100%;
+}
+.responsive-lightbox .confirmation-dialog header
+{
+  display: none;
+}
+
+body.popup aside
+{
+display: none;
+}
+body.popup main
+{
+  width: 100%;
+  left: 0;
+}
+body.popup top h2
+{
+  font-size: 25px;
+}
+body.popup table thead th{
+  font-size: 15px;
+}
+
+body .show-on-popup
+{
+  display: none;
+}
+body.popup .show-on-popup
+{
+  display: block;
+}
+
+
+body.popup .hide-on-popup
+{
+  display: none;
+}
+body.popup .show-on-popup[data-ng-click='acceptSelected()']
+{
+  display: inline;
+}
+
+
+
+lightbox .body
+{
+  position: relative;
+}
+.close.show-on-popup
+{
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+.close.show-on-popup img
+{
+  width: 20px;
+}
+file-preview
+{
+  display: block;
+  position: relative;
+}
+file-preview figure
+{
+  position: relative;
+}
+
+.delete-preview
+{
+  background-color: white;
+  padding: @padding2 /2;
+  position: absolute;
+  top: @padding2;
+  right: @padding2;
+}
+.delete-preview img
+{
+  width:20px;
+}
+
+
+frecuency-field .time-units
+{
+  display: flex;
+  margin-top: @padding2;
+}
+
+frecuency-field .time-unit
+{
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+frecuency-field .time-unit input
+{
+  width:auto;
+  margin:auto;
+  margin-left: @padding2;
+}
+
+form .validation-errors
+{
+  display: flex;
+  position: absolute;
+}
+
+form .validation-errors .validation-error
+{
+  margin-top: 4px;
+  color: @errorColor;
+  font-size: 15px;
+  border-right: 1px solid;
+  padding-right: 10px;
+  font-weight: 600;
+}
+form .validation-errors .validation-error:last-child
+{
+  border-right: none;
+}
+form .validation-errors .validation-error:not(:first-child)
+{
+  margin-left: 10px;
+}
+
+td.is-file
+{
+  width: 50%;
+}
+
+.border-menu {
+  position: relative;
+  padding-left: 1.25em;
+}
+.border-menu:before {
+  content: "";
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 1em;
+  height: 0.125em;
+  border-top: 0.375em double #000;
+  border-bottom: 0.125em solid #000;
+}
+
+.menu-mobile
+{
+  display: none;
+}
+
+body.login top header
+{
+  font-weight: 300;
+  padding-bottom: 0;
+}
+
+body.login
+{
+  background: url(https://images5.alphacoders.com/473/473154.jpg);
+  background-size: cover;
+}
+
+body.login main
+{
+
+  transition:all 500ms;
+  width: 30%;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+}
+
+body.login main
+{    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  padding-left: @padding *2 ;
+  padding-right: @padding *2;
+}
+body.login:after{
+  background: @mainColor;
+  position: absolute;
+  content: '';
+  width: 70%;
+  right: 0;
+  height: 100%;
+  opacity: 0.6;
+}
+.empty-upload
+{
+  font-size: 25px;
+  padding-top: 25px;
+}
+
+input[type='file']
+{
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+.row
+{
+  float: left;
+  width: 100%;
+}
+
+.col
+{
+  float: left;
+  width: 49%;
+  margin-right: 1%;
+}
+.col:nth-child(2n)
+{
+  margin-right: 0;
+}
+
+
+
+
+
+@mobileMenuHeight:50px;
+
+@media all and (max-width: 1024px) {
+  body.save header
+  {
+     padding-bottom: 0;
+  }
+
+  body.overflow-hidden
+  {
+    overflow: hidden;
+  }
+  aside.open + main{
+
+    overflow: hidden;
+    //filter:grayscale(1) ;
+    opacity: 0.3;
+  }
+  table td > span >  img
+  {
+    position: relative;
+    left: -@padding;
+    width: calc(~"100% +" (@padding * 2));
+  }
+  main list  > table
+  {
+    float: left;
+    display: block;
+  }
+  .col
+  {
+    width: 100%;
+    margin-right: 0;
+  }
+  .files-preview li,.associated-files-list li
+  {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  body.file-list tbody td figure
+  {
+    left: -@padding;
+
+    width:calc(~"100% +" (@padding * 2));
+  }
+
+  body.login .login-error
+  {
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  body.login
+  {
+    display: flex;
+    align-items: center;
+  }
+
+  body.login main
+  {
+    padding-right: @padding;
+    padding-left: @padding;
+    width: 60%;
+    margin: auto;
+    /* height: 300px; */
+    min-height: inherit;
+    z-index: 1;
+    position: static;
+
+  }
+  body.login:after
+  {
+    width: 100%;
+  }
+
+  .menu-mobile
+  {
+    display: block;
+  }
+  main
+  {
+    margin-top: @mobileMenuHeight;
+  }
+
+  body > main
+  {
+    width: 100%;
+    left: 0;
+  }
+
+  aside.open
+  {
+    left: 0%;
+  }
+
+  body > aside
+  {
+
+
+    width: 65%;
+    left: -65%;
+  }
+
+  .menu-mobile
+  { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    position: absolute;
+    left: 100%;
+    width: 200%;
+    display: flex;
+    align-items: center;
+    padding-left: @padding;
+    height: @mobileMenuHeight;
+    background: @mainColor;
+  }
+  .menu-mobile img
+  {
+    position: relative;
+    padding: 18px;
+    left: -18px;
+    height: 100%;
+    display: none;
+  }
+
+  aside.open img.close
+  {
+    display: block;
+  }
+  aside:not(.open) img.open
+  {
+    display: block;
+  }
+
+
+  table tbody
+  {
+    display: flex;
+    flex-wrap: wrap
+  }
+  table thead
+  {
+    display: none;
+  }
+  table tbody td:first-child
+  {
+    margin-top: @padding;
+  }
+  table tbody td:last-child
+  {
+    margin-bottom: @padding;
+  }
+
+
+  table tbody td
+  {
+
+
+    padding-left: @padding;
+    padding-right: @padding;
+    width: 100%!important;
+    float: left;
+    display: block;
+  }
+  .actions-cell .button
+  {
+    width: 100%;
+    display: block;
+  }
+  .actions-cell .button img
+  {
+    float: right;
+  }
+  .actions-cell .actions
+  {
+    width: 100%;
+  }
+  table tr
+  {
+    width: 49%;
+    margin-right: 2%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    float: left;
+    margin-bottom: @padding;
+  }
+  table tr:nth-child(2n)
+  {
+    margin-right: 0;
+  }
+
+  table
+  {
+    box-shadow: none!important;
+  }
+  table tbody td:not(.actions-cell):before
+  {
+    font-weight: 600;
+    color: @mainColor;
+    display: block;
+    content: attr(data-title);
+    width: 100%;
+    margin-top: @padding2;
+    margin-bottom: @padding2;
+  }
+
+}
+
+@media all and (max-width: 768px) {
+
+  .file-preview img
+  {
+    height: 200px;
+  }
+  .responsive-lightbox .confirmation-dialog
+  {
+    width: 90%;
+    height: 90vh;
+
+  }
+  body.login main {
+    width: 90%;
+  }
+  table tr
+  {
+    width: 100%;
+    margin-right: 0;
+  }
+
+
+}
+
+
+.login-error p
+{
+  color: @errorColor;
+  font-weight: 600;
+}
+
+
+.allowed-extensions .extensions{
+  line-height: 20px;
+  color: @mainColor;
+  font-weight: 600;
+}
+.files-preview .validation-errors
+{
+  position: relative;
+}
+
+.current-user-name
+{
+  color: @mainColor;
+}
+.grab-handle
+{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 35px;
+  z-index: 1;
+  background: white;
+  padding: 5px;
+  cursor: move;
+}
+
+.streaming-container
+{
+  margin-top: @padding;
+  width: 100%;
+}
+.streaming-container video
+{
+  width: 100%;
+}
+@media all and (max-height: 400px) {
+
+  body.login  *
+  {
+    font-size: 100%!important;
+  }
+  body.login footer
+  {
+    padding-top: @padding2;
+    padding-bottom: @padding2;
+  }
+
+  body.login top
+  {
+    display: none;
+    // transform: scale(0.6);
+  }
+
+}
+
+lightbox .hide-close .close
+{
+  display: none;
+}
+.highlight
+{    font-weight: 600;
+  color: @focusedInputColor;
+}
+
+.field-footer{
+  margin-top: 5px;
+  color: @mainColor;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.upload-from-wrapper
+{
+  margin-top: @padding2;
+}
+.file-preview .filename
+{
+  margin-top: @padding2;
+  float: left;
+  background-color: @mainColor;
+  color: white;
+  padding: @padding2/2;
+  width: 100%;
+  font-weight: 600;
+}
+.upload-button
+{
+  position: relative;
+}
+.upload-button upload-field
+{
+  position: absolute;
+  width: 100%;
+  top: -30px;
+  opacity: 0;
+}
+
+.form-field .add-option{
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  z-index: 1;
+}
