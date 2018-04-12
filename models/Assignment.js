@@ -5,7 +5,7 @@ const  AssignmentType = require('./AssignmentType');
 const Person = require('./Person');
 
 var schema = new Schema({
-    title: {type:String, required:true},
+    title: {type:String},
     date:{type:Date},
     type:{ref:'AssignmentType',type:Schema.Types.ObjectId},
     persons:[{ref:'Person',type:Schema.Types.ObjectId}],
@@ -18,11 +18,20 @@ var schema = new Schema({
     timestamps: true
 });
 
+
+
+
+
 var autoPopulate= function(next) {
     this.populate('persons');
     this.populate('type');
     next();
 };
+
+
+
+
+
 schema
     .pre('find', autoPopulate)
     .pre('findOne', autoPopulate);

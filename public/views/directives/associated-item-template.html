@@ -2,10 +2,10 @@
     <field data-type="custom" data-label="{{label}}" data-ng-class="{'with-files':model.length}">
 
 
-        <div data-ng-if="model && (model | isArray) && model.length > 0" class="col">
+        <div data-ng-init="onLoadAssociated()" data-ng-if="model && (model | isArray) && model.length > 0" class="col">
             <ul   ng-sortable="sortableConf" class="row associated-files-list">
 
-                <li  class="col fade-in" data-ng-repeat="(k,item) in model" >
+                <li   class="col" data-ng-repeat="(k,item) in model" >
                     <span class="grab-handle"><img src="/images/drag.svg"></span>
                     <span  data-ng-click="deleteAssociatedItem(k)" class="delete-preview"><img src="/images/trash.svg"></span>
 
@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </div>
-        <div data-ng-if="model && !(model | isArray)" class="col fade-in">
+        <div data-ng-init="onLoadAssociated()"  data-ng-if="model && !(model | isArray)" class="col ">
             <ul   ng-sortable="sortableConf" class="row associated-files-list">
 
                 <li  class="col"   >
@@ -49,7 +49,7 @@
             </ul>
         </div>
 
-        <p class="empty-associated-files fade-in" data-ng-if="!model || model.length == 0">{{'associated.items.empty' | translate}}</p>
+        <p class="empty-associated-files" data-ng-if="!model || model.length == 0">{{'associated.items.empty' | translate}}</p>
 
 
         <div class="col upload-from-wrapper">

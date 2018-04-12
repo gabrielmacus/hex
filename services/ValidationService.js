@@ -65,7 +65,7 @@ module.exports=
         {
             var errors = {};
 
-            var length = {min:3,max:150};
+            var length = {min:0,max:150};
             var lengthMessage = {message:'lengthBetween',data:length};
 
             if(!validator.isLength(UtilsService.get('title',req.body),length))

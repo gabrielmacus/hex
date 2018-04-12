@@ -28,9 +28,30 @@ app
                     forceFallback: true,
                 };
 
-                $scope.$watch('model',function (newValue,oldValue) {
+                $scope.associatedLoadedOnce =false;
+
+                $scope.onLoadAssociated=function () {
 
 
+
+                    if(!$scope.associatedLoadedOnce)
+                    {
+                        var model = angular.copy($scope.model);
+                        $scope.model = [];
+
+                        console.log("CALLED SET MODEL ON LOAD");
+                        $scope.associatedLoadedOnce = true;
+                        $scope.setModel(model);
+                    }
+
+
+
+                }
+
+
+                $scope.setModel=function (i) {
+
+                    console.log("CALLED SET MODEL");
                     if(!$scope.associatedPreviews)
                     {
                         $scope.associatedPreviews = {};
@@ -40,18 +61,49 @@ app
                         $scope.associatedPreviews[$scope.modelName] = {};
                     }
 
+                    var model =angular.copy(i);
 
 
-                    if(newValue instanceof Array)
+                    if(!Array.isArray(model))
                     {
-
-                    }
-                    else if(newValue instanceof  Object)
-                    {
-
+                        model = [model];
                     }
 
-                });
+                    console.log(model);
+
+
+                    model.forEach(function (f) {
+
+                        console.log(f);
+                        var data = {} ;
+                        if($scope.ref)
+                        {
+                            data[$scope.ref] = f._id;
+                        }
+                        else
+                        {
+                            data  = f._id;
+                        }
+                        $scope.associatedPreviews[$scope.modelName][f._id] = f;
+
+                        if($scope.max && $scope.max == 1)
+                        {
+                            $scope.model = data;
+                        }
+                        else
+                        {
+                            if(!Array.isArray($scope.model))
+                            {
+                                $scope.model=[];
+                            }
+
+                            $scope.model.push(data);
+                        }
+
+
+                    });
+
+                }
 
 
                 /*
@@ -110,7 +162,7 @@ app
 
                             iframe.contentWindow.postMessage({data:{model:$scope.modelName},type:'popup-data'},window.location.origin);
 
-                        },100);
+                        },200);
                     }
 
 
@@ -150,62 +202,15 @@ app
                     if (typeof(event.data) !== 'undefined' && event.data.model == $scope.modelName && event.origin == window.location.origin){
 
                         // handle message
-                        event.data.items.forEach(function (data) {
+                        $scope.associatedLoadedOnce = true;
+                        console.log("CALLED SET MODEL ON MESSAGE");
 
-                            if($scope.max && $scope.max == 1)
-                            {
-                                $scope.model = data;
-                            }
-                            else
-                            {
-                                $scope.model.push(data);
-                            }
-
-
-                        });
-
-                            /*
-                            if(!$scope.associatedPreviews)
-                            {
-                                $scope.associatedPreviews = {};
-                            }
-                            if(!$scope.associatedPreviews[$scope.modelName])
-                            {
-                                $scope.associatedPreviews[$scope.modelName] = {};
-                            }
-
-                            // handle message
-                            event.data.items.forEach(function (f) {
-
-                                var data = {} ;
-                                if($scope.ref)
-                                {
-                                    data[$scope.ref] = f._id;
-                                }
-                                else
-                                {
-                                    data  = f._id;
-                                }
-                                $scope.associatedPreviews[$scope.modelName][f._id] = f;
-
-                                if($scope.max && $scope.max == 1)
-                                {
-                                    $scope.model = data;
-                                }
-                                else
-                                {
-                                    $scope.model.push(data);
-                                }
-
-
-                            });
-
-                            */
+                        $scope.setModel(event.data.items);
 
                         $scope.lightboxOptions.open=false;
-
-
                         $scope.$apply();
+
+
                     }
                 });
 
