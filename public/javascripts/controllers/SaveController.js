@@ -11,7 +11,6 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
 
     $scope.loadItem=function () {
 
-        console.log($routeParams);
         axios.get(url,{headers:$rootScope.headers})
             .then(function (response) {
                 $scope.item = response.data;
