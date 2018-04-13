@@ -34,12 +34,13 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
 
     $scope.saveItem=function (callback) {
 
+
         $scope.validationErrors = {};
         axios({
             url:url,
             method:($routeParams.id)?"PUT":"POST",
             headers:$rootScope.headers,
-            data:$scope.item
+            data:angular.copy($scope.item)
         })
             .then(function (response) {
 

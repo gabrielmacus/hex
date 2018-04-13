@@ -3,11 +3,23 @@
 <!--
 <associated-file-field data-gallery="'5ab1bb822456de0cd8830ac3'" data-ref='image' data-model="item.images"></associated-file-field>
 -->
+
+<script type="text/ng-template" id="associated-file-template">
+
+    <file-preview data-file="data"></file-preview>
+
+    <field data-type="textarea" data-model="item.text" data-label="text"></field>
+
+</script>
+
+<associated-item-field data-template="'associated-file-template'" data-ref="image"  data-model="item.images"  data-validation-errors="validationErrors['images']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac779819a2e883719f9cba0/files?model=item.images" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac779819a2e883719f9cba0/upload?model=item.images" data-label="images"></associated-item-field>
+
+
+<!---
 <associated-file-field data-gallery="'5ac779819a2e883719f9cba0'" data-ref='image' data-model="item.images">
     <field data-label="text" data-model="$parent.item.text"></field>
 </associated-file-field>
-
-
+-->
 
 
 <field   data-label="submit" data-type="submit"></field>

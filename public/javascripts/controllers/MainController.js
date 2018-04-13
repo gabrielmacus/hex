@@ -110,7 +110,11 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
     $rootScope.config={
         product:{fields:["title",{label:'image',field:'images',render:function(item){
 
-            return "<img src='"+item.images[0].image.path+"'>";
+            if(item.images.length)
+            {
+                return "<img src='"+item.images[0].image.path+"'>";
+
+            }
         }}]},
         user:{fields:['name']},
         "facebook-post":{fields:['title','description','price',{label:'type',field:'type',render:function (item) {

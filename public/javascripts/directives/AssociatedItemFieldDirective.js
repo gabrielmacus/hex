@@ -37,11 +37,12 @@ app
                     if(!$scope.associatedLoadedOnce)
                     {
                         var model = angular.copy($scope.model);
+
                         $scope.model = [];
 
                         console.log("CALLED SET MODEL ON LOAD");
                         $scope.associatedLoadedOnce = true;
-                        $scope.setModel(model);
+                        $scope.setModel(model,true);
                     }
 
 
@@ -49,7 +50,8 @@ app
                 }
 
 
-                $scope.setModel=function (i) {
+
+                $scope.setModel=function (i,firstLoad) {
 
                     console.log("CALLED SET MODEL");
                     if(!$scope.associatedPreviews)
@@ -69,22 +71,37 @@ app
                         model = [model];
                     }
 
-                    console.log(model);
-
 
                     model.forEach(function (f) {
 
-                        console.log(f);
+
                         var data = {} ;
                         if($scope.ref)
                         {
+
+                            //If it's first load, not only gets the id, but the rest of the properties too
+                            if(firstLoad)
+                            {
+
+                                data  = angular.copy(f);
+                                f = f[$scope.ref];
+                                delete data._id;
+                            }
+
+
+
                             data[$scope.ref] = f._id;
+
+
+
                         }
                         else
                         {
                             data  = f._id;
                         }
-                        $scope.associatedPreviews[$scope.modelName][f._id] = f;
+                        //If is first load, gets the object from the reference (in case the reference exists)
+                        $scope.associatedPreviews[$scope.modelName][f._id] = f;//(firstLoad && $scope.ref)?f[$scope.ref]:f;
+
 
                         if($scope.max && $scope.max == 1)
                         {
@@ -104,13 +121,6 @@ app
                     });
 
                 }
-
-
-                /*
-                if(!$scope.ref)
-                {
-                    $scope.ref = 'file';
-                }*/
 
                 if(!$scope.model  && (!$scope.max || $scope.max>1))
                 {
@@ -150,11 +160,6 @@ app
                 }
                 $scope.setIframe=function () {
                     var iframe = document.querySelector("[data-id='"+$scope.modelName+"']");
-                    /*
-                    var parentAngular = window.parent.angular;
-                    var iframeScope = parentAngular.element($window.frameElement).scope();
-                    */
-                    //var iframeScope = iframe.contentWindow.angular.element(iframe.contentWindow.document.body).scope();
 
 
                     iframe.onload=function () {
@@ -165,9 +170,6 @@ app
                         },200);
                     }
 
-
-                    //iframe.contentWindow.postMessage() =  {model:$scope.modelName};
-                    //$scope.iframe.contentWindow.app.popup = {model:$scope.modelName}
 
                 }
                 $scope.openSelectExistant=function () {
@@ -190,10 +192,6 @@ app
                     $scope.setIframe();
 
                 }
-
-    /*
-    *             var qs = $location.search();
-                if(qs.model)*/
 
 
 
