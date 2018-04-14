@@ -97,7 +97,16 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
             $location.path('/streaming/'+i._id+'/watch');
 
         }}];
+    var personActions = defaultActions.concat([{
+        "text":"person.getAssignments",
+        "action":function (p) {
 
+            return $location.path('/assignment').search({query:{filter:JSON.stringify({"persons":{"$all":["5acd8961c1c02a4e7aadc5e5"]}})}});
+// {"persons":{"$all":["5acd8961c1c02a4e7aadc5e5"]}}
+           // $location.path('');
+
+        }
+    }]);;
     $rootScope.config={
         product:{fields:["title",{label:'image',field:'images',render:function(item){
 
@@ -128,7 +137,8 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
             },
         person:
             {
-                fields:['name','surname']
+                fields:['name','surname'],
+                actions:function(){return personActions;}
             },
         assignment:
             {

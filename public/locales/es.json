@@ -124,5 +124,7 @@
 
   "associated.item.selectExistant":"Seleccionar existente",
   "associated.item.addNew":"Agregar nuevo",
-  "associated.items.empty":"Sin elementos asociados"
+  "associated.items.empty":"Sin elementos asociados",
+
+  "person.getAssignments":"Ver asignaciones"
 }

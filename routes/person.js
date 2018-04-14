@@ -1,4 +1,5 @@
-
+const Assigment = require('../models/Assignment');
+const UtilsService = require('../services/UtilsService');
 module.exports=
     {
 
@@ -9,10 +10,22 @@ module.exports=
         },
         assignments:function (req,res,next) {
 
-            var id = req.param.id;
+            var id = req.params.id;
 
-            req.model.find({_id:id}).populate('assignment')
-            res.json({"assignments":true});
+            console.log({ persons: { $all: [id] } });
+
+            Assigment.find({ persons: { $all: [id] } })
+                .exec(function (err,assignments) {
+
+                    if(err)
+                    {
+                        return UtilsService.ErrorHandler(err,req,res,next);
+                    }
+
+                    res.json(assignments);
+
+                })
+
 
         }
 

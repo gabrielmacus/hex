@@ -12,6 +12,11 @@
   "User":
   {
 
+    "api.client":
+    {
+      "GET":{"access_level":3},
+      "POST":{"access_level":1}
+    },
     "api.user.menu":
     {
       "GET":{"access_level":3

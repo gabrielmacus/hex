@@ -23,6 +23,17 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     $rootScope.bodyClass[$scope.model] = true;
 
     $scope.query = {page:1,sort:"-createdAt"};
+
+
+    if($location.search() && $location.search().query)
+    {
+        angular.extend($scope.query,$location.search().query);
+
+    }
+
+    console.log($scope.query);
+
+
     $scope.items = [];
 
     $scope.actions = ($rootScope.config[$routeParams.model].actions)?$rootScope.config[$routeParams.model].actions:$rootScope.defaultActions;

@@ -23,10 +23,10 @@
 
             <file-preview data-ng-if="f.file"  data-file='i'></file-preview>
 
-            <span data-ng-if="!f.render">{{i[f]}}</span>
+            <span class="table-data" data-ng-if="!f.render">{{i[f]}}</span>
             <!---
             -->
-            <span data-ng-if="f.render" data-ng-bind-html="f.render(i)"></span>
+            <span data-ng-if="f.render" class="table-data" data-ng-bind-html="f.render(i)"></span>
 
         </td>
         <td class="actions-cell" data-ng-if="getActions(i)">

@@ -1,0 +1,28 @@
+{
+  "User":[
+    {
+      "text":"menu.home",
+      "href":"#!/"
+    },
+    {
+      "text":"menu.persons",
+      "href":"#!/person"
+    } ,
+    {
+      "text":"menu.assignments",
+      "href":"#!/assignment"
+    },
+    {
+      "text":"menu.assignmentsTypes",
+      "href":"#!/assignment-type"
+    },
+    {
+      "text":"menu.galleries",
+      "href":"#!/gallery"
+    },
+    {
+      "text":"menu.streamings",
+      "href":"#!/streaming"
+    }
+  ]
+}
