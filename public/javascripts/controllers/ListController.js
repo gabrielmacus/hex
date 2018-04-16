@@ -11,7 +11,7 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     }
 
 
-    $scope.url ="/api/".concat($routeParams.model);
+    $scope.url = ( $scope.url)? $scope.url:"/api/".concat($routeParams.model);
 
 
 

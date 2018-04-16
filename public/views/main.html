@@ -1,9 +1,9 @@
 <top data-title='"welcome" | translate:currentUser'></top>
 
 
-<div class="today-assignments" data-ng-init="model='assignment';sort='-date';url='/api/assignment/date?q=today&operator=$eq'"  >
+<div class="today-assignments"  >
 
-    <div class="assignments-wrapper" data-ng-controller="list-controller">
+    <div class="assignments-wrapper" data-ng-controller="assignment-list-controller">
 
         <top class="assignments-list-top" data-title="'assignment.list'"></top>
         <assignment-list  data-items="items"></assignment-list>

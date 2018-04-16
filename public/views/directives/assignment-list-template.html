@@ -12,3 +12,9 @@
         </div>
     </li>
 </ul>
+
+<div class="empty-assignments" data-ng-if="!assignments || assignments == {}">
+    <p>
+        {{emptyText | translate}}
+    </p>
+</div>

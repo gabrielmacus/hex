@@ -5,20 +5,39 @@ module.exports=
 
         date:function (req,res,next) {
 
-            return res.json(new Date());
+
             if(req.method != 'GET')
             {
              return   res.status(404).json({});
             }
 
-            if(!req.query.q || !req.query.operator)
+            if(!(req.query.from || req.query.to))
             {
                 return res.status(400).json({});
             }
-            var query = {date:{}};
 
-            var date =new Date(req.query.q);
-             query.date[req.query.operator] = date;
+            console.log(req.query);
+            var query = false;
+
+            if(req.query.from && !req.query.to)
+            {
+                query = {date:{'$gte':new Date(req.query.from)}};
+            }
+            else if(!req.query.from && req.query.to)
+            {
+                query = {date:{'$lte':new Date(req.query.to)}};
+            }
+            else if(req.query.from && req.query.to)
+            {
+                query = {date:{'$gte':new Date(req.query.from),'$lte':new Date(req.query.to)}};
+            }
+
+
+ 
+
+
+            //query.date = {'$gte':date,'$lte':endDate};
+
 
             req.model.find(query)
                 .exec(function (err,results) {

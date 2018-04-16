@@ -134,5 +134,7 @@
   "assignment.list":"Listado de asignaciones",
   "assignment.link":"Enlace",
 
-  "validation.shouldBeUrl":"Debe ser un enlace"
+  "validation.shouldBeUrl":"Debe ser un enlace",
+
+  "assignments.empty":"No hay asignaciones para mostrar"
 }

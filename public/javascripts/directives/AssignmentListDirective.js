@@ -4,7 +4,8 @@ app
         return {
             restrict:"E",
             scope: {
-                items:"="
+                items:"=",
+                emptyText:"@"
             },
             transclude:true,
 
@@ -13,6 +14,10 @@ app
 
             },
             controller: function ($scope,$rootScope,$location,$cookies,$window) {
+                if(!$scope.emptyText)
+                {
+                    $scope.emptyText = 'assignments.empty';
+                }
 
                 $scope.loadPersons = function (p) {
 

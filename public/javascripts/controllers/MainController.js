@@ -1,5 +1,7 @@
 app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,$cookies,$location,$compile,$window) {
 
+    $rootScope.Date = Date;
+
     $rootScope.currentUser = user;
     $scope.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(src);
