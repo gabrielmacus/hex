@@ -101,7 +101,7 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
         "text":"person.getAssignments",
         "action":function (p) {
 
-            return $location.path('/assignment').search({query:{filter:JSON.stringify({"persons":{"$all":["5acd8961c1c02a4e7aadc5e5"]}})}});
+            return $location.path('/assignment').search({titleObject:JSON.stringify(p),title:'person.assignments.title',filter:JSON.stringify({"persons":{"$all":[p._id]}})});
 // {"persons":{"$all":["5acd8961c1c02a4e7aadc5e5"]}}
            // $location.path('');
 

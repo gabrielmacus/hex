@@ -1,0 +1,14 @@
+<ul class="assignments-list" data-ng-repeat="(date,i) in assignments" data-ng-class="{'today':isToday(date)}">
+    <li class="header">{{loadDate(date)}}
+    <span class="tag" data-ng-if="isToday(date)">{{'today' | translate}}</span>
+    </li>
+    <li  data-ng-repeat="a in i" class="assignment">
+
+        <a target="_blank" data-ng-href="{{a.link}}" class="type">{{a.type.name}}</a>
+        <div class="right">
+            <a target="_blank"  data-ng-href="{{a.link}}" class="title">{{a.title}}</a>
+            <span  data-ng-if="a.title" class="separator">|</span>
+            <span class="persons">{{loadPersons(a)}}  </span>
+        </div>
+    </li>
+</ul>

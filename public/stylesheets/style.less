@@ -296,6 +296,8 @@ table td > span >  img
 }
 main  footer
 {
+  width: 100%!important;
+
   padding: @padding;
   padding-left: 0;
   padding-right: 0;
@@ -898,6 +900,15 @@ input[type='file']
 @mobileMenuHeight:50px;
 
 @media all and (max-width: 1024px) {
+
+  .assignments-list .right
+  {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+
+  }
+
   body.save header
   {
     //padding-bottom: 0;
@@ -1283,4 +1294,81 @@ lightbox .hide-close .close
 .table-data + .table-empty-data
 {
   display: none;
+}
+.assignments-list li
+{
+  width: 100%;
+  float: left;
+  font-size: 18px;
+  padding: @padding2/1.5;
+}
+.assignments-list .type
+{
+  font-weight: 600;
+}
+.assignments-list .header
+{
+
+  font-size: 20px;
+  font-weight: 600;
+  background: #01579B;
+  color: white;
+}
+.assignments-list .title
+{
+  color: #3949AB
+;
+}
+.assignments-list li{
+  background: #EEEEEE;
+  line-height: 20px;
+}
+.assignments-list li:not(.header) + li
+{
+  border-top: 1px solid #E0E0E0;
+}
+.assignments-list .right
+{
+  float: right;
+}
+paginator ol{
+  float: left;
+  width: 100%;
+}
+
+.assignments-list.today .header
+{
+  background-color: #1E88E5;
+  position: relative;
+}
+.assignments-list.today .tag
+{
+  float: right;
+  font-size: 15px;
+  font-weight: 300;
+  /* background: red; */
+  /* padding: 5px; */
+  position: absolute;
+  right: 10px;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  background: white;
+  color: #1E88E5;
+}
+
+.assignments-list
+{    float: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  width: 100%;
+  margin-bottom: @padding2;}
+.assignments-list-top header
+{
+  padding: 0;
+  padding-bottom:@padding2;
+}
+.assignments-list-top header h2
+{
+  font-size: 25px;
+  font-weight: 300;
 }

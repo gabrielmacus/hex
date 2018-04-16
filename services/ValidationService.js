@@ -103,7 +103,7 @@ module.exports=
 
             var placeMessage = {message:"numberBetween",data:{min:1,max:5}};
 
-            if(!validator.isInt(UtilsService.get('place',req.body),placeMessage.data))
+            if(UtilsService.get('place',req.body)!='' && !validator.isInt(UtilsService.get('place',req.body),placeMessage.data))
             {
                 errors['place'] = [];
                 errors['place'].push(placeMessage);
@@ -117,7 +117,14 @@ module.exports=
                 errors['description'].push(descriptionMessage);
 
             }
+            var linkMessage = {message:"shouldBeUrl"};
 
+            if(UtilsService.get('link',req.body)!=''&&!validator.isURL(UtilsService.get('link',req.body),linkMessage.data))
+            {
+                errors['link'] = [];
+                errors['link'].push(linkMessage);
+
+            }
 
 
 

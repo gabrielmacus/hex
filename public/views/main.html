@@ -1,1 +1,27 @@
 <top data-title='"welcome" | translate:currentUser'></top>
+
+
+<div class="today-assignments" data-ng-init="model='assignment';sort='-date';url='/api/assignment/date?q=today&operator=$eq'"  >
+
+    <div class="assignments-wrapper" data-ng-controller="list-controller">
+
+        <top class="assignments-list-top" data-title="'assignment.list'"></top>
+        <assignment-list  data-items="items"></assignment-list>
+        <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+    </div>
+
+    <!--
+    <div data-ng-controller="list-controller">
+        <top class="assignments-list-top" data-title="'assignment.list'"></top>
+        <assignment-list  data-items="items"></assignment-list>
+        <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+    </div>-->
+
+</div>
+
+
+
+<!--
+<assignation-list  data-items=""></assignation-list>-->

@@ -53,7 +53,10 @@
     "api.file.upload":
     {
       "PUT":{}
+    },
+    "api.date.$":
+    {
+      "GET":{"access_level":3}
     }
-
   }
 }

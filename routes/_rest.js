@@ -13,7 +13,7 @@ var User = require('../models/User');
 var async = require('async');
 var UtilsService = require('../services/UtilsService');
 var ValidationService = require('../services/ValidationService');
-var UserService = require('../services/UserService');
+
 
 const ACCESS_LEVEL_ME = 1;
 const ACCESS_LEVEL_GROUP = 2;
@@ -102,7 +102,8 @@ router.get('/:model/:id',function (req,res,next) {
 
         if(err)
         {
-           return UtilsService.ErrorHandler(err,req,res,next);
+            //TODO: Handle errors
+            console.log(err);
         }
         var status = 200;
         async.series([
@@ -204,24 +205,50 @@ router.put('/:model/:id',function(req,res,next){
     req.model.findOne(query).populate('createdBy').exec(function (err,result) {
         if(err)
         {
-           return  UtilsService.ErrorHandler(err,req,res,next);
-
+            console.error(err);
+            //TODO: handle errors
         }
 
         async.series([
             function (callback) {
+                switch (req.authorization)
+                {
+                    case ACCESS_LEVEL_ME:
 
 
-                UserService.checkAuthorization(req.authorization,req.user,result,function (s) {
 
-                    if(s)
-                    {
-                       status = s;
-                    }
+                        if(result.createdBy._id.toString() !=  req.user._id.toString())
+                        {
+                            status = 403;
+                        }
 
-                    callback();
+                        callback();
 
-                });
+                        break;
+                    case ACCESS_LEVEL_GROUP:
+
+                        User.find({}).exec(function (err,users) {
+
+
+                            if(users.findIndex(function (el) {
+                                    return el.role == result.createdBy.role;
+                                }) == -1)
+                            {
+                                status = 403;
+                            }
+
+                            return  callback();
+
+                        })
+
+
+                        break;
+                    case  ACCESS_LEVEL_ALL:
+
+                        callback();
+
+                        break;
+                }
 
 
             },function () {
@@ -276,18 +303,39 @@ router.delete('/:model/:id',function (req,res,next) {
         var status =200;
         async.series([
             function (callback) {
+                switch (req.authorization)
+                {
+                    case ACCESS_LEVEL_ME:
 
-                UserService.checkAuthorization(req.authorization,req.user,result,function (s) {
+                        if(result.createdBy._id.toString() !=  req.user._id.toString())
+                        {
+                            status = 403;
+                        }
 
-                    if(s)
-                    {
-                        status = s;
-                    }
+                        callback();
+                        break;
+                    case ACCESS_LEVEL_GROUP:
 
-                    callback();
+                        User.find({}).exec(function (err,users) {
 
-                });
+                            if(users.findIndex(function (el) {
+                                    return el.role == result.createdBy.role;
+                                }) == -1)
+                            {
+                                status = 403;
+                            }
 
+                            return  callback();
+
+                        })
+
+                        break;
+                    case  ACCESS_LEVEL_ALL:
+
+                        callback();
+
+                        break;
+                }
 
 
             },

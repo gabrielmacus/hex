@@ -67,5 +67,16 @@
 <field data-type="textarea"  data-validation-errors="validationErrors['description']"  data-model="item.description" data-label="description"></field>
 
 
-<field   data-label="submit" data-type="submit"></field>
+<script type="text/ng-template" id="associated-file-template">
 
+    <file-preview data-file="data"></file-preview>
+
+    <field data-type="textarea" data-model="item.text" data-label="text"></field>
+
+</script>
+
+<associated-item-field data-template="'associated-file-template'" data-ref="attachment"  data-model="item.attachments"  data-validation-errors="validationErrors['attachments']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac7c8083e9a30521882bb84/files?model=item.attachments" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac7c8083e9a30521882bb84/upload?model=item.attachments" data-label="attachment.plural"></associated-item-field>
+
+<field data-validation-errors="validationErrors['link']" data-model="item.link" data-label="assignment.link"></field>
+
+<field   data-label="submit" data-type="submit"></field>

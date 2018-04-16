@@ -1,9 +1,20 @@
 app.controller('list-controller', function ($scope,$rootScope,$routeParams,$window,$location,$controller) {
 
+
+    if(!$routeParams.model)
+    {
+        $routeParams.model = $scope.model;
+    }
+    else
+    {
+        $scope.model=$routeParams.model;
+    }
+
+
     $scope.url ="/api/".concat($routeParams.model);
 
 
-    $scope.model=$routeParams.model;
+
 
     $scope.goToSave=function () {
 
@@ -24,14 +35,28 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
     $scope.query = {page:1,sort:"-createdAt"};
 
-
-    if($location.search() && $location.search().query)
+    if($scope.sort)
     {
-        angular.extend($scope.query,$location.search().query);
-
+     $scope.query.sort =  $scope.sort;
     }
 
-    console.log($scope.query);
+    if($location.search() && $location.search().title)
+    {
+        $scope.title = $location.search().title;
+    }
+
+    if($location.search() && $location.search().titleObject)
+    {
+        $scope.titleObject = $location.search().titleObject;
+    }
+
+    if($location.search() && $location.search().filter)
+    {
+        //$scope.url += "?filter="+JSON.stringify($location.search().filter)
+         //angular.extend($scope.query,$location.search().query);
+        $scope.query.filter =$location.search().filter;
+    }
+
 
 
     $scope.items = [];
@@ -109,7 +134,7 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
         if($rootScope.popupData && $rootScope.popupData.model)
         {
- 
+
             $window.parent.postMessage({items:selected,model:$rootScope.popupData.model},window.location.origin);
         }
 

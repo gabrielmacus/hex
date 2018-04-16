@@ -126,5 +126,13 @@
   "associated.item.addNew":"Agregar nuevo",
   "associated.items.empty":"Sin elementos asociados",
 
-  "person.getAssignments":"Ver asignaciones"
+  "person.getAssignments":"Ver asignaciones",
+  "person.assignments.title":"Asignaciones de {{name}} {{surname}}",
+  "today":"Hoy",
+
+  "attachment.plural":"Adjuntos",
+  "assignment.list":"Listado de asignaciones",
+  "assignment.link":"Enlace",
+
+  "validation.shouldBeUrl":"Debe ser un enlace"
 }

@@ -3,15 +3,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const  AssignmentType = require('./AssignmentType');
 const Person = require('./Person');
-
+const File = require('./File');
 var schema = new Schema({
     title: {type:String},
     date:{type:Date},
     type:{ref:'AssignmentType',type:Schema.Types.ObjectId},
     persons:[{ref:'Person',type:Schema.Types.ObjectId}],
+    attachments:[{attachment:{type:Schema.Types.ObjectId,ref:'File'},text:String}],
     createdBy:{type:Schema.Types.ObjectId,ref:'User',required:true},
     place:{type:Number,required:true,default:1},
-    description:{type:String}
+    description:{type:String},
+    link:String
 
 
 }, {
@@ -25,6 +27,7 @@ var schema = new Schema({
 var autoPopulate= function(next) {
     this.populate('persons');
     this.populate('type');
+    this.populate('attachments.attachment');
     next();
 };
 
