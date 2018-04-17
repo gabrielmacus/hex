@@ -9,6 +9,7 @@ var schema = new Schema({
     name: {type:String, required:true},
     surname: {type:String, required:true},
     createdBy:{type:Schema.Types.ObjectId,ref:'User',required:true},
+    lastAssignment:Date
     //assignments:[{type:Schema.Types.ObjectId,ref:'Assignment'}],
 
 

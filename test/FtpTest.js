@@ -5,7 +5,7 @@ const FileService = require('../services/FileService');
 const path = require('path');
 
 process.env.NODE_ENV="test";
-var dotenv = require('dotenv').config({path:"C:\\Users\\Puers\\WebstormProjects\\hex\\env\\test.env"});
+var dotenv = require('dotenv').config({path:path.join(require('app-root-dir').get(),'/env/test.env')});
 
 
 describe('FTP test', function(){
