@@ -11,6 +11,7 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
 
     $rootScope.errorHandler=function (error) {
         alert("Error");
+        console.log(error);
 
         console.log(error.response);
 

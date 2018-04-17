@@ -204,8 +204,11 @@ app
                         console.log("CALLED SET MODEL ON MESSAGE");
 
                         $scope.setModel(event.data.items);
+                        if($scope.lightboxOptions)
+                        {
+                            $scope.lightboxOptions.open=false;
 
-                        $scope.lightboxOptions.open=false;
+                        }
                         $scope.$apply();
 
 

@@ -1336,11 +1336,12 @@ paginator ol{
   width: 100%;
 }
 
-.assignments-list.today .header
+.today-assignments .assignments-list.today .header
 {
   background-color: #1E88E5;
   position: relative;
 }
+
 .assignments-list.today .tag
 {
   float: right;
@@ -1357,6 +1358,20 @@ paginator ol{
   color: #1E88E5;
 }
 
+.past-assignments li
+{
+  transition:all 200ms;
+  opacity: 0.7;
+}
+.past-assignments li:hover
+{
+  opacity: 1;
+}
+.past-assignments .header{
+  background-color: #212121
+;
+  color: white;
+}
 .assignments-list
 {    float: left;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -1377,10 +1392,13 @@ paginator ol{
   height: 150px;
   display: flex;
   align-items: center;
-  background: #E0E0E0;
+  background: #EEEEEE;
   font-weight: 600;
 }
 .empty-assignments p
 {
   margin: auto;
+}
+.assignments-wrapper paginator ol{
+  margin-top: 0;
 }

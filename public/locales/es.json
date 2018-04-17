@@ -132,6 +132,9 @@
 
   "attachment.plural":"Adjuntos",
   "assignment.list":"Listado de asignaciones",
+  "assignment.list.today":"Asignaciones para hoy",
+  "assignment.list.future":"Asignaciones futuras",
+  "assignment.list.past":"Asignaciones pasadas",
   "assignment.link":"Enlace",
 
   "validation.shouldBeUrl":"Debe ser un enlace",

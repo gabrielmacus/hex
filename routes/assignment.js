@@ -16,7 +16,6 @@ module.exports=
                 return res.status(400).json({});
             }
 
-            console.log(req.query);
             var query = false;
 
             if(req.query.from && !req.query.to)
@@ -32,12 +31,21 @@ module.exports=
                 query = {date:{'$gte':new Date(req.query.from),'$lte':new Date(req.query.to)}};
             }
 
-
- 
-
-
             //query.date = {'$gte':date,'$lte':endDate};
 
+            /*
+            *             req.model.find(query).paginate(req.page,req.limit,function (err,results,total) {
+
+                    if(err)
+                    {
+                        return UtilsService.ErrorHandler(err,req,res,next);
+                    }
+
+                    var totalPages = (results.length > 0)? Math.ceil(total/req.limit):0;
+                    res.json({docs:results,pagination:{total:total,results:results.length,page:req.page,pages:totalPages}});
+
+
+                });*/
 
             req.model.find(query)
                 .exec(function (err,results) {
@@ -47,7 +55,7 @@ module.exports=
                         return UtilsService.ErrorHandler(err,req,res,next);
                     }
 
-                    res.json(results);
+                    res.json({docs:results});
 
 
                 })

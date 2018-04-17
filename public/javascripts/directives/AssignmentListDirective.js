@@ -42,19 +42,22 @@ app
                 }
                 $scope.$watch('items',function () {
 
-                    $scope.assignments = {};
-                    $scope.items.forEach(function (t) {
+                   if($scope.items && $scope.items.length)
+                   {
+                       $scope.assignments = {};
+                       $scope.items.forEach(function (t) {
 
-                        if(!$scope.assignments[t.date])
-                        {
-                            $scope.assignments[t.date] = [];
-                        }
+                           if(!$scope.assignments[t.date])
+                           {
+                               $scope.assignments[t.date] = [];
+                           }
 
-                        $scope.assignments[t.date].push(t);
+                           $scope.assignments[t.date].push(t);
 
 
-                    });
+                       });
 
+                   }
                 });
 
 

@@ -1,6 +1,7 @@
 app.controller('list-controller', function ($scope,$rootScope,$routeParams,$window,$location,$controller) {
 
 
+
     if(!$routeParams.model)
     {
         $routeParams.model = $scope.model;
