@@ -5,7 +5,20 @@ const path = require('path');
 
 module.exports=
     {
-        
+        CallMiddleware:function (req,res,next,instance,type) {
+
+            var Route = require('../routes/'+req.model.modelName.toLowerCase());
+
+            if(Route && Route.middleware && Route.middleware[instance] && Route.middleware[instance][type])
+            {
+                Route.middleware[instance][type](req,res,next);
+            }
+            else
+            {
+                next();
+            }
+
+        },
         SendEmail:function (from,to,subject,data,template,callback) {
 
 

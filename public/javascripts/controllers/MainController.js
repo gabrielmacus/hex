@@ -144,12 +144,24 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
             },
         person:
             {
-                fields:['name','surname'],
+                query:{sort:"-lastAssignment,-surname,-name"},
+                fields:['name','surname',{field:'lastAssignment',render:function (p) {
+                    console.log(p);
+                    if( p.lastAssignment)
+                    {
+                        return new Date( p.lastAssignment).toLocaleDateString();
+                    }
+                    else {
+
+                        return  $scope.$eval("'person.notAssignments' | translate ");
+                    }
+
+                }}],
                 actions:function(){return personActions;}
             },
         assignment:
             {
-
+              query:{sort:'-date'},
              fields:['title',{field:'date',render:function (i) {
                  return new Date(i.date).toLocaleDateString()
              }},{field:'persons',label:'person/s',render:function (i) {

@@ -1,5 +1,7 @@
-
+const PersonService = require('../services/PersonService');
 const UtilsService = require('../services/UtilsService');
+const async = require('async');
+const Person = require('../models/Person');
 module.exports=
     {
 
@@ -59,6 +61,43 @@ module.exports=
 
 
                 })
-        }
+        },
+        middleware:
+            {
+                post:
+                    {
+                        update:function (req,res,next) {
+
+                            PersonService.setPersonsLastAssignment((req.body.persons)?req.body.persons:[],function (err) {
+
+                                if(err)
+                                {
+                                    return UtilsService.ErrorHandler(err,req,res,next);
+                                }
+
+                                next();
+
+                            });
+
+
+                        },
+                        create:function (req,res,next) {
+
+
+                            PersonService.setPersonsLastAssignment((req.body.persons)?req.body.persons:[],function (err) {
+
+                                if(err)
+                                {
+                                    return UtilsService.ErrorHandler(err,req,res,next);
+                                }
+
+                                next();
+
+                            });
+
+
+                        }
+                    }
+            }
 
     }

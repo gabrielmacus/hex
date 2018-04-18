@@ -11,10 +11,9 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
         $scope.model=$routeParams.model;
     }
 
+    $scope.modelConfig = $rootScope.config[$routeParams.model];
 
     $scope.url = ( $scope.url)? $scope.url:"/api/".concat($routeParams.model);
-
-
 
 
     $scope.goToSave=function () {
@@ -34,23 +33,35 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     $rootScope.bodyClass ={"list":true};
     $rootScope.bodyClass[$scope.model] = true;
 
-    $scope.query = {page:1,sort:"-createdAt"};
+    $scope.query = {page:1,sort:'-createdBy'};
 
-    if($scope.sort)
+    //If model has default query parameteres
+    if($scope.modelConfig.query)
     {
-     $scope.query.sort =  $scope.sort;
+        angular.extend($scope.query,$scope.modelConfig.query);
     }
 
+
+    //Order by
+    if($scope.sort || ($location.search() && $location.search().sort))
+    {
+        $scope.query.sort = ($scope.sort)?$scope.sort:$location.search().sort;
+    }
+
+
+
+
+    //List title
     if($location.search() && $location.search().title)
     {
         $scope.title = $location.search().title;
     }
-
     if($location.search() && $location.search().titleObject)
     {
         $scope.titleObject = $location.search().titleObject;
     }
 
+    //Advanced filter
     if($location.search() && $location.search().filter)
     {
         //$scope.url += "?filter="+JSON.stringify($location.search().filter)
@@ -62,14 +73,16 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
     $scope.items = [];
 
-    $scope.actions = ($rootScope.config[$routeParams.model].actions)?$rootScope.config[$routeParams.model].actions:$rootScope.defaultActions;
 
-    $scope.footer = ($rootScope.config[$routeParams.model].footer)?$rootScope.config[$routeParams.model].footer:false;
+    
+    $scope.actions = ($scope.modelConfig.actions)?$scope.modelConfig.actions:$rootScope.defaultActions;
+
+    $scope.footer = ($scope.modelConfig.footer)?$scope.modelConfig.footer:false;
 
 
-    if ($rootScope.config[$routeParams.model].saveUrl)
+    if ($scope.modelConfig.saveUrl)
     {
-        $scope.saveUrl=$rootScope.config[$routeParams.model].saveUrl;
+        $scope.saveUrl=$scope.modelConfig.saveUrl;
     }
     else if(!$rootScope.saveUrl)
     {
@@ -143,9 +156,9 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
     $scope.loadList();
 
-    if($rootScope.config[$routeParams.model].listController)
+    if($scope.modelConfig.listController)
     {
-        $controller($rootScope.config[$routeParams.model].listController,{$scope:$scope,$routeParams:$routeParams});
+        $controller($scope.modelConfig.listController,{$scope:$scope,$routeParams:$routeParams});
     }
 
 

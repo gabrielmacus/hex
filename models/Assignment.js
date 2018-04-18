@@ -39,34 +39,8 @@ var autoPopulate= function(next) {
 schema
     .pre('find', autoPopulate)
     .pre('findOne', autoPopulate)
-    .post('validate',function (doc,next) {
-
-        console.log(doc);
-        var Assignment = require('./Assignment');
-        //doc
-        Assignment.find({_id:doc._id})
-            .exec(function (err,result) {
-
-               if(err)
-               {
-                   return next(err);
-               }
-
-               console.log(result);
 
 
-                next();
-
-            });
-
-
-
-
-        /*
-        AssignmentService.setPersonLastAssignment(this.persons,this.date.toISOString(),function (err) {
-            next(err);
-        })*/
-
-    });
+                
 
 module.exports=db.model('Assignment',schema);

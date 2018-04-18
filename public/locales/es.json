@@ -139,5 +139,7 @@
 
   "validation.shouldBeUrl":"Debe ser un enlace",
 
-  "assignments.empty":"No hay asignaciones para mostrar"
+  "assignments.empty":"No hay asignaciones para mostrar",
+  "person.notAssignments":"Sin asignaciones",
+  "lastAssignment":"Última asignación"
 }

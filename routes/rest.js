@@ -79,6 +79,7 @@ router.all(['/:model' ,'/:model/:id([a-fA-F\\d]{24})','/:model/:id([a-fA-F\\d]{2
 
 
 //Read all
+//TODO: set middleware
 router.get('/:model/all',function (req,res,next) {
 
     req.model.find({}).exec(function (err,results) {
@@ -90,6 +91,7 @@ router.get('/:model/all',function (req,res,next) {
 });
 
 //Read one
+//TODO: set middleware
 router.get('/:model/:id',function (req,res,next) {
 
     if(!ObjectID.isValid(req.id))
@@ -177,8 +179,9 @@ router.get('/:model/:id',function (req,res,next) {
 
 })
 //Update one
-router.put('/:model/:id',function(req,res,next){
-
+router.put('/:model/:id',
+    function(req,res,next){
+        //Validation middleware
     if(ValidationService[req.model.modelName])
     {
         ValidationService[req.model.modelName](req,res,next);
@@ -189,6 +192,11 @@ router.put('/:model/:id',function(req,res,next){
     }
 
 },
+    function (req,res,next) {
+
+        //Middleware: PRE UPDATE
+        UtilsService.CallMiddleware(req,res,next,'pre','update');
+    },
     function (req,res,next) {
 
 
@@ -233,28 +241,36 @@ router.put('/:model/:id',function(req,res,next){
                 }
 
                 req.model.update(query,{'$set':req.body}).exec(function (err,result) {
-
-
-
                     if(err)
                     {
-                        //TODO: Handle errors
-                        console.log(err);
+                        return UtilsService.ErrorHandler(err,req,res,next);
                     }
 
-                    return res.json(result);
+                    res.result =result;
+                    next();
+                    //return res.json(result);
                 });
             }
         ]);
 
     })
 
+},
+    function (req,res,next) {
 
+        //Middleware: POST UPDATE
+        UtilsService.CallMiddleware(req,res,next,'post','update');
 
+    },
+    function (req,res,next) {
 
+        //Returns data
+        res.json(res.result);
 
-});
+    }
+    );
 //Delete  one
+//TODO: set middleware
 router.delete('/:model/:id',function (req,res,next) {
 
 
@@ -336,6 +352,7 @@ router.delete('/:model/:id',function (req,res,next) {
 
 });
 //Read many
+//TODO: set middleware
 router.get('/:model', function(req, res, next) {
 
     //Deletes all non related to query fields
@@ -413,6 +430,7 @@ router.get('/:model', function(req, res, next) {
 
 });
 //Create one
+//TODO: set middleware
 router.post('/:model',function(req,res,next){
 
     if(ValidationService[req.model.modelName])
@@ -425,6 +443,10 @@ router.post('/:model',function(req,res,next){
     }
 
 },
+    function (req,res,next) {
+        //Middleware: PRE CREATE
+        UtilsService.CallMiddleware(req,res,next,'pre','create');
+    },
     function(req, res, next){
 
     req.body.createdBy = req.user._id;
@@ -435,11 +457,29 @@ router.post('/:model',function(req,res,next){
          {
              return UtilsService.ErrorHandler(err,req,res,next);
          }
-        res.json(result);
+
+         res.result =result;
+         next();
+         //res.json(result);
     });
 
 
-});
+}
+,   function (req,res,next) {
+
+        //Middleware: POST CREATE
+        UtilsService.CallMiddleware(req,res,next,'post','create');
+
+    },
+    function (req,res,next) {
+
+        //Returns data
+        res.json(res.result);
+
+    }
+
+
+);
 
 
 module.exports = router;

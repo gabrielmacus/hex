@@ -4,6 +4,7 @@ module.exports=
     {
         /**
          * Sets person last  assignment
+         * @deprecated
          * @param persons
          * @param assignmentDate
          * @param callback
