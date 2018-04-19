@@ -1,5 +1,4 @@
 
-
 var app = angular.module("app", [ 'ng-sortable','ngSanitize','ngAnimate',"checklist-model","ngRoute","pascalprecht.translate",'ngCookies','ngTagsInput']);
 app.filter('trusted', ['$sce', function ($sce) {
     return function(url) {

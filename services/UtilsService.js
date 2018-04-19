@@ -7,15 +7,31 @@ module.exports=
     {
         CallMiddleware:function (req,res,next,instance,type) {
 
-            var Route = require('../routes/'+req.model.modelName.toLowerCase());
+            try
+            {
+                var Route = require('../routes/'+req.model.modelName.toLowerCase());
 
-            if(Route && Route.middleware && Route.middleware[instance] && Route.middleware[instance][type])
-            {
-                Route.middleware[instance][type](req,res,next);
+                if(Route && Route.middleware && Route.middleware[instance] && Route.middleware[instance][type])
+                {
+                    Route.middleware[instance][type](req,res,next);
+                }
+                else
+                {
+                    next();
+                }
             }
-            else
+            catch(e)
             {
-                next();
+
+                if(e.code == "MODULE_NOT_FOUND")
+                {
+                    next();
+                }
+                else
+                {
+                    module.exports.ErrorHandler(e,req,res,next);
+                }
+
             }
 
         },

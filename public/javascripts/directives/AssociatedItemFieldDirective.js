@@ -166,6 +166,7 @@ app
                         $timeout(function () {
 
                             iframe.contentWindow.postMessage({data:{model:$scope.modelName},type:'popup-data'},window.location.origin);
+                            $scope.iframeLoaded=true;
 
                         },200);
                     }
@@ -209,6 +210,7 @@ app
                             $scope.lightboxOptions.open=false;
 
                         }
+                        $scope.iframeLoaded=false;
                         $scope.$apply();
 
 

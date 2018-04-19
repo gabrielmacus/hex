@@ -429,8 +429,8 @@ router.get('/:model', function(req, res, next) {
 
 
 });
+
 //Create one
-//TODO: set middleware
 router.post('/:model',function(req,res,next){
 
     if(ValidationService[req.model.modelName])

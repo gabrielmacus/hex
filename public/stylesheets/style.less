@@ -190,9 +190,9 @@ main  top header h2
 main list > *
 {
 
-  padding: @padding;
-  padding-right: 0;
-  padding-left: 0;
+  //padding: @padding;
+  //padding-right: 0;
+  //padding-left: 0;
 }
 main list  td,main list  th
 {
@@ -893,14 +893,37 @@ input[type='file']
   margin-right: 0;
 }
 
-
+list .loading
+{
+  height: 100px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  background: white;
+}
+list .loading p{
+  margin: auto;
+}
+list .loading .svg
+{
+  text-align: center;
+  width: 100%;
+}
+list .loading svg
+{
+  width: 5%;
+  fill: @mainColor;
+}
 
 
 
 @mobileMenuHeight:50px;
 
 @media all and (max-width: 1024px) {
-
+  list .loading svg
+  {
+    width: 10%;
+  }
   .assignments-list .right
   {
     width: 100%;
@@ -1410,3 +1433,27 @@ paginator ol{
   float: left;
   width: 100%;
 }
+.list-empty
+{
+  background: @emptyListMessageColor;
+  padding: @padding;
+}
+
+ .page-loader
+{
+
+   top: 0;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: @mainColor;
+}
+
+ .page-loader img
+{
+  margin: auto;
+  width: 10%;
+}
+

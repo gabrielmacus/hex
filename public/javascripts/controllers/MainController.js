@@ -144,7 +144,7 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
             },
         person:
             {
-                query:{sort:"-lastAssignment,-surname,-name"},
+                query:{sort:"+lastAssignment,-surname,-name"},
                 fields:['name','surname',{field:'lastAssignment',render:function (p) {
                     console.log(p);
                     if( p.lastAssignment)
