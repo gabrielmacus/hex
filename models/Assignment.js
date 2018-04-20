@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const  AssignmentType = require('./AssignmentType');
 const AssignmentService = require('../services/AssignmentService');
 const Person = require('./Person');
+
+const ModelService = require('../services/ModelService');
 const File = require('./File');
 var schema = new Schema({
     title: {type:String},
@@ -28,7 +30,7 @@ var schema = new Schema({
 var autoPopulate= function(next) {
     this.populate('persons');
     this.populate('type');
-    this.populate('attachments.attachment');
+    this.populate('attachments.attachment')
     next();
 };
 
@@ -39,7 +41,11 @@ var autoPopulate= function(next) {
 schema
     .pre('find', autoPopulate)
     .pre('findOne', autoPopulate)
+    .pre('init',function (doc) {
 
+        ModelService.ClearDeletedReferences(doc,'attachments','attachment');
+
+    });
 
                 
 

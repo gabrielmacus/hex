@@ -5,7 +5,7 @@ var User = require('../models/User');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-
+const UtilsService = require('../services/UtilsService');
 //https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
 passport.serializeUser(function(user, done) {
 
@@ -30,7 +30,18 @@ passport.deserializeUser(function(id, done) {
 var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderWithScheme("JWT"),ExtractJwt.fromUrlQueryParameter("access_token")]);
+
+//Custom extractor
+var FromCookie = function(req) {
+    var token = null;
+    if (req && req.cookies)
+    {
+        token = req.cookies['access_token'];
+    }
+    return token;
+};
+
+opts.jwtFromRequest = ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderWithScheme("JWT"),ExtractJwt.fromUrlQueryParameter("access_token"),FromCookie]);
 opts.secretOrKey = process.env.APP_JWT_SECRET;
 //opts.issuer = process.env.APP_URL; //TODO: which should be the issuer?
 //opts.audience = process.env.APP_URL;
@@ -141,8 +152,7 @@ router.post('/token',function (req,res,next) {
 
             if(err)
             {
-                console.log(err);
-                //TODO: handle errors
+                return UtilsService.ErrorHandler(err,req,res,next);
             }
 
             if(!matches)
@@ -151,7 +161,6 @@ router.post('/token',function (req,res,next) {
                 return res.status(400).json({});
             }
 
-            //12 days
             jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * parseInt(process.env.APP_JWT_EXPIRATION_DAYS)),
                 data: {_id:result._id}
@@ -159,8 +168,7 @@ router.post('/token',function (req,res,next) {
 
                 if(err)
                 {
-                    console.log(err);
-                    //TODO: handle errors
+                    return UtilsService.ErrorHandler(err,req,res,next);
                 }
 
 

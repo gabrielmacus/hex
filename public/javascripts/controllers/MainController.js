@@ -10,6 +10,8 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
     $rootScope.accessToken = $cookies.get("access_token");
     $rootScope.headers = {'Authorization':'JWT '+$rootScope.accessToken};
 
+
+    
     $rootScope.errorHandler=function (error) {
         //alert("Error");
         console.log(error);

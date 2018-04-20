@@ -19,6 +19,7 @@ app.controller('file-list-controller', function ($scope,$rootScope,$controller,$
     $controller('list-controller',{$scope:$scope,$routeParams:$routeParams});
 
 
+
     $rootScope.bodyClass ={"file-list":true,"list":true};
     $scope.query.gallery = $routeParams.id;
 

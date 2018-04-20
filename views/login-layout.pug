@@ -24,21 +24,46 @@ html
                     axios.post('/auth/token', $scope.user)
                         .then(function (response) {
 
-                            $cookies.put('access_token',response.data.access_token,{path:'/'});
-                            location.href = "/?access_token="+response.data.access_token;
+                            var d = new Date();
+                            d.setTime(d.getTime() + (!{expiration_days} * 24 * 60 * 60 * 1000));
 
+
+                            $cookies.put('access_token',response.data.access_token,{path:'/',expires:d});
+                            //location.href = "/?access_token="+response.data.access_token;
+                            location.href ="/";
                         })
                         .catch(function (error) {
 
 
-                            if(error.response.status == 400)
-                            {
-                                $scope.errorMsg = "login.incorrectData";
-                            }
-                            else
-                            {
+                            if (error.response) {
+                                // The request was made and the server responded with a status code
+                                // that falls out of the range of 2xx
+                                console.log(error.response.data);
+                                console.log(error.response.status);
+                                console.log(error.response.headers);
+
+                                switch (error.response.status) {
+                                    default:
+                                        $scope.errorMsg = "login.unknownError";
+                                        break;
+                                    case 400:
+                                        $scope.errorMsg = "login.incorrectData";
+
+                                        break;
+                                }
+
+                            } else if (error.request) {
+                                // The request was made but no response was received
+                                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                                // http.ClientRequest in node.js
+                                    $scope.errorMsg = "error.network";
+
+                            } else {
+                                // Something happened in setting up the request that triggered an Error
                                 $scope.errorMsg = "login.unknownError";
                             }
+
+
                             $scope.$apply();
 
                         });

@@ -21,7 +21,7 @@ router.get('/login',function(req,res,next){
 
 },function (req,res,next) {
 
-  res.render('login', {lang:req.params.language});
+  res.render('login', {lang:req.params.language,expiration_days:process.env.APP_JWT_EXPIRATION_DAYS});
 })
 
 

@@ -33,7 +33,7 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     $rootScope.bodyClass ={"list":true};
     $rootScope.bodyClass[$scope.model] = true;
 
-    $scope.query = {page:1,sort:'-createdBy'};
+    $scope.query = {page:1,sort:'-createdAt'};
 
     //If model has default query parameteres
     if($scope.modelConfig.query)

@@ -23,6 +23,25 @@ module.exports={
     },
     LoadID:function (req) {
         return (req.params.id)?req.params.id:false;
+    },
+    ClearDeletedReferences: function (doc,key,subkey) {
+
+        if(doc[key])
+        {
+            for(var k in doc[key])
+            {
+
+                if(!doc[key][k] || (subkey && !doc[key][k][subkey]))
+                {
+
+                    doc[key].splice(k,1);
+                }
+
+
+            }
+        }
+
+        return doc;
     }
 
 }
