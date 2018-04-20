@@ -47,27 +47,18 @@ app
 
                 $scope.model = [];
 
-                /*
-             $scope.galeries = [];
-
-             $scope.loadGaleries=function () {
-                 axios.get($scope.galeriesUrl,{headers:$rootScope.headers})
-                     .then(function (response) {
-                         console.log(response);
-                         $scope.galeries = response.data.docs;
-                         $scope.$apply();
-                     })
-                     .catch($rootScope.errorHandler);
-
-             }
-             $scope.loadGaleries();*/
-
-
-
 
                 $scope.upload=function (data) {
-
-                    axios.put($scope.uploadUrl, data, {headers:$rootScope.headers})
+                    $scope.uploading = {uploadPercent:0};
+                    axios.put($scope.uploadUrl, data,
+                        {
+                            headers:$rootScope.headers,
+                            onUploadProgress: function(progressEvent) {
+                                var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total )
+                                $scope.uploading.uploadPercent=percentCompleted;
+                                $scope.$apply();
+                            }
+                        })
                         .then(function (res) {
 
                             res.data.forEach(function (file) {
@@ -76,12 +67,18 @@ app
                                 $scope.model.push(file);
 
                             })
-
+                            $scope.uploading = false;
                             $scope.$apply();
 
 
                         })
-                        .catch($rootScope.errorHandler);
+                        .catch(function (error) {
+
+                            $scope.model.splice(i,1);
+
+                            $rootScope.errorHandler(error);
+
+                        });
                 }
 
                 /*

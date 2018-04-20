@@ -116,14 +116,6 @@ router.post('/token',function (req,res,next) {
     var password  = (req.body.password)?req.body.password:"";
 
 
-    /*
-    mongoose.connect(process.env.DB_STRING).catch(function (err) {
-        //TODO: handle errors / handle db connection errors
-        console.error(err);
-    });*/
-
-
-
     User.findOne({'$or':[{username:userOrEmail},{email:userOrEmail}]}).exec(function (err,result) {
 
         if(err)

@@ -297,7 +297,7 @@ table td > span >  img
 main  footer
 {
   width: 100%!important;
-
+  float: left;
   padding: @padding;
   padding-left: 0;
   padding-right: 0;
@@ -1457,3 +1457,37 @@ paginator ol{
   width: 10%;
 }
 
+.upload-percent-wrapper
+{
+  position: relative;
+  /* width: 90%; */
+  /* position: fixed; */
+  /* min-height: 150px; */
+  margin-top: @padding;
+  flex-wrap: wrap;
+  display: flex;
+  background: #EEEEEE;
+  align-items: center;
+  /* padding-left: 15px; */
+  /* padding-right: 15px; */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  /* bottom: 20px; */
+  /* left: 5%; */
+}
+.upload-percent-wrapper .upload-percent-number
+{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: black;
+  font-weight: 600;
+  /* margin: auto; */
+  /* background-color: #EEEEEE; */
+}
+.upload-percent-wrapper .upload-percent
+{
+  width: 100%;
+  transition: all 150ms;
+  height: 30px;
+  background:@successColor;
+}

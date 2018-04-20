@@ -3,10 +3,13 @@
     <label>{{label | translate}}</label>
 
     <input multiple type="file" >
-
+    <div class="upload-percent-wrapper fade-in" data-ng-if="uploading">
+        <span class="upload-percent-number">{{uploading.uploadPercent}}%</span>
+        <span class="upload-percent" data-ng-style="{width:uploading.uploadPercent+'%'}"></span>
+    </div>
     <ul data-ng-if="uploadedFiles && uploadedFiles.length" class="upladed-files">
 
-        <li data-ng-repeat="(j,file) in uploadedFiles">
+        <li class="fade-in" data-ng-repeat="(j,file) in uploadedFiles">
 
             <file-preview data-file="file">
             </file-preview>

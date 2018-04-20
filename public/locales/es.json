@@ -141,5 +141,12 @@
 
   "assignments.empty":"No hay asignaciones para mostrar",
   "person.notAssignments":"Sin asignaciones",
-  "lastAssignment":"Última asignación"
+  "lastAssignment":"Última asignación",
+
+  "error.network":"Error al comunicarse con el servidor. Verifique su conexión a internet",
+  "error.500":"Error al procesar la solicitud. Intentelo de nuevo o contacte un administrador",
+  "error.404":"Recurso no encontrado",
+  "error.401":"Debe estar autenticado para realizar dicha acción",
+  "error.403.GET":"No tiene los permisos suficientes para acceder al contenido",
+  "error.403":"No tiene los permisos suficientes para realizar dicha acción"
 }

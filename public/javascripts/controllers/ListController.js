@@ -123,7 +123,12 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
 
             })
-            .catch($rootScope.errorHandler);
+            .catch(function (error) {
+                $scope.status='loaded';
+
+                $rootScope.errorHandler(error);
+
+            });
 
     }
 

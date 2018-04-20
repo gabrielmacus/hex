@@ -1,4 +1,5 @@
-app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,$cookies,$location,$compile,$window) {
+app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$routeParams,$cookies,$location,$compile,$window) {
+
 
     $rootScope.Date = Date;
 
@@ -10,11 +11,55 @@ app.controller('main-controller', function ($sce,$scope,$rootScope,$routeParams,
     $rootScope.headers = {'Authorization':'JWT '+$rootScope.accessToken};
 
     $rootScope.errorHandler=function (error) {
-        alert("Error");
+        //alert("Error");
         console.log(error);
 
-        console.log(error.response);
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
 
+            switch (error.response.status)
+            {
+                default:
+                    toastr.error("", $scope.$eval('"error.500" | translate'));
+                    break;
+                case 404:
+                    toastr.warning("", $scope.$eval('"error.404" | translate'));
+                    break;
+                case 401:
+                    toastr.warning("", $scope.$eval('"error.401" | translate'));
+
+                    break;
+                case 403:
+                    if(error.response.config.method == 'get')
+                    {
+
+                        toastr.warning("", $scope.$eval('"error.403.GET" | translate'));
+                    }
+                    else
+                    {
+
+                        toastr.warning("", $scope.$eval('"error.403" | translate'));
+                    }
+
+                    break;
+            }
+
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+
+            toastr.error("", $scope.$eval('"error.network" | translate'));
+
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+        }
+        //toastr.error('Hello world!', 'Toastr fun!');
 
 
     }

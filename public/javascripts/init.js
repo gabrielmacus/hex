@@ -1,5 +1,5 @@
 
-var app = angular.module("app", [ 'ng-sortable','ngSanitize','ngAnimate',"checklist-model","ngRoute","pascalprecht.translate",'ngCookies','ngTagsInput']);
+var app = angular.module("app", ['toastr','ng-sortable','ngSanitize','ngAnimate',"checklist-model","ngRoute","pascalprecht.translate",'ngCookies','ngTagsInput']);
 app.filter('trusted', ['$sce', function ($sce) {
     return function(url) {
         return $sce.trustAsResourceUrl(url);
@@ -20,6 +20,14 @@ app.filter('trust', ['$sce', function ($sce) {
         return $sce.trustAsResourceUrl(url);
     };
 }]);
+app.config(function(toastrConfig) {
+    angular.extend(toastrConfig, {
+        maxOpened: 5,
+        newestOnTop: true,
+        positionClass: 'toast-bottom-right',
+        preventOpenDuplicates:true
+    });
+});
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
