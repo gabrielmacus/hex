@@ -7,11 +7,16 @@
       "POST":{"access_level":3},
       "PUT":{"access_level":3},
       "DELETE":{"access_level":3}
-    }
+    },
+    "level":100
   },
   "User":
   {
-
+    "level":1,
+    "api.user.roles":
+    {
+      "GET":{"access_level":3}
+    },
     "api.client":
     {
       "GET":{"access_level":3},

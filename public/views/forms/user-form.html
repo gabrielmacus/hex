@@ -1,0 +1,15 @@
+<field data-model="item.username" data-validation-errors="validationErrors['username']" data-label="username"></field>
+<field data-model="item.email" data-type="email" data-validation-errors="validationErrors['email']"  data-label="email"></field>
+<field  data-model="item.password" data-validation-errors="validationErrors['password']" data-type="password" data-label="password"></field>
+<field   data-model="item.confirmPassword" data-type="password" data-validation-errors="validationErrors['confirmPassword']" data-label="confirmPassword"></field>
+<field data-model="item.name" data-validation-errors="validationErrors['name']" data-label="name"></field>
+<field data-model="item.surname" data-validation-errors="validationErrors['surname']" data-label="surname"></field>
+
+<field data-type="custom"  data-validation-errors="validationErrors['role']"  data-label="role">
+
+    <select  data-ng-init="load('/api/user/roles','roles')" data-ng-model="item.role" data-ng-options="item as item for item  in roles"   ></select>
+
+</field>
+
+
+<field  data-label="submit" data-type="submit"></field>

@@ -404,10 +404,9 @@ router.get('/:model', function(req, res, next) {
             req.model.find(filter,projection,query).paginate(req.page,req.limit,function (err,results,total) {
 
 
-                //TODO: Handle errors
                 if(err)
                 {
-                    console.log(err);
+                   return UtilsService.ErrorHandler(err,req,res,next);
                 }
 
                 if(results)

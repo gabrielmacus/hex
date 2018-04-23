@@ -18,8 +18,9 @@ html
             app.controller('login-controller', function ($rootScope,$scope, $cookies) {
 
 
-                $scope.login=function () {
 
+                $scope.login=function () {
+                    $scope.status = 'sending';
                     $scope.errorMsg = "";
                     axios.post('/auth/token', $scope.user)
                         .then(function (response) {
@@ -33,7 +34,7 @@ html
                             location.href ="/";
                         })
                         .catch(function (error) {
-
+                            $scope.status = 'ready';
 
                             if (error.response) {
                                 // The request was made and the server responded with a status code
@@ -45,6 +46,11 @@ html
                                 switch (error.response.status) {
                                     default:
                                         $scope.errorMsg = "login.unknownError";
+                                        break;
+
+                                    case 401:
+                                        $scope.errorMsg="login.mayBeNotActive";
+
                                         break;
                                     case 400:
                                         $scope.errorMsg = "login.incorrectData";

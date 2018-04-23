@@ -243,7 +243,11 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             footer:'/views/client-footer.html',
             fields:['name','surname'],
             listController:'client-controller'
-        }
+        },
+        user:
+            {
+                fields:["username","name","surname","role"]
+            }
 
 
     };

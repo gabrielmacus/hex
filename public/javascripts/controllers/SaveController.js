@@ -30,10 +30,10 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
         $scope.loadItem();
     }
 
-
+    $scope.status = 'ready';
 
     $scope.saveItem=function (callback) {
-
+        $scope.status  = 'sending';
 
         $scope.validationErrors = {};
         axios({
@@ -43,7 +43,7 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
             data:angular.copy($scope.item)
         })
             .then(function (response) {
-
+                $scope.status = 'ready';
                 if(callback)
                 {
                     return callback(response);
@@ -62,7 +62,7 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
 
             })
             .catch(function(error){
-
+                $scope.status = 'ready';
                 console.log(error.response);
 
                 if(error.response && error.response.data.type && error.response.data.type == 'ValidationError')

@@ -18,6 +18,9 @@ app
                 {
                     scope.modelName = attrs.model;
                 }
+
+
+
             },
             controller: function ($scope,$rootScope,$element ,$transclude,$timeout) {
               if(!$scope.type)

@@ -15,7 +15,7 @@ var schema = new Schema({
     username: {type:String},
     email: {type:String, required:true},
     role: {type:String, required:true, default:"User"},
-    status:{enum: ["pending-verification","active","suspended"],default:"pending-verification",type:String}
+    status:{enum: ["pending-verification","active","suspended"],default:"active",type:String}
 
 },
     {
@@ -33,7 +33,7 @@ schema.post('validate', function(doc,next) {
 
             if(err)
             {
-                //TODO: handle errors
+               return next(err);
             }
 
             doc.password = hash;

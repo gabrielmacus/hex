@@ -15,6 +15,83 @@ module.exports=
 
             UtilsService.ErrorHandler(error,req,res,next);
         },
+        User:function (req,res,next) {
+
+            var errors ={};
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'username';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'name';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'surname';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+            var message = {message:'invalidEmail'};
+            var key = 'email';
+            if(!validator.isEmail(UtilsService.get(key,req.body)))
+            {
+                errors[key] = [];
+                errors[key].push(message);
+            }
+
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'password';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+            var message = {message:'passwordsDoesntMatch'};
+            var key = 'confirmPassword';
+            if(!validator.equals(UtilsService.get(key,req.body),UtilsService.get('password',req.body)))
+            {
+                errors[key] = [];
+                errors[key].push(message);
+                if(!errors['password'])
+                {
+                    errors['password'] = [];
+                }
+                errors['password'].push(message)
+
+
+            }
+
+
+
+
+
+            module.exports.process(errors,req,res,next);
+
+
+
+        },
         Gallery:function (req,res,next) {
 
             var errors ={};

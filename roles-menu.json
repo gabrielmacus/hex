@@ -1,5 +1,6 @@
 {
 
+
     "User":[
       {
         "text":"menu.home",
@@ -25,5 +26,12 @@
 
 
 
-    ]
+    ],
+  "Admin": [
+    {
+      "text":"user.plural",
+      "href":"#!/user"
+    }
+
+  ]
 }

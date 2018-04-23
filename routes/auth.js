@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const UtilsService = require('../services/UtilsService');
+const ValidationService = require('../services/ValidationService');
 //https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
 passport.serializeUser(function(user, done) {
 
@@ -80,39 +81,30 @@ passport.use(new FacebookTokenStrategy({
 
         User.findOrCreate({"facebook.id": profile.id}, function (error, user) {
 
-            if(error)
-            {
-                //TODO: handle errors
-                console.error(error);
-            }
 
             return done(error, user);
         });
     }
 ));
 //Routes
-router.post('/register',function (req,res,next) {
+router.post('/register',
+    function (req,res,next) {
+        //Delete role to be set to default
+        delete req.body.role;
+        delete req.body.facebook;
+        req.body.status = "pending-verification";
 
-    /*
-    mongoose.connect(process.env.DB_STRING).catch(function (err) {
+        ValidationService.User(req,res,next);
+    }
 
-
-        //TODO: handle errors / handle db connection errors
-        console.error(err);
-    });*/
-
-    //Delete role to be set to default
-    delete req.body.role;
-    delete req.body.status;
-    delete req.body.facebook;
+    ,function (req,res,next) {
 
 
     User.create(req.body,function (err,result) {
 
         if(err)
         {
-            console.error(err);
-            //TODO: handle errors
+           return UtilsService.ErrorHandler(err,req,res,next);
         }
 
 
@@ -131,9 +123,7 @@ router.post('/token',function (req,res,next) {
 
         if(err)
         {
-
-            console.log(err);
-            //TODO: handle errors
+            return UtilsService.ErrorHandler(err,req,res,next);
         }
         if(!result)
         {

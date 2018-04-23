@@ -102,6 +102,8 @@
   "validation.selectAnOption":"Seleccione una opción válida",
   "validation.minSelected":"Seleccione entre {{min}} y {{max}} opciones",
   "validation.extensionNotAllowed":"Tipo de archivo no permitido",
+  "validation.invalidEmail":"Email inválido",
+  "validation.passwordsDoesntMatch":"Las contraseñas no coinciden",
 
   "assignmentPlace":"Sala",
   "person/s":"Persona/s",
@@ -148,5 +150,12 @@
   "error.404":"Recurso no encontrado",
   "error.401":"Debe estar autenticado para realizar dicha acción",
   "error.403.GET":"No tiene los permisos suficientes para acceder al contenido",
-  "error.403":"No tiene los permisos suficientes para realizar dicha acción"
+  "error.403":"No tiene los permisos suficientes para realizar dicha acción",
+
+  "role":"Tipo/Rol",
+  "user.plural":"Usuarios",
+  "user":"Usuario",
+  "email":"E-mail",
+  "login.mayBeNotActive":"Verifique que el usuario este activo",
+  "confirmPassword":"Confirmar contraseña"
 }
