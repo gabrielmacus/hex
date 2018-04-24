@@ -29,9 +29,8 @@ module.exports=
 
                                 var lastAssignment = null;
 
+
                                 assignments.forEach(function (assignment) {
-
-
 
                                     if(!lastAssignment || new Date(assignment.date) > lastAssignment)
                                     {

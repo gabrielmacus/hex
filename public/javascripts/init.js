@@ -20,6 +20,19 @@ app.filter('trust', ['$sce', function ($sce) {
         return $sce.trustAsResourceUrl(url);
     };
 }]);
+
+app.directive('iframeOnLoad', [function(){
+    return {
+        scope: {
+            iframeOnLoad: '='
+        },
+        link: function(scope, element, attrs){
+            element.on('load', function(){
+                return scope.iframeOnLoad(element[0]);
+            })
+        }
+    }}])
+
 app.config(function(toastrConfig) {
     angular.extend(toastrConfig, {
         maxOpened: 5,

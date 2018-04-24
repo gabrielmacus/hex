@@ -15,6 +15,10 @@ app
 
                 $scope.closeLightbox=function () {
                     $scope.options.open=false;
+                    if($scope.options.onClose)
+                    {
+                        $scope.options.onClose($scope);
+                    }
                 }
             },
 

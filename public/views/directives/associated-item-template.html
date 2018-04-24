@@ -65,9 +65,9 @@
 
         </div>
 
-        <lightbox   data-options="lightboxOptions" class="responsive-lightbox " data-ng-show="lightboxOptions.open">
+        <lightbox   data-options="lightboxOptions" class="responsive-lightbox " data-ng-if="lightboxOptions.open">
 
-            <iframe data-id="{{modelName}}" data-ng-src="{{lightboxOptions.src || trusted}}"></iframe>
+            <iframe data-id="{{modelName}}" data-iframe-on-load="iframeOnLoad" data-ng-src="{{lightboxOptions.src || trusted}}"></iframe>
             <div class="page-loader fade" data-ng-if="!iframeLoaded">
                 <img src="/images/three-dots-loader.svg">
             </div>

@@ -158,39 +158,44 @@ app
 
 
                 }
-                $scope.setIframe=function () {
-                    var iframe = document.querySelector("[data-id='"+$scope.modelName+"']");
 
 
-                    iframe.onload=function () {
+
+                $scope.iframeOnLoad=function (iframe) {
+
+                    var iframe = document.querySelector("[data-id='"+iframe.dataset.id+"']");
+
                         $timeout(function () {
 
-                            iframe.contentWindow.postMessage({data:{model:$scope.modelName},type:'popup-data'},window.location.origin);
-                            $scope.iframeLoaded=true;
 
-                        },200);
-                    }
+                        iframe.contentWindow.postMessage({data:{model:$scope.modelName},type:'popup-data'},window.location.origin);
+                        $scope.iframeLoaded=true;
 
-
+                    },200);
                 }
-                $scope.openSelectExistant=function () {
 
+                $scope.openSelectExistant=function () {
+                    $scope.iframeLoaded=false;
                     $scope.lightboxOptions={
+
                         open:true,
                         src:$scope.selectUrl//window.location.origin+'/?popup=true&access_token='+$cookies.get('access_token')+'#!/'+$scope.modelName+'/?model='+$scope.modelName
                     }
 
 
-                    $scope.setIframe();
+                    //$scope.setIframe();
+
 
 
                 }
                 $scope.openAddNew=function () {
+                    $scope.iframeLoaded=false;
                     $scope.lightboxOptions={
+
                         open:true,
                         src:$scope.addUrl//window.location.origin+'/?popup=true&access_token='+$cookies.get('access_token')+'#!/'+$scope.modelName+'/?model='+$scope.modelName+'&exclude='
                     }
-                    $scope.setIframe();
+                    //$scope.setIframe();
 
                 }
 
