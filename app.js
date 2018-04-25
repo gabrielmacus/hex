@@ -3,6 +3,8 @@ try
 
     require('app-root-dir').set(__dirname);
 
+    var subdomain = require('express-subdomain');
+
     var express = require('express');
     var path = require('path');
     var favicon = require('serve-favicon');
@@ -18,6 +20,7 @@ try
     global.db = (global.db ? global.db : mongoose.createConnection(process.env.DB_STRING));
 
 
+
 //Routes
     var index = require('./routes/index');
     var rest = require('./routes/rest');
@@ -30,8 +33,12 @@ try
     i18n.configure({
         locales:['es'],
         defaultLocale: 'es',
-        directory: __dirname + '/locales'
+        directory: __dirname + '/locales',
+        register: global
     });
+    i18n.setLocale('es');
+
+    app.use(i18n.init);
 
 // view engine setup
     app.set('views', path.join(__dirname, 'views'));
@@ -48,11 +55,16 @@ try
     app.use(passport.initialize());
 
 
-    app.use('/', index);
-    app.use('/api', rest);
-    app.use('/auth',auth);
-    app.use('/dev',development);
+    var router  = express.Router();
 
+    router.use('/', index);
+    router.use('/api', rest);
+    router.use('/auth',auth);
+    router.use('/dev',development);
+
+    //
+    //app.use(subdomain(process.env.APP_SUBDOMAIN || process.env.APP_NAME,router));
+    app.use(subdomain(process.env.APP_SUBDOMAIN || process.env.APP_NAME,router));
 
 
 
@@ -74,8 +86,11 @@ try
         // set locals, only providing error in development
         res.locals.message = err.message;
         res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+        res.locals.status = err.status;
         // render the error page
+
+        console.log(res.__('error.404.title'));
+
         res.status(err.status || 500);
         res.render('error');
     });
@@ -106,7 +121,8 @@ try
 }
 catch (e)
 {
-    console.error(e);
+
+    console.debug(e);
 }
 
 module.exports = app;

@@ -1,0 +1,9 @@
+doctype html
+html
+    head
+        link(rel="stylesheet",href="/stylesheets/style.css")
+
+    body(class=(popup)?'popup':'',data-ng-app="app",data-ng-controller="main-controller",data-ng-class="bodyClass")
+
+        h1 !{__('error.'+status+'.title')}
+

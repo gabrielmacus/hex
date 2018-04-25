@@ -16,7 +16,16 @@ body *{
   word-wrap: break-word;
 }
 
+body.login top header
+{
+  margin-top: @padding2;
+  margin-bottom: @padding2;
+}
 
+body.login top header h2
+{
+  font-size: 40px;
+}
 
 html,body{
   height: 100%;
@@ -86,7 +95,11 @@ html,body{
   opacity: 0;
 }
 
-
+field
+{
+  float: left;
+  width: 100%;
+}
 
 paginator ol
 {
@@ -173,8 +186,21 @@ body > aside > menu nav
 }
 body > aside > menu a.active
 {
+  position: relative;
   background-color: white;
   color: @mainColor;
+}
+body > aside > menu a.active:before
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.2%;
+  height: 100%;
+  float: left;
+  content: '';
+  background:@focusedInputColor;
+
 }
 main > top header
 {
@@ -791,7 +817,7 @@ form .validation-errors
 {
   display: flex;
   margin-bottom: 5px;
-
+  float: left;
   //position: absolute;
 }
 
@@ -909,6 +935,9 @@ list .loading
   height: 100px;
   flex-wrap: wrap;
   display: flex;
+  float: left;
+  width: 100%;
+  margin-bottom: @padding2;
   align-items: center;
   background: white;
 }
@@ -1465,6 +1494,8 @@ paginator ol{
 {
   background: @emptyListMessageColor;
   padding: @padding;
+  float: left;
+  width: 100%;
 }
 
  .page-loader

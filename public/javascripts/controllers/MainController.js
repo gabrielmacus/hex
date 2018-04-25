@@ -193,7 +193,7 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             {
                 query:{sort:"+lastAssignment,-surname,-name"},
                 fields:['name','surname',{field:'lastAssignment',render:function (p) {
-                    console.log(p);
+
                     if( p.lastAssignment)
                     {
                         return new Date( p.lastAssignment).toLocaleDateString();
