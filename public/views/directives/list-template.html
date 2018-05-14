@@ -1,5 +1,4 @@
-<div class="loading" data-ng-if="listStatus == 'loading'">
-
+<div class="loading" data-ng-if="listStatus == 'loading'" data-ng-class="{'loading-on-list':(items && items.length > 0)}">
     <div class="svg">
         <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
         <svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#fff">
@@ -41,7 +40,7 @@
 
 </div>
 
-<table data-ng-init="selectedItems=[]" class="list fade-in" data-ng-if="listStatus == 'loaded' && (items && items.length > 0)">
+<table data-ng-init="selectedItems=[]" class="list fade-in"   data-ng-if="listStatus == 'loaded' && (items && items.length > 0)">
     <thead>
     <tr>
         <th data-ng-repeat="f in fields">

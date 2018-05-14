@@ -18,12 +18,14 @@
   "menu.assignmentsTypes":"Tipos de asignaciones",
   "menu.streamings":"Transmisiones",
   "menu.clients":"Clientes",
+  "menu.packages":"Paquetes",
 
 
   "client.plural":"Clientes",
   "client":"Cliente",
   "email.plural":"Emails",
   "phone.plural":"Teléfonos",
+  "package.plural":"Paquetes",
 
   "streaming.plural":"Transmisiones",
   "streaming.watch":"Visualizar",

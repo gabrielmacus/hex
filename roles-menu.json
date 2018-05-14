@@ -1,36 +1,20 @@
 {
-
-
-    "User":[
-      {
-        "text":"menu.home",
-        "href":"#!/"
-      },
-      {
-        "text":"menu.assignments",
-        "href":"#!/assignment"
-      },
-      {
-        "text":"menu.assignmentsTypes",
-        "href":"#!/assignment-type"
-      },
-      {
-        "text":"menu.persons",
-        "href":"#!/person"
-      }
-    ,
-      {
-        "text":"menu.galleries",
-        "href":"#!/gallery"
-      }
-
-
-
-    ],
-  "Admin": [
+  "User":[
     {
-      "text":"user.plural",
-      "href":"#!/user"
+      "text":"menu.home",
+      "href":"#!/"
+    },
+    {
+      "text":"menu.clients",
+      "href":"#!/client"
+    } ,
+    {
+      "text":"menu.packages",
+      "href":"#!/package"
+    },
+    {
+      "text":"menu.galleries",
+      "href":"#!/gallery"
     }
 
   ]

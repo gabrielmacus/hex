@@ -35,7 +35,7 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
     $scope.query = {page:1,sort:'-createdAt'};
 
-    //If model has default query parameteres
+    //If model has default query parameters
     if($scope.modelConfig.query)
     {
         angular.extend($scope.query,$scope.modelConfig.query);
@@ -104,6 +104,8 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     $scope.loadList=function () {
 
         $scope.status='loading';
+
+
 
         axios({url:$scope.url,params:$scope.query,method:"get",headers:$scope.headers})
 

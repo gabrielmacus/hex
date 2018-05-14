@@ -240,14 +240,18 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
                  fields:['path','views'], actions:function () {return streamingActions;}
             },
         client:{
-            footer:'/views/client-footer.html',
-            fields:['name','surname'],
-            listController:'client-controller'
+            //footer:'/views/client-footer.html',
+            fields:['name','surname']
         },
         user:
             {
                 fields:["username","name","surname","role"]
-            }
+            },
+        package:{
+            footer:'/views/package-footer.html',
+            fields:['destination_address','destination_city','destination_zip','status'],
+            listController:'package-controller'
+        }
 
 
     };
