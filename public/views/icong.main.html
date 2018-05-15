@@ -1,0 +1,88 @@
+<top data-title='"welcome" | translate:currentUser'></top>
+
+<div class="assignments-wrapper" data-ng-controller="assignment-list-controller">
+
+    <div class="today-assignments-wrapper" data-ng-init="model='assignment';url=todayAssignmentsUrl;sort='-date'">
+
+        <div class="today-assignments" data-ng-controller="list-controller">
+            <top class="assignments-list-top" data-title="'assignment.list.today'"></top>
+            <assignment-list   data-items="items"></assignment-list>
+            <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="future-assignments-wrapper" data-ng-init="model='assignment';url=futureAssignmentsUrl;sort='-date'">
+
+        <div class="future-assignments" data-ng-controller="list-controller">
+            <top class="assignments-list-top" data-title="'assignment.list.future'"></top>
+            <assignment-list   data-items="items"></assignment-list>
+            <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="past-assignments-wrapper" data-ng-init="model='assignment';url=pastAssignmentsUrl;sort='-date'">
+
+        <div class="past-assignments" data-ng-controller="list-controller">
+            <top class="assignments-list-top" data-title="'assignment.list.past'"></top>
+            <assignment-list   data-items="items"></assignment-list>
+            <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!--
+    <div class="future-assignments"  >
+        <top class="assignments-list-top" data-title="'assignment.list.future'"></top>
+        <assignment-list  data-items="futureAssignments"></assignment-list>
+    </div>
+
+
+    <div class="past-assignments"  >
+        <top class="assignments-list-top" data-title="'assignment.list.past'"></top>
+        <assignment-list  data-items="pastAssignments"></assignment-list>
+    </div>
+    -->
+
+
+</div>
+
+
+
+<!--
+<div class="today-assignments"  >
+
+    <div class="assignments-wrapper" data-ng-controller="assignment-list-controller">
+
+        <top class="assignments-list-top" data-title="'assignment.list.today'"></top>
+        <assignment-list  data-items="items"></assignment-list>
+        <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+    </div>
+
+
+</div>
+
+
+<div data-ng-controller="list-controller">
+    <top class="assignments-list-top" data-title="'assignment.list'"></top>
+    <assignment-list  data-items="items"></assignment-list>
+    <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
+
+</div>-->
+
+<!--
+<assignation-list  data-items=""></assignation-list>-->

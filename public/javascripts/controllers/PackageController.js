@@ -1,6 +1,7 @@
-app.controller('package-controller', function ($sce,$scope,$rootScope,$routeParams,$cookies,$location,$compile,$interval,$http,$controller) {
+app.controller('package-controller', function (toastr ,$sce,$scope,$rootScope,$routeParams,$cookies,$location,$compile,$interval,$http,$controller) {
 
     $scope.loadFromExcel=function (files) {
+        toastr.info("", $scope.$eval('"package.loadingExcel" | translate'));
 
        axios({url:'/api/file/parse-excel',data:files,headers:$rootScope.headers,method:'PUT'})
            .then(function (response) {
@@ -18,6 +19,7 @@ app.controller('package-controller', function ($sce,$scope,$rootScope,$routePara
                    {
                        sheet = t.data;
                    }
+
                })
 
                var parsedValues = [];
@@ -39,6 +41,13 @@ app.controller('package-controller', function ($sce,$scope,$rootScope,$routePara
                        }
                    }
                }
+               else
+               {
+
+                   toastr.error("", $scope.$eval('"package.error.excelWrongFormat" | translate'));
+
+                   return false;
+               }
 
 
                asyncForEach(parsedValues,function (err) {
@@ -46,7 +55,7 @@ app.controller('package-controller', function ($sce,$scope,$rootScope,$routePara
                    $scope.loadList();
                },function (item,index,next) {
 
-                   $scope.item = {destination_address:item.Destino_Dir,destination_city:item.Destino_w3w,destination_zip:item.Destino_Dir_Comentarios};
+                   $scope.item = {client:{name:item.Destino_Nombre,email:item.Mail_Destinatario,phone:item.Destino_Comentarios},external_id:item.Nro_Externo,destination_address:item.Destino_Dir,destination_city:item.Destino_w3w,destination_zip:item.Destino_Dir_Comentarios};
 
 
                    $scope.saveItem(function (response) {

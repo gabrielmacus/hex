@@ -241,7 +241,7 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             },
         client:{
             //footer:'/views/client-footer.html',
-            fields:['name','surname']
+            fields:['name','surname','phone','email']
         },
         user:
             {
@@ -249,7 +249,15 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             },
         package:{
             footer:'/views/package-footer.html',
-            fields:['destination_address','destination_city','destination_zip','status'],
+            fields:['external_id','destination_zip','destination_city','destination_address',{field:'status',label:'package.status',render:function (i) {
+
+                return  $scope.$eval("'package.status."+i.status+"' | translate ");
+            }},{field:'client',render:function (i) {
+
+
+                return i.client.name;
+
+            }}],
             listController:'package-controller'
         }
 

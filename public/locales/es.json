@@ -159,5 +159,19 @@
   "user":"Usuario",
   "email":"E-mail",
   "login.mayBeNotActive":"Verifique que el usuario este activo",
-  "confirmPassword":"Confirmar contraseña"
+  "confirmPassword":"Confirmar contraseña",
+
+  "package.error.excelWrongForm":"El archivo excel tiene un formato incorrecto",
+  "package.loadingExcel":"Cargando archivo excel. Esto puede tomar unos minutos...",
+
+  "destination_address":"Dirección",
+  "destination_city":"Ciudad",
+  "destination_zip":"Código postal",
+  "package.status":"Estado de entrega",
+
+  "package.status.Pending":"Pendiente",
+  "package.status.Cancelled":"Cancelado",
+  "package.status.Delivered":"Entregado",
+  "external_id":"ID"
+
 }
