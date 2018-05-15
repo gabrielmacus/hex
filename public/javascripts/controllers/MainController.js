@@ -112,15 +112,10 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
                 }
             },
             {
-                "class":{"show-on-popup":true,"select":true},"text":"select","action":function (i) {
-
-                i.selected = true;
-            }
+                "class":{"select":true},"text":"select","action":function (i) {i.selected = true;}
             },
             {
-                "class":{"show-on-popup":true,"unselect":true},"text":"unselect","action":function (i) {
-                i.selected = false;
-            }
+                "class":{"unselect":true},"text":"unselect","action":function (i) {i.selected = false;}
             }
         ];
     $rootScope.defaultActions = function (i) {
@@ -156,7 +151,48 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
            // $location.path('');
 
         }
-    }]);;
+    }]);
+
+
+    function normalizePhoneNumber(phone) {
+
+        phone = phone.replace("-15-","").replace("(").replace(")");
+
+        if(phone[0] == "0")
+        {
+         phone = phone.substr(1);
+        }
+
+        return phone;
+    }
+
+    var packageActions = defaultActions.concat([
+        
+        {
+            "text":"call",
+            "action":function (p) {
+
+                window.location.href="tel://"+normalizePhoneNumber(p.client.phone);
+
+            }
+        },
+        {
+        "text":"sendWhatsapp",
+        "action":function (p) {
+
+            p.client.phone = "54"+normalizePhoneNumber(p.client.phone);
+
+            var text ="Demo text";
+            var url = "https://api.whatsapp.com/send?phone="+p.client.phone+"&text="+text;
+            var win = window.open(url, '_blank');
+            win.focus();
+
+        }
+    }]);
+
+
+
+
     $rootScope.config={
         product:{fields:["title",{label:'image',field:'images',render:function(item){
 
@@ -248,6 +284,9 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
                 fields:["username","name","surname","role"]
             },
         package:{
+            actions:function () {
+                return packageActions;
+            },
             footer:'/views/package-footer.html',
             fields:['external_id','destination_zip','destination_city','destination_address',{field:'status',label:'package.status',render:function (i) {
 

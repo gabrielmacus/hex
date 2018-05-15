@@ -753,7 +753,12 @@ body.popup .show-on-popup[data-ng-click='acceptSelected()']
   display: inline;
 }
 
-
+list
+{
+  float: left;
+  width: 100%;
+  position: relative;
+}
 
 lightbox .body
 {
@@ -1562,4 +1567,15 @@ td.is-file .file-preview .filename
 .form-submit .button img
 {
   width: 40px;
+}
+
+
+.loading-on-list
+{
+  position: absolute;
+  z-index: 1;
+  width: 100%!important;
+  height: 100%!important;
+  background-color: rgba(255,255,255,0.9)!important;
+  right: 0;
 }

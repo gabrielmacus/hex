@@ -172,6 +172,10 @@
   "package.status.Pending":"Pendiente",
   "package.status.Cancelled":"Cancelado",
   "package.status.Delivered":"Entregado",
-  "external_id":"ID"
+  "external_id":"ID",
+
+  "phone":"Teléfono",
+  "sendWhatsapp":"Enviar Whatsapp",
+  "call":"Llamar"
 
 }

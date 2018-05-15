@@ -9,7 +9,6 @@ app.controller('package-controller', function (toastr ,$sce,$scope,$rootScope,$r
 
                var data = response.data;
 
-               console.log(data);
                var sheet = false;
 
 
@@ -55,11 +54,19 @@ app.controller('package-controller', function (toastr ,$sce,$scope,$rootScope,$r
                    $scope.loadList();
                },function (item,index,next) {
 
-                   $scope.item = {client:{name:item.Destino_Nombre,email:item.Mail_Destinatario,phone:item.Destino_Comentarios},external_id:item.Nro_Externo,destination_address:item.Destino_Dir,destination_city:item.Destino_w3w,destination_zip:item.Destino_Dir_Comentarios};
+                   if(item.Destino_Nombre && item.Destino_Comentarios)
+                   {
+                       $scope.item = {client:{name:item.Destino_Nombre,email:item.Mail_Destinatario,phone:item.Destino_Comentarios},external_id:item.Nro_Externo,destination_address:item.Destino_Dir,destination_city:item.Destino_w3w,destination_zip:item.Destino_Dir_Comentarios};
+
+                       $scope.saveItem(function (response) {
+                           next();});
+                   }
+                   else {
+                       next();
+                   }
 
 
-                   $scope.saveItem(function (response) {
-                       next();});
+
                });
 
 
