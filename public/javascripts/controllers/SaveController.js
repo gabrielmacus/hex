@@ -32,13 +32,14 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
 
     $scope.status = 'ready';
 
-    $scope.saveItem=function (callback) {
+    $scope.saveItem=function (callback,customUrl) {
+
         $scope.status  = 'sending';
 
         $scope.validationErrors = {};
         axios({
-            url:url,
-            method:($routeParams.id)?"PUT":"POST",
+            url:(customUrl)?customUrl:url,
+            method:($routeParams.id || $scope.item._id)?"PUT":"POST",
             headers:$rootScope.headers,
             data:angular.copy($scope.item)
         })
@@ -81,6 +82,11 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
                     $rootScope.errorHandler(error);
                 }
 
+                if(callback)
+                {
+
+                    return callback(null,error);
+                }
 
 
             });

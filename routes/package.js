@@ -2,6 +2,42 @@ const Client = require('../models/Client');
 const UtilsService = require('../services/UtilsService');
 module.exports=
     {
+
+        email:function (req,res,next) {
+
+            if(req.params.id)
+            {
+
+                req.model.findOne({'_id':req.params.id})
+                    .exec(function (error,package) {
+
+                        if(error)
+                        {
+                            return UtilsService.ErrorHandler(err,req,res,next);
+                        }
+
+                        UtilsService.SendEmail(process.env.APP_EMAIL_ADDRESS,package.client.email,req.__('shippingNoticeSubject'),{package:package},'shipping-notice',function (err,info) {
+
+                            if(err){
+                                return UtilsService.ErrorHandler(err,req,res,next);
+                            }
+
+                            res.json(info);
+                        })
+
+
+                    })
+
+            }
+            else
+            {
+                next();
+            }
+
+
+
+        },
+
         middleware:
             {
                 pre:

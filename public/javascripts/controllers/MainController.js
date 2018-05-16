@@ -169,6 +169,7 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
     var packageActions = defaultActions.concat([
         
         {
+            "class":"show-on-mobile",
             "text":"call",
             "action":function (p) {
 
@@ -277,7 +278,7 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             },
         client:{
             //footer:'/views/client-footer.html',
-            fields:['name','surname','phone','email']
+            fields:['name','phone','email']
         },
         user:
             {

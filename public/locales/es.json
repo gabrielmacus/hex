@@ -173,9 +173,17 @@
   "package.status.Cancelled":"Cancelado",
   "package.status.Delivered":"Entregado",
   "external_id":"ID",
-
+  "package.error.noSelected":"No seleccionó ningún paquete",
+  "sendEmails":"Enviar emails",
+  "sendingEmails":"Enviando emails",
   "phone":"Teléfono",
   "sendWhatsapp":"Enviar Whatsapp",
-  "call":"Llamar"
+  "call":"Llamar",
+  "emailsSent":"Emails enviados",
+  "setShippingStatusDelivered":"Marcar como entregado",
+  "package.settingStatus":"Modificando estado",
+  "package.errorSettingStatus":"Error al modificar el estado de uno o más paquetes",
+  "package.succesfullySetStatus":"Estado de los paquetes modificado correctamnte",
+  "package.excelLoadedSuccesfully":"Archivo de excel cargado con éxito"
 
 }

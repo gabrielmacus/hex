@@ -1,12 +1,22 @@
 <footer>
-    <a   data-ng-click="goToSave()" class="hide-on-popup new-item button">{{'list.newItem' | translate}}</a>
 
 
-    <span class="upload-button">
+    <div class="actions">
+
+        <a   data-ng-click="goToSave()" class="hide-on-popup new-item button">{{'list.newItem' | translate}}</a>
+
+        <span class="upload-button">
           <upload-field data-on-process="loadFromExcel"  data-model="files" data-gallery="gallery"   data-upload-url="/api/file/upload" data-save-url="/api/file/"></upload-field>
           <a    class="hide-on-popup new-item button">{{'list.loadFromExcel' | translate}}</a>
+        </span>
 
-    </span>
+
+        <a   data-ng-click="sendShippingNoticeEmail()" data-ng-if="!sendingEmails && getSelectedItems().length > 0" class="hide-on-popup new-item button">{{'sendEmails' | translate}}</a>
+
+
+        <a   data-ng-click="setShippingStatus('Delivered')" data-ng-if="getSelectedItems().length > 0 && !settingShippingStatus" class="hide-on-popup new-item button">{{'setShippingStatusDelivered' | translate}}</a>
+
+    </div>
 
 
 

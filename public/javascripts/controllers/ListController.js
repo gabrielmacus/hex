@@ -16,6 +16,7 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
     $scope.url = ( $scope.url)? $scope.url:"/api/".concat($routeParams.model);
 
 
+
     $scope.goToSave=function () {
 
 
@@ -145,13 +146,17 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
             .catch($rootScope.errorHandler);
 
     }
+    $scope.getSelectedItems = function () {
+
+        return $scope.items.filter(function (t) { return t.selected; });
+    }
 
     $scope.acceptSelected=function () {
 
 
 
 
-        var selected =$scope.items.filter(function (t) { return t.selected; });
+        var selected = $scope.getSelectedItems();
 
         if($rootScope.popupData && $rootScope.popupData.model)
         {

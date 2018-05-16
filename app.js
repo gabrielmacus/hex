@@ -1,7 +1,7 @@
 try
 {
 
-    require('app-root-dir').set(__dirname);
+    var __dirname= require('app-root-dir').get();
 
     var subdomain = require('express-subdomain');
 
@@ -33,12 +33,13 @@ try
     i18n.configure({
         locales:['es'],
         defaultLocale: 'es',
-        directory: __dirname + '/locales',
+        directory: path.join(__dirname ,'/locales'),
         register: global
     });
     i18n.setLocale('es');
 
     app.use(i18n.init);
+
 
 // view engine setup
     app.set('views', path.join(__dirname, 'views'));

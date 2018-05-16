@@ -1,5 +1,9 @@
 {
+  "error.404.title":"",
+  "shippingNoticeMessage":"Nos estamos comunicando a través del servicio logístico de Paquery para comunicarle que tenemos un pedido de dafiti a su nombre y que en el dia de hoy, de <b>17hs</b> a <b>19:30hs</b> pasaremos por su domicilio.Esperamos su confirmación por este medio para poder efectuar dicha acción. Muchas gracias",
+  "hello":"Hola",
+  "shippingNoticeSubject":"Notificación de visita - Paquery"
 
-  "error.404.title":"Error 404"
 
 }
+

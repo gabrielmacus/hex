@@ -961,10 +961,14 @@ list .loading svg
 }
 
 
-
+.show-on-mobile
+{
+  display: none;
+}
 @mobileMenuHeight:50px;
 
 @media all and (max-width: 1024px) {
+
   main > top header
   {
     text-align: center;
@@ -1203,6 +1207,10 @@ list .loading svg
 
 @media all and (max-width: 768px) {
 
+  .show-on-mobile
+  {
+    display: inherit;
+  }
   .file-preview img
   {
     height: 200px;
