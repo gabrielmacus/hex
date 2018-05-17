@@ -44,9 +44,47 @@ module.exports=
                     {
                         create:function (req,res,next) {
 
+                            next();
+                            /*
 
                             var client = req.body.client;
-                            Client.update({email: client.email}, client, {upsert: true, setDefaultsOnInsert: true}, function (err,result) {
+
+                            client.createdBy = req.user._id;
+
+                            Client.find({'$or':[{'email': client.email},{'phone':client.phone}] }, function (err, clients) {
+
+
+                                if(clients.length)
+                                {
+                                    if(err)
+                                    {
+                                        return UtilsService.ErrorHandler(err,req,res,next);
+                                    }
+
+                                    req.body.client = clients[0]._id;
+
+                                    next();
+                                }
+                                else
+                                {
+                                    Client.create(client,function (err,client) {
+
+                                        console.log(err);
+                                        if(err)
+                                        {
+                                            return UtilsService.ErrorHandler(err,req,res,next);
+                                        }
+
+                                        req.body.client = client._id;
+                                        next();
+                                    })
+                                }
+
+                            });
+*/
+
+                            /*
+                            Client.update(data, client, {upsert: true, setDefaultsOnInsert: true}, function (err,result) {
 
 
                                 if(err)
@@ -55,22 +93,11 @@ module.exports=
                                     return UtilsService.ErrorHandler(err,req,res,next);
                                 }
 
-                                Client.findOne({ 'email': client.email }, function (err, client) {
-
-                                    if(err)
-                                    {
-                                        return UtilsService.ErrorHandler(err,req,res,next);
-                                    }
-
-                                    req.body.client = client._id;
-
-                                    next();
-                                });
 
 
-                            });
 
-                            return false;
+                            });*/
+
 
                         }
                     }

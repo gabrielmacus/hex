@@ -184,6 +184,7 @@
   "package.settingStatus":"Modificando estado",
   "package.errorSettingStatus":"Error al modificar el estado de uno o más paquetes",
   "package.succesfullySetStatus":"Estado de los paquetes modificado correctamnte",
-  "package.excelLoadedSuccesfully":"Archivo de excel cargado con éxito"
+  "package.excelLoadedSuccesfully":"Archivo de excel cargado con éxito",
+  "status":"Estado"
 
 }

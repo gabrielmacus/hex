@@ -13,7 +13,7 @@ var schema = new Schema({
     external_id:String,
     client:{type:Schema.Types.ObjectId,ref:'Client'},
     status:{ type: String, enum: ['Pending', 'Delivered','Cancelled'],default:'Pending'},
-    attachments:[{text:String,attachment:{type:Schema.Types.ObjectId,ref:'File'}}],
+    //attachments:[{text:String,attachment:{type:Schema.Types.ObjectId,ref:'File'}}],
     createdBy:{type:Schema.Types.ObjectId,ref:'User',required:true}
 
 

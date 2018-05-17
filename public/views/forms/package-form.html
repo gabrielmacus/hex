@@ -1,0 +1,30 @@
+<field data-validation-errors="validationErrors['destination_address']" data-model="item.destination_address" data-label="destination_address"></field>
+
+<field data-validation-errors="validationErrors['destination_city']" data-model="item.destination_city" data-label="destination_city"></field>
+
+<field data-validation-errors="validationErrors['destination_zip']" data-model="item.destination_zip" data-label="destination_zip"></field>
+
+<field data-validation-errors="validationErrors['external_id']" data-model="item.external_id" data-label="external_id"></field>
+
+<field data-type="custom"  data-validation-errors="validationErrors['status']"  data-label="status">
+
+    <select   data-ng-model="item.status" data-ng-options="item as item for item  in ['Pending','Delivered','Cancelled']"   ></select>
+
+</field>
+
+
+<script type="text/ng-template" id="associated-client-template">
+
+    <div class="key-value">
+        <span class="key">{{'name' | translate}}</span>
+        <span class="value">{{data.name}}</span>
+    </div>
+</script>
+
+<associated-item-field data-template="'associated-client-template'"  data-max="1" data-model="item.client"  data-validation-errors="validationErrors['images']"    data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/client/?model=item.client" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/client/save?model=item.client"  data-label="client"></associated-item-field>
+
+
+
+<field   data-label="submit" data-type="submit"></field>
+
+{{item}}
