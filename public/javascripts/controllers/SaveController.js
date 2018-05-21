@@ -1,4 +1,4 @@
-app.controller('save-controller', function ($scope,$rootScope,$routeParams,$location,$controller,$window) {
+app.controller('save-controller', function (toastr,$scope,$rootScope,$routeParams,$location,$controller,$window) {
 
 
     $rootScope.bodyClass ={"save":true};
@@ -69,6 +69,7 @@ app.controller('save-controller', function ($scope,$rootScope,$routeParams,$loca
                 if(error.response && error.response.data.type && error.response.data.type == 'ValidationError')
                 {
 
+                    toastr.error($scope.$eval('"validation.error" | translate'))
                     $scope.validationErrors = error.response.data.details;
 
 

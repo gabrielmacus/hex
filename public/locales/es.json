@@ -71,6 +71,13 @@
   "actions":"Acciones",
   "commaSeparated":"separados por coma",
 
+  "menu.currencies":"Monedas",
+  "iso_code":"Código ISO",
+  "currency":"Moneda",
+  "simbol":"Símbolo",
+  "currency.plural":"Monedas",
+
+
   "menu.persons":"Personas",
   "person.plural":"Personas",
   "surname":"Apellido",
@@ -102,7 +109,7 @@
   "validation.numberBetween":"Debe estar entre el {{min}} y el {{max}}",
   "validation.rangeLength":"Seleccione entre {{min}} y {{max}}",
   "validation.selectAnOption":"Seleccione una opción válida",
-  "validation.minSelected":"Seleccione entre {{min}} y {{max}} opciones",
+  "validation.minSelected":"Seleccione entre {{min}} y {{max}} elementos",
   "validation.extensionNotAllowed":"Tipo de archivo no permitido",
   "validation.invalidEmail":"Email inválido",
   "validation.passwordsDoesntMatch":"Las contraseñas no coinciden",
@@ -133,6 +140,7 @@
   "person.getAssignments":"Ver asignaciones",
   "person.assignments.title":"Asignaciones de {{name}} {{surname}}",
   "today":"Hoy",
+  "cost":"Costo",
 
   "attachment.plural":"Adjuntos",
   "assignment.list":"Listado de asignaciones",
@@ -185,6 +193,7 @@
   "package.errorSettingStatus":"Error al modificar el estado de uno o más paquetes",
   "package.succesfullySetStatus":"Estado de los paquetes modificado correctamnte",
   "package.excelLoadedSuccesfully":"Archivo de excel cargado con éxito",
-  "status":"Estado"
+  "status":"Estado",
+  "validation.error":"Revise los campos enviados"
 
 }

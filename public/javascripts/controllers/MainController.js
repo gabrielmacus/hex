@@ -195,7 +195,13 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
 
 
     $rootScope.config={
-        product:{fields:["title",{label:'image',field:'images',render:function(item){
+        currency:{fields:["name","iso_code","simbol"]
+        },
+        product:{fields:["title",{label:"cost",field:'cost',render:function (item) {
+
+            return item.currency.iso_code+" "+item.cost
+
+        }},"description",{label:'image',field:'images',render:function(item){
 
             if(item.images.length)
             {

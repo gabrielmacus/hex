@@ -1,4 +1,21 @@
-<field data-model="item.title" data-label="title"></field>
+
+<field  data-validation-errors="validationErrors['title']" data-model="item.title" data-label="title"></field>
+
+
+<field  data-validation-errors="validationErrors['description']" data-type="textarea" data-model="item.description" data-label="description"></field>
+
+
+
+<field  data-validation-errors="validationErrors['cost']" data-model="item.cost" data-type="number" data-label="cost"></field>
+
+
+<field data-type="custom"  data-validation-errors="validationErrors['currency']"  data-label="currency">
+
+    <select  data-ng-init="load('/api/currency/all','currencies')" data-ng-model="item.currency" data-ng-options="item._id as item.name for item  in currencies track by item._id"   ></select>
+
+</field>
+
+
 
 <!--
 <associated-file-field data-gallery="'5ab1bb822456de0cd8830ac3'" data-ref='image' data-model="item.images"></associated-file-field>
@@ -12,7 +29,7 @@
 
 </script>
 
-<associated-item-field data-template="'associated-file-template'" data-ref="image"  data-model="item.images"  data-validation-errors="validationErrors['images']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac779819a2e883719f9cba0/files?model=item.images" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ac779819a2e883719f9cba0/upload?model=item.images" data-label="images"></associated-item-field>
+<associated-item-field data-template="'associated-file-template'" data-ref="image"  data-model="item.images"  data-validation-errors="validationErrors['images']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/files?model=item.images" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/upload?model=item.images" data-label="images"></associated-item-field>
 
 
 <!---

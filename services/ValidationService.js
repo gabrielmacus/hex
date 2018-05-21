@@ -15,6 +15,66 @@ module.exports=
 
             UtilsService.ErrorHandler(error,req,res,next);
         },
+        Product:function (req,res,next) {
+
+            var errors ={};
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'title';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+            var length = {min:0,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'description';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+            var imagesMessage = {message:'minSelected',data:{min:0,max:5}};
+            var length  = UtilsService.get('images',req.body).length || 0;
+
+            if(length < imagesMessage.data.min || length > imagesMessage.data.max)
+            {
+                errors['images'] = [];
+                errors['images'].push(imagesMessage);
+
+            }
+
+            var placeMessage = {message:"numberBetween",data:{min:0,max:100000000}};
+            var key = 'cost';
+            if(!validator.isInt(UtilsService.get(key,req.body),placeMessage.data))
+            {
+                errors[key] = [];
+                errors[key].push(placeMessage);
+
+            }
+
+
+            var message = {message:"selectAnOption"};
+            var key = 'currency';
+            var value= UtilsService.get(key,req.body);
+            if(!validator.isMongoId(value))
+            {
+                errors[key] = [];
+                errors[key].push(message);
+
+            }
+
+            module.exports.process(errors,req,res,next);
+
+
+
+
+        },
         User:function (req,res,next) {
 
             var errors ={};

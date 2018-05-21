@@ -9,8 +9,12 @@
       "href":"#!/client"
     } ,
     {
-      "text":"menu.packages",
-      "href":"#!/package"
+      "text":"menu.products",
+      "href":"#!/product"
+    },
+    {
+      "text":"menu.currencies",
+      "href":"#!/currency"
     },
     {
       "text":"menu.galleries",

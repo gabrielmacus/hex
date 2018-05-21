@@ -2,7 +2,8 @@
 const nodemailer = require('nodemailer');
 const tengine = require('pug');
 const path = require('path');
-
+var rootPath = require('app-root-dir').get();
+var fs = require('fs');
 module.exports=
     {
         CallMiddleware:function (req,res,next,instance,type) {
@@ -98,8 +99,29 @@ module.exports=
 
 
         },
+        Log:function(level,data)
+        {
+            var p = path.join(rootPath,"logs/"+level+".log");
+            fs.readFile(p, function(err, data) {
+
+                if(!err)
+                {
+
+                }
+                console.log("LOG");
+                console.log(err);
+                console.log(data.toString());
+                console.log("LOG");
+
+
+            });
+
+
+        },
         ErrorHandler:function (err,req,res,next) {
 
+
+            //module.exports.Log('error',err);
 
             if(err.name == 'ValidationError')
             {
@@ -108,6 +130,7 @@ module.exports=
             }
             else
             {
+
                 res.status(500).json({});
             }
         },

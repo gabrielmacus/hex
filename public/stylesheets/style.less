@@ -10,7 +10,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
-body *{
+body *:not(.fa):not(.fas){
   font-family: @mainFont!important;
   color: @mainTypoColor;
   word-wrap: break-word;
@@ -202,7 +202,7 @@ body > aside > menu a.active:before
   background:@focusedInputColor;
 
 }
-main  top header
+body:not(.login) main  top header
 {
   transition:all 120ms;
   padding-top: 10px;
@@ -740,7 +740,7 @@ body .show-on-popup
 }
 body.popup .show-on-popup
 {
-  display: block!important;
+  display: unset!important;
 }
 
 
@@ -750,7 +750,7 @@ body.popup .hide-on-popup
 }
 body.popup .show-on-popup[data-ng-click='acceptSelected()']
 {
-  display: inline;
+  display: unset!important;
 }
 
 list
@@ -979,6 +979,8 @@ list .loading svg
     padding:20px;
     display: block;
     text-align: center;
+    float: left;
+    width: 100%;
   }
   list + footer .button:first-child
   {
@@ -1586,4 +1588,12 @@ td.is-file .file-preview .filename
   height: 100%!important;
   background-color: rgba(255,255,255,0.9)!important;
   right: 0;
+}
+
+.close-modal
+{
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

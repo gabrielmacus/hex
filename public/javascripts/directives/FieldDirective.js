@@ -29,7 +29,11 @@ app
               }
 
 
+                $scope.unsetErrors=function (errors) {
 
+                  $scope.validationErrors = [];
+
+                }
 
                 if($scope.type == 'custom')
                 {

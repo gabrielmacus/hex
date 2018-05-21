@@ -2,7 +2,9 @@
 
 
 <div data-ng-class="{'has-error':(validationErrors.length > 0)}"   class="form-field" data-ng-if="type != 'submit' && type != 'textarea' && type != 'tags'" >
-    <input data-ng-focus="$parent.$parent.validationErrors = []"  id="{{$parent.label}}" data-ng-if="$parent.type != 'custom'"  data-ng-model="$parent.$parent.model" type="{{$parent.type}}">
+
+
+    <input data-ng-focus="unsetErrors()"  id="{{$parent.label}}" data-ng-if="$parent.type != 'custom'"  data-ng-model="$parent.$parent.model" type="{{$parent.type}}">
     <label for="{{$parent.label}}">{{ $parent.label | translate}}</label>
 <!--$parent.validationErrors = []-->
 </div>
@@ -11,12 +13,12 @@
 
 
 <div  data-ng-class="{'has-error':(validationErrors.length > 0)}"  class="form-field" data-ng-if="type == 'textarea'">
-    <textarea  data-ng-focus="$parent.$parent.validationErrors = []"  id="{{$parent.label}}"   data-ng-model="$parent.model"></textarea>
+    <textarea  data-ng-focus="unsetErrors()"   id="{{$parent.label}}"   data-ng-model="$parent.model"></textarea>
     <label  for="{{$parent.label}}">{{ $parent.label | translate}}</label>
 </div>
 
 <div data-ng-class="{'has-error':(validationErrors.length > 0)}" class="form-field" data-ng-if="type == 'tags'">
-    <input  data-ng-focus="$parent.$parent.validationErrors = []"    data-ng-init="$parent.model= (!$parent.model)?[]:$parent.model" id="{{$parent.label}}"  data-ng-keyup="processTagInput($event,$parent.model)" type="text">
+    <input data-ng-focus="unsetErrors()"     data-ng-init="$parent.model= (!$parent.model)?[]:$parent.model" id="{{$parent.label}}"  data-ng-keyup="processTagInput($event,$parent.model)" type="text">
     <label  for="{{$parent.label}}">{{ $parent.label | translate}} <!--<b style="font-size: 15px;font-weight: 600">({{'commaSeparated' | translate}})</b>--></label>
 
     <p class="field-footer" data-ng-if="!$parent.model || $parent.model.length == 0">Valores separados por coma</p>
@@ -43,7 +45,6 @@
     -->
 
 </footer>
-
 
 
 

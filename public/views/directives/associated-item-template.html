@@ -68,6 +68,8 @@
         <lightbox   data-options="lightboxOptions" class="responsive-lightbox " data-ng-if="lightboxOptions.open">
 
             <iframe data-id="{{modelName}}" data-iframe-on-load="iframeOnLoad" data-ng-src="{{lightboxOptions.src || trusted}}"></iframe>
+
+            <span data-ng-click="lightboxOptions.open=false" class="close-modal"><i class="fas fa-times"></i></span>
             <div class="page-loader fade" data-ng-if="!iframeLoaded">
                 <img src="/images/three-dots-loader.svg">
             </div>
