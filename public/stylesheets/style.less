@@ -325,7 +325,8 @@ table .open-actions
 }
 table td > span >  img
 {
-  width: 30%;
+  max-width: 200px;
+  height: auto;
 }
 .button:active
 {
@@ -778,6 +779,7 @@ lightbox .body
 file-preview
 {
   display: block;
+  float: left;
   position: relative;
 }
 file-preview figure
@@ -969,6 +971,10 @@ list .loading svg
 
 @media all and (max-width: 1024px) {
 
+  table td > span >  img
+  {
+    max-width: none!important;
+  }
   main > top header
   {
     text-align: center;

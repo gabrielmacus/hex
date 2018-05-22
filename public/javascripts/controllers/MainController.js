@@ -195,20 +195,54 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
 
 
     $rootScope.config={
+        sale:{fields:['createdAt','notes',{label:'cost',field:'products',render:function (item) {
+
+            var amounts = {};
+
+            for(var k in item.products)
+            {
+                var product = item.products[k].product;
+
+
+                if(!amounts[product.currency.iso_code])
+                {
+                    amounts[product.currency.iso_code] = 0
+                }
+
+                amounts[product.currency.iso_code]+= product.cost
+            }
+
+            var text = "";
+            for(var k in amounts)
+            {
+                text+=k+" "+amounts[k]+",";
+            }
+            return text.slice(0,-1);
+
+
+
+
+        }},{label:'client',field:'client',render:function (item) {
+
+            console.log(item);
+            return item.client.name+" "+item.client.surname
+        }}]},
         currency:{fields:["name","iso_code","simbol"]
         },
-        product:{fields:["title",{label:"cost",field:'cost',render:function (item) {
+        product:{fields:[
+            {label:'image',field:'images',render:function(item){
+
+                if(item.images.length)
+                {
+                    return "<img src='"+item.images[0].image.path+"'>";
+
+                }
+            }},
+            "title",{label:"cost",field:'cost',render:function (item) {
 
             return item.currency.iso_code+" "+item.cost
 
-        }},"description",{label:'image',field:'images',render:function(item){
-
-            if(item.images.length)
-            {
-                return "<img src='"+item.images[0].image.path+"'>";
-
-            }
-        }}]},
+        }},"description","stock"]},
         user:{fields:['name']},
         "facebook-post":{fields:['title','description','price',{label:'type',field:'type',render:function (item) {
 
@@ -284,7 +318,19 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             },
         client:{
             //footer:'/views/client-footer.html',
-            fields:['name','phone','email']
+            fields:['name','surname',{label:'phone.plural',field:'phones',render:function (item) {
+
+                return item.phones.join(",");
+
+            }},{label:'email.plural',field:'emails',render:function (item) {
+
+                return item.emails.join(",");
+
+            }},{label:'address.plural',field:'addresses',render:function (item) {
+
+                return item.addresses.join(",");
+
+            }}]
         },
         user:
             {

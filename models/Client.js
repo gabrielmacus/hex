@@ -7,13 +7,13 @@ var schema = new Schema({
     name: {type:String},
     surname: {type:String},
     createdBy:{type:Schema.Types.ObjectId,ref:'User',required:true},
-    phone:String,
-    //phones:[String],
+    phones:[String],
+    addresses:[String],
     description:String,
     /*
     images:[{image:{type:Schema.Types.ObjectId,ref:'File'},text:String}],
     documents:[{document:{type:Schema.Types.ObjectId,ref:'File'},text:String}],*/
-    email:String
+    emails:[String]
 }, {
     timestamps: true
 });

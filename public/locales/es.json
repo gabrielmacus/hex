@@ -194,6 +194,15 @@
   "package.succesfullySetStatus":"Estado de los paquetes modificado correctamnte",
   "package.excelLoadedSuccesfully":"Archivo de excel cargado con éxito",
   "status":"Estado",
-  "validation.error":"Revise los campos enviados"
+  "validation.error":"Revise los campos enviados",
+  "stock":"Stock",
+  "address.plural":"Direcciones",
+  "address":"Dirección",
+  "menu.sales":"Ventas",
+  "sale":"Venta",
+  "sale.plural":"Ventas",
+  "quantity":"Cantidad",
+  "createdAt":"Fecha",
+  "notes":"Notas"
 
 }

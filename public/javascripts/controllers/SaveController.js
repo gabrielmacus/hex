@@ -58,7 +58,19 @@ app.controller('save-controller', function (toastr,$scope,$rootScope,$routeParam
 
                 if(qs.model)
                 {
-                    $window.parent.postMessage({items:(typeof response.data != 'Array')?[response.data]:response.data,model:qs.model},'*');
+                    axios({
+                        url:'/api/'+$scope.model+'/'+response.data._id,
+                        method:"GET",
+                        headers:$rootScope.headers
+                    })
+                        .then(function (response) {
+
+                            $window.parent.postMessage({items:(typeof response.data != 'Array')?[response.data]:response.data,model:qs.model},'*');
+                            $scope.$apply();
+
+                        })
+                        .catch($rootScope.errorHandler);
+
                 }
 
             })

@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const File =require('./File');
-const Currency = require('./Currency');
+const Client = require('./Client');
+const Product = require('./Product');
 const ModelService = require('../services/ModelService');
 var schema = new Schema({
-    title: String,
-    description:String,
-    images: [ {image:{type:Schema.Types.ObjectId,ref:'File'},text:String}],
-    cost:Number,
-    stock:Number,
-    currency:{type:Schema.Types.ObjectId,ref:'Currency'},
+
+    products: [ {quantity:Number,product:{type:Schema.Types.ObjectId,ref:'Product'},text:String}],
+    client:{type:Schema.Types.ObjectId,ref:'Client'},
+    notes:String,
     createdBy:{type:Schema.Types.ObjectId,ref:'User',required:true}
 }, {
     timestamps: true
 });
 var autoPopulate= function(next) {
-    this.populate('images.image');
-    this.populate('currency');
+
+    this.populate('client');
+    this.populate('products.product');
     next();
 };
 
@@ -25,9 +25,10 @@ schema
     .pre('findOne', autoPopulate)
     .pre('init',function (doc) {
 
-        ModelService.ClearDeletedReferences(doc,'images','image');
+
+        ModelService.ClearDeletedReferences(doc,'products','product');
 
     });
 
 
-    module.exports= db.model('Product',schema);
+module.exports= db.model('Sale',schema);

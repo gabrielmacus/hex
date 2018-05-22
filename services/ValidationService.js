@@ -1,5 +1,6 @@
 var validator = require('validator');
 const Gallery = require('../models/Gallery');
+const Product = require('../models/Product');
 const UtilsService = require('../services/UtilsService');
 const path = require('path');
 module.exports=
@@ -14,6 +15,52 @@ module.exports=
             var error = {name:'ValidationError',details:errors};
 
             UtilsService.ErrorHandler(error,req,res,next);
+        },
+        Sale:function (req,res,next) {
+            var errors ={};
+
+
+            if(req.body.products && req.body.products.length)
+            {
+                for(var k in req.body.products)
+                {
+                    var product= req.body.products[k].product;
+                    var quantity =  req.body.products[k].quantity;
+
+                    Product.findOne({_id:product})
+                        .exec(function (err,product) {
+
+                           if(err)
+                           {
+                               return UtilsService.ErrorHandler(err,req,res,next);
+                           }
+
+                           if(product.stock && product.stock < quantity)
+                           {
+                               console.log("Sobrepasa la cantidad");
+                               var key = 'product_'+k;
+                               console.log(key);
+                               if(! errors[key])
+                               {
+
+                                   errors[key] = [];
+                               }
+                               errors[key].push({message:'lengthBetween'});
+
+                           }
+
+
+
+                            module.exports.process(errors,req,res,next);
+
+                        });
+
+                }
+            }
+
+
+
+
         },
         Product:function (req,res,next) {
 
@@ -59,15 +106,28 @@ module.exports=
             }
 
 
+
             var message = {message:"selectAnOption"};
             var key = 'currency';
             var value= UtilsService.get(key,req.body);
-            if(!validator.isMongoId(value))
+            if((!value._id || !validator.isMongoId(value._id)) && !validator.isMongoId(value))
             {
                 errors[key] = [];
                 errors[key].push(message);
 
             }
+
+            /*
+            var message = {message:"selectAnOption"};
+            var key = 'currency';
+            var value= UtilsService.get(key,req.body);
+            console.log(value);
+            if(!validator.isMongoId(value))
+            {
+                errors[key] = [];
+                errors[key].push(message);
+
+            }*/
 
             module.exports.process(errors,req,res,next);
 

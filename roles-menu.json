@@ -5,6 +5,10 @@
       "href":"#!/"
     },
     {
+      "text":"menu.sales",
+      "href":"#!/sale"
+    },
+    {
       "text":"menu.clients",
       "href":"#!/client"
     } ,

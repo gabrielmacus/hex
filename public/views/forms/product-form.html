@@ -9,12 +9,13 @@
 <field  data-validation-errors="validationErrors['cost']" data-model="item.cost" data-type="number" data-label="cost"></field>
 
 
-<field data-type="custom"  data-validation-errors="validationErrors['currency']"  data-label="currency">
+<field  data-type="custom"  data-validation-errors="validationErrors['currency']"  data-label="currency">
 
-    <select  data-ng-init="load('/api/currency/all','currencies')" data-ng-model="item.currency" data-ng-options="item._id as item.name for item  in currencies track by item._id"   ></select>
+    <select  data-ng-init="load('/api/currency/all','currencies')" data-ng-model="item.currency" data-ng-options="item as item.name for item  in currencies track by item._id"   ></select>
 
 </field>
 
+<field  data-validation-errors="validationErrors['stock']" data-model="item.stock" data-type="number" data-label="stock"></field>
 
 
 <!--

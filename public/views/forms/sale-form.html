@@ -1,0 +1,58 @@
+
+<script type="text/ng-template" id="associated-product-template">
+
+    <div class="key-value">
+        <span class="key">{{'title' | translate}}</span>
+        <span class="value">{{data.title}}</span>
+    </div>
+
+    <file-preview data-file="data.images[0].image"></file-preview>
+
+    {{validationErrors}}
+    {{$parent.validationErrors}}
+    <field data-type="number" data-validation-errors="$parent.validationErrors['product_'+k]" data-model="item.quantity" data-label="quantity"></field>
+
+</script>
+{{validationErrors}}
+<associated-item-field data-template="'associated-product-template'" data-ref="product"  data-model="item.products"  data-validation-errors="validationErrors"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/product?model=item.products" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/product/save?model=item.products" data-label="product.plural"></associated-item-field>
+
+
+
+
+<script type="text/ng-template" id="associated-client-template">
+
+    <div class="key-value">
+        <span class="key">{{'name' | translate}}</span>
+        <span class="value">{{data.name}}</span>
+    </div>
+
+
+    <div class="key-value">
+        <span class="key">{{'surname' | translate}}</span>
+        <span class="value">{{data.surname}}</span>
+    </div>
+
+
+
+</script>
+
+<associated-item-field data-max="1" data-template="'associated-client-template'"   data-model="item.client"  data-validation-errors="validationErrors['client']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/client?model=item.client" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/client/save?model=item.client" data-label="client"></associated-item-field>
+
+
+
+
+
+<field  data-validation-errors="validationErrors['notes']" data-type="textarea" data-model="item.notes" data-label="notes"></field>
+
+<!---
+<associated-file-field data-gallery="'5ac779819a2e883719f9cba0'" data-ref='image' data-model="item.images">
+    <field data-label="text" data-model="$parent.item.text"></field>
+</associated-file-field>
+-->
+
+
+<field   data-label="submit" data-type="submit"></field>
+
+<!--
+<field data-label="text" data-model="item.text"></field>-->
+
