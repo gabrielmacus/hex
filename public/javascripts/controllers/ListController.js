@@ -109,15 +109,26 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
         $rootScope.confirmDialog=
             {
                 yes:function () {
+                    $scope.status='loading';
 
-                    for(var k in selected)
-                    {
-                        var item =  selected[k];
-
-                        $rootScope.deleteElement(item._id);
-
-                    }
                     $rootScope.confirmDialog.open=false;
+                    asyncForEach(selected,function (err) {
+
+
+                            $scope.status='ready';
+                    },
+                        function (item,index,next) {
+
+                            $rootScope.deleteElement(item._id,function () {
+
+                                next();
+
+                            });
+
+                        })
+
+
+
 
                 },
                 class:{"hide-close":true},
@@ -165,13 +176,20 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
     }
 
-    $rootScope.deleteElement=function (id) {
+    $rootScope.deleteElement=function (id,callback) {
 
         axios.delete('/api/'+$routeParams.model+'/'+id,{headers:$rootScope.headers})
             .then(function (response) {
+                if(!callback)
+                {
+                    $scope.loadList();
+                    $scope.$apply();
+                }
+                else
+                {
+                    callback();
+                }
 
-                $scope.loadList();
-                $scope.$apply();
             })
             .catch($rootScope.errorHandler);
 
