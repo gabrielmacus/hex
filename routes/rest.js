@@ -180,6 +180,25 @@ router.get('/:model/:id',function (req,res,next) {
 })
 //Update one
 router.put('/:model/:id',
+
+    function(req,res,next){
+
+           //Loads the item that will be updated
+        req.model.findOne({_id:req.params.id})
+            .exec(function (err,item) {
+
+                if(err)
+                {
+                    return UtilsService.ErrorHandler(err,req,res,next);
+                }
+
+                req.itemToUpdate = item;
+                next();
+
+            });
+
+
+    },
     function(req,res,next){
         //Validation middleware
     if(ValidationService[req.model.modelName])
@@ -193,6 +212,7 @@ router.put('/:model/:id',
 
 },
     function (req,res,next) {
+
 
         //Middleware: PRE UPDATE
         UtilsService.CallMiddleware(req,res,next,'pre','update');

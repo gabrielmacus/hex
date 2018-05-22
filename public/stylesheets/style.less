@@ -1383,9 +1383,12 @@ lightbox .hide-close .close
   float: left;
   width: 100%;
 }
-.key-value:last-child
+.key-value:last-of-type
 {
+  margin-bottom: 20px;
+
   border-bottom: 0;
+
 }
 
 .item-preview
@@ -1602,4 +1605,19 @@ td.is-file .file-preview .filename
   position: absolute;
   top: 10px;
   right: 10px;
+}
+.custom-validation-errors
+{
+  width: 100%;
+  float: left!important;
+  display: block!important;
+  box-shadow: none;
+}
+.custom-validation-errors .validation-error
+{
+  width: 100%!important;
+  float: left!important;
+  box-shadow: none!important;
+  padding: 0!important;
+  margin-top: 10px!important;
 }

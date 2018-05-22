@@ -3,59 +3,108 @@ const Gallery = require('../models/Gallery');
 const Product = require('../models/Product');
 const UtilsService = require('../services/UtilsService');
 const path = require('path');
+const async = require('async');
 module.exports=
     {
 
         process:function (errors,req,res,next) {
 
+
             if(!errors || Object.keys(errors).length == 0)
             {
+
                 return next();
             }
+
             var error = {name:'ValidationError',details:errors};
 
             UtilsService.ErrorHandler(error,req,res,next);
         },
-        Sale:function (req,res,next) {
+        Sale:function (req,res,n) {
             var errors ={};
-
-
+            //Checks stock availability
             if(req.body.products && req.body.products.length)
             {
-                for(var k in req.body.products)
-                {
-                    var product= req.body.products[k].product;
-                    var quantity =  req.body.products[k].quantity;
 
-                    Product.findOne({_id:product})
-                        .exec(function (err,product) {
+                UtilsService.asyncForEach(req.body.products,function () {
 
-                           if(err)
-                           {
-                               return UtilsService.ErrorHandler(err,req,res,next);
-                           }
+                        return module.exports.process(errors,req,res,n);
 
-                           if(product.stock && product.stock < quantity)
-                           {
-                               console.log("Sobrepasa la cantidad");
-                               var key = 'product_'+k;
-                               console.log(key);
-                               if(! errors[key])
-                               {
+                    },
+                    function (item,index,next) {
 
-                                   errors[key] = [];
-                               }
-                               errors[key].push({message:'lengthBetween'});
+                        var product = item.product;
+                        var quantity = item.quantity;
 
-                           }
+                        Product.findOne({_id:product})
+                            .exec(function (err,product) {
+
+                                if(err)
+                                {
+                                    return UtilsService.ErrorHandler(err,req,res,next);
+
+                                }
+                                else {
 
 
+                                    var stock =product.stock;
 
-                            module.exports.process(errors,req,res,next);
 
-                        });
+                                    if(stock) {
 
-                }
+                                        if(req.itemToUpdate)
+                                        {
+
+                                            var filter = req.itemToUpdate.products.filter(function (t) { return  t.product._id.toString() == product._id.toString() });
+
+                                            if(filter.length)
+                                            {                    console.log(stock);
+
+                                                stock+=filter[0].quantity;
+
+                                            }
+                                        }
+                                        var key = 'product_'+product._id;
+
+
+                                        if(stock < quantity)
+                                        {
+                                            if(!errors[key])
+                                            {
+
+                                                errors[key] = [];
+                                            }
+
+                                            errors[key].push({message:'cantExceedStock'});
+                                        }
+                                        if(!quantity || quantity <0)
+                                        {
+                                            if(!errors[key])
+                                            {
+
+                                                errors[key] = [];
+                                            }
+
+                                            errors[key].push({message:'shouldBeValidNumber'});
+                                        }
+
+
+                                    }
+
+
+                                    return next();
+
+                                }
+
+
+                            });
+
+
+
+                    });
+
+
+
             }
 
 

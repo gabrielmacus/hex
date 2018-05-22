@@ -203,6 +203,12 @@
   "sale.plural":"Ventas",
   "quantity":"Cantidad",
   "createdAt":"Fecha",
-  "notes":"Notas"
+  "notes":"Notas",
+
+  "prompt.delete.multiple":"¿Desea eliminar {{quantity}} elementos?",
+  "delete.multiple.ongoing":"Eliminando múltiples elementos",
+
+  "validation.cantExceedStock":"No debe superar el stock disponible",
+  "validation.shouldBeValidNumber":"Debe ser un número válido"
 
 }

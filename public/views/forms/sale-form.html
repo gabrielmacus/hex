@@ -1,20 +1,32 @@
 
 <script type="text/ng-template" id="associated-product-template">
 
+
     <div class="key-value">
         <span class="key">{{'title' | translate}}</span>
         <span class="value">{{data.title}}</span>
     </div>
 
+    <div class="key-value">
+        <span class="key">{{'stock' | translate}}</span>
+        <span class="value">{{data.stock}}</span>
+    </div>
+
+
+
     <file-preview data-file="data.images[0].image"></file-preview>
 
-    {{validationErrors}}
-    {{$parent.validationErrors}}
-    <field data-type="number" data-validation-errors="$parent.validationErrors['product_'+k]" data-model="item.quantity" data-label="quantity"></field>
+    <field data-type="number" data-validation-errors="[]"  data-model="item.quantity" data-label="quantity"></field>
+
+
+    <ul  class="fade-static  custom-validation-errors validation-errors">
+
+        <li class="validation-error" data-ng-repeat="(k,error) in $parent.$parent.validationErrors['product_'+data._id] ">{{ 'validation.'+error.message | translate:error.data}}</li>
+    </ul>
+
 
 </script>
-{{validationErrors}}
-<associated-item-field data-template="'associated-product-template'" data-ref="product"  data-model="item.products"  data-validation-errors="validationErrors"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/product?model=item.products" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/product/save?model=item.products" data-label="product.plural"></associated-item-field>
+<associated-item-field data-template="'associated-product-template'"  data-ref="product"  data-model="item.products"  data-validation-errors="validationErrors"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/product?model=item.products" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/product/save?model=item.products" data-label="product.plural"></associated-item-field>
 
 
 

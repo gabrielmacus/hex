@@ -1,4 +1,4 @@
-app.controller('list-controller', function ($scope,$rootScope,$routeParams,$window,$location,$controller) {
+app.controller('list-controller', function (toastr,$scope,$rootScope,$routeParams,$window,$location,$controller) {
 
 
 
@@ -110,12 +110,14 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
             {
                 yes:function () {
                     $scope.status='loading';
+                    toastr.info( $scope.$eval("'delete.multiple.ongoing' | translate "));
 
                     $rootScope.confirmDialog.open=false;
                     asyncForEach(selected,function (err) {
 
-
                             $scope.status='ready';
+                            $scope.loadList();
+                            $scope.$apply();
                     },
                         function (item,index,next) {
 
@@ -132,7 +134,8 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
 
                 },
                 class:{"hide-close":true},
-                title:"demoeade",
+                title:"prompt.delete.multiple",
+                titleData:{quantity:selected.length},
                 open:true
             };
 
