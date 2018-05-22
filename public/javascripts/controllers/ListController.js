@@ -102,6 +102,36 @@ app.controller('list-controller', function ($scope,$rootScope,$routeParams,$wind
         $scope.loadList();
     }
 
+    $scope.deleteSelected=function () {
+
+        var selected =  $scope.getSelectedItems();
+
+        $rootScope.confirmDialog=
+            {
+                yes:function () {
+
+                    for(var k in selected)
+                    {
+                        var item =  selected[k];
+
+                        $rootScope.deleteElement(item._id);
+
+                    }
+                    $rootScope.confirmDialog.open=false;
+
+                },
+                class:{"hide-close":true},
+                title:"demoeade",
+                open:true
+            };
+
+
+
+
+
+
+    }
+
     $scope.loadList=function () {
 
         $scope.status='loading';
