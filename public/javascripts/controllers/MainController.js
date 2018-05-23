@@ -209,7 +209,7 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
                     amounts[product.currency.iso_code] = 0
                 }
 
-                amounts[product.currency.iso_code]+= product.cost
+                amounts[product.currency.iso_code]+= product.cost * item.products[k].quantity;
             }
 
             var text = "";

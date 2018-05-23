@@ -8,6 +8,11 @@
     <footer>
         <a   data-ng-click="goToSave()" class="new-item button">{{'list.newItem' | translate}}</a>
         <a   data-ng-click="acceptSelected()"   class="show-on-popup button">{{'accept' | translate}}</a>
+        <a data-ng-click="deleteSelected()"  data-ng-if="getSelectedItems().length" class="hide-on-popup batch-delete button" >
+            <i class="fas fa-trash-alt"></i>
+
+        </a>
+
 
         <paginator  data-pagination="pagination"   data-goto="goTo"  data-offset="2"></paginator>
     </footer>

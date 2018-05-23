@@ -1,21 +1,21 @@
 
-<field  data-validation-errors="validationErrors['title']" data-model="item.title" data-label="title"></field>
+<field  data-validation-errors="$parent.validationErrors['title']" data-model="item.title" data-label="title"></field>
 
 
-<field  data-validation-errors="validationErrors['description']" data-type="textarea" data-model="item.description" data-label="description"></field>
+<field  data-validation-errors="$parent.validationErrors['description']" data-type="textarea" data-model="item.description" data-label="description"></field>
 
 
 
-<field  data-validation-errors="validationErrors['cost']" data-model="item.cost" data-type="number" data-label="cost"></field>
+<field  data-validation-errors="$parent.validationErrors['cost']" data-model="item.cost" data-type="number" data-label="cost"></field>
 
 
-<field  data-type="custom"  data-validation-errors="validationErrors['currency']"  data-label="currency">
+<field  data-type="custom"  data-validation-errors="$parent.validationErrors['currency']"  data-label="currency">
 
     <select  data-ng-init="load('/api/currency/all','currencies')" data-ng-model="item.currency" data-ng-options="item as item.name for item  in currencies track by item._id"   ></select>
 
 </field>
 
-<field  data-validation-errors="validationErrors['stock']" data-model="item.stock" data-type="number" data-label="stock"></field>
+<field  data-validation-errors="$parent.validationErrors['stock']" data-model="item.stock" data-type="number" data-label="stock"></field>
 
 
 <!--
@@ -30,7 +30,7 @@
 
 </script>
 
-<associated-item-field data-template="'associated-file-template'" data-ref="image"  data-model="item.images"  data-validation-errors="validationErrors['images']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/files?model=item.images" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/upload?model=item.images" data-label="images"></associated-item-field>
+<associated-item-field data-template="'associated-file-template'" data-ref="image"  data-model="item.images"  data-validation-errors="$parent.validationErrors['images']"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/files?model=item.images" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/gallery/5ad9174ebd46276a9b1c7e38/upload?model=item.images" data-label="images"></associated-item-field>
 
 
 <!---

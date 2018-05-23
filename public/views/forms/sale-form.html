@@ -21,12 +21,13 @@
 
     <ul  class="fade-static  custom-validation-errors validation-errors">
 
+
         <li class="validation-error" data-ng-repeat="(k,error) in $parent.$parent.validationErrors['product_'+data._id] ">{{ 'validation.'+error.message | translate:error.data}}</li>
     </ul>
 
 
 </script>
-<associated-item-field data-template="'associated-product-template'"  data-ref="product"  data-model="item.products"  data-validation-errors="validationErrors"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/product?model=item.products" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/product/save?model=item.products" data-label="product.plural"></associated-item-field>
+<associated-item-field data-template="'associated-product-template'"  data-ref="product"  data-model="item.products"  data-validation-errors="$parent.validationErrors['products'] || $parent.validationErrors"     data-select-url="/?popup=true&access_token={{$root.accessToken}}#!/product?model=item.products" data-add-url="/?popup=true&access_token={{$root.accessToken}}#!/product/save?model=item.products" data-label="product.plural"></associated-item-field>
 
 
 
@@ -54,7 +55,7 @@
 
 
 
-<field  data-validation-errors="validationErrors['notes']" data-type="textarea" data-model="item.notes" data-label="notes"></field>
+<field  data-validation-errors="$parent.validationErrors['notes']" data-type="textarea" data-model="item.notes" data-label="notes"></field>
 
 <!---
 <associated-file-field data-gallery="'5ac779819a2e883719f9cba0'" data-ref='image' data-model="item.images">

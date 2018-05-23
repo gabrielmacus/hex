@@ -22,6 +22,29 @@ module.exports=
         },
         Sale:function (req,res,n) {
             var errors ={};
+
+
+            var message = {message:'minSelected',data:{min:1,max:1}};
+            var key = 'client';
+
+            if( !UtilsService.get(key,req.body))
+            {
+                errors[key] = [];
+                errors[key].push(message);
+
+            }
+
+            var message = {message:'minSelected',data:{min:1,max:10}};
+            var key = 'products';
+            var length  = UtilsService.get(key,req.body).length || 0;
+
+            if(length < message.data.min || length > message.data.max)
+            {
+                errors[key] = [];
+                errors[key].push(message);
+
+            }
+
             //Checks stock availability
             if(req.body.products && req.body.products.length)
             {
@@ -106,6 +129,12 @@ module.exports=
 
 
             }
+            else
+            {
+
+                module.exports.process(errors,req,res,n);
+
+            }
 
 
 
@@ -126,7 +155,7 @@ module.exports=
 
 
 
-            var length = {min:0,max:100};
+            var length = {min:0,max:500};
             var lengthMessage = {message:'lengthBetween',data:length};
             var key = 'description';
             if(!validator.isLength(UtilsService.get(key,req.body),length))
@@ -140,10 +169,12 @@ module.exports=
 
             if(length < imagesMessage.data.min || length > imagesMessage.data.max)
             {
-                errors['images'] = [];
+                               errors['images'] = [];
                 errors['images'].push(imagesMessage);
 
             }
+
+
 
             var placeMessage = {message:"numberBetween",data:{min:0,max:100000000}};
             var key = 'cost';

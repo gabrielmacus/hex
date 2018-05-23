@@ -36,7 +36,7 @@ app.controller('save-controller', function (toastr,$scope,$rootScope,$routeParam
 
         $scope.status  = 'sending';
 
-        $scope.validationErrors = {};
+        $scope.validationErrors = [];
         axios({
             url:(customUrl)?customUrl:url,
             method:($routeParams.id || $scope.item._id)?"PUT":"POST",
@@ -78,16 +78,14 @@ app.controller('save-controller', function (toastr,$scope,$rootScope,$routeParam
                 $scope.status = 'ready';
                 console.log(error.response);
 
+
                 if(error.response && error.response.data.type && error.response.data.type == 'ValidationError')
                 {
 
-                    toastr.error($scope.$eval('"validation.error" | translate'))
+                    toastr.error($scope.$eval('"validation.error" | translate'));
                     $scope.validationErrors = error.response.data.details;
-
-
+                    console.log( $scope.validationErrors);
                     $scope.$apply();
-
-
 
                 }
                 else

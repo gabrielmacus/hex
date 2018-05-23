@@ -47,8 +47,7 @@
 </footer>
 
 
-
-<ul data-ng-if="validationErrors && validationErrors.length > 0" class="fade-static validation-errors">
+<ul data-ng-if="validationErrors" class="fade-static validation-errors">
 
     <li class="validation-error" data-ng-repeat="(k,error) in validationErrors ">{{ 'validation.'+error.message | translate:error.data}}</li>
 </ul>

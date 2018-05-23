@@ -29,7 +29,7 @@ app
               }
 
 
-                $scope.unsetErrors=function (errors) {
+                $scope.unsetErrors=function () {
 
                   $scope.validationErrors = [];
 
