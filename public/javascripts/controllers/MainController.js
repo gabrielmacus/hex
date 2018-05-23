@@ -203,13 +203,16 @@ app.controller('main-controller', function (toastr,$sce,$scope,$rootScope,$route
             {
                 var product = item.products[k].product;
 
-
-                if(!amounts[product.currency.iso_code])
+                if(product.currency)
                 {
-                    amounts[product.currency.iso_code] = 0
+                    if(!amounts[product.currency.iso_code])
+                    {
+                        amounts[product.currency.iso_code] = 0
+                    }
+
+                    amounts[product.currency.iso_code]+= product.cost * item.products[k].quantity;
                 }
 
-                amounts[product.currency.iso_code]+= product.cost * item.products[k].quantity;
             }
 
             var text = "";

@@ -113,6 +113,7 @@
   "validation.extensionNotAllowed":"Tipo de archivo no permitido",
   "validation.invalidEmail":"Email inválido",
   "validation.passwordsDoesntMatch":"Las contraseñas no coinciden",
+  "validation.selectAnElement":"Seleccione un elemento",
 
   "assignmentPlace":"Sala",
   "person/s":"Persona/s",

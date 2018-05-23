@@ -30,6 +30,7 @@ body.login top header h2
 html,body{
   height: 100%;
   width: 100%;
+
 }
 
 .fade-in {
@@ -151,6 +152,8 @@ body > aside
 }
 body > main{
 
+
+
   transition: all 250ms;
   width: 70%;
   top: 0;
@@ -162,6 +165,11 @@ body > main{
   min-height: 100%;
   padding-left: @padding;
   padding-right: @padding;
+  padding-bottom: 50px;
+}
+body.login main
+{
+padding-bottom: 0;
 }
 body > aside > menu a
 {
@@ -691,6 +699,7 @@ frecuency-field .form-field [type='number']
   margin-top: @padding2;
   background: white;
   width: 100%;
+  height: 100%;
   display: block;
   float: left;
   //margin-bottom: @padding;
@@ -703,10 +712,17 @@ frecuency-field .form-field [type='number']
 {
   width: 60%;
   height: 60vh;
+
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 }
 .responsive-lightbox [data-ng-transclude]
 {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  width: 100%;
   height: 100%;
+
 }
 .responsive-lightbox iframe
 {
@@ -778,6 +794,7 @@ lightbox .body
 }
 file-preview
 {
+  width: 100%;
   display: block;
   float: left;
   position: relative;

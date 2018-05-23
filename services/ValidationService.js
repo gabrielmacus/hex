@@ -20,11 +20,126 @@ module.exports=
 
             UtilsService.ErrorHandler(error,req,res,next);
         },
+        Currency:function (req,res,next) {
+
+            var errors = {};
+
+            var length = {min:2,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'name';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+            var length = {min:1,max:10};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'iso_code';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+            var length = {min:1,max:3};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'simbol';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+            module.exports.process(errors,req,res,next);
+
+        },
+        Client:function (req,res,next) {
+
+            var errors = {};
+
+            var length = {min:2,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'name';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+               var length = {min:2,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'surname';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+            var  key = 'emails';
+            var items = UtilsService.get(key,req.body);
+            var message = {message:'invalidEmail'};
+            if(items)
+            {
+                for(var k in items)
+                {
+                    if(!validator.isEmail(items[k]))
+                    {
+                        errors[key] = [];
+                        errors[key].push(message);
+                    }
+                }
+            }
+
+
+            var  key = 'phones';
+            var items = UtilsService.get(key,req.body);
+            var length = {min:3,max:20};
+            var lengthMessage = {message:'lengthBetween',data:length};
+
+            if(items)
+            {
+                for(var k in items)
+                {
+                    if(!validator.isLength(items[k],length))
+                    {
+                        errors[key] = [];
+                        errors[key].push(lengthMessage);
+                    }
+                }
+            }
+
+            var  key = 'addresses';
+            var items = UtilsService.get(key,req.body);
+            var length = {min:3,max:50};
+            var lengthMessage = {message:'lengthBetween',data:length};
+
+            if(items)
+            {
+                for(var k in items)
+                {
+                    if(!validator.isLength(items[k],length))
+                    {
+                        errors[key] = [];
+                        errors[key].push(lengthMessage);
+                    }
+                }
+            }
+
+
+            module.exports.process(errors,req,res,next);
+
+        },
         Sale:function (req,res,n) {
             var errors ={};
 
 
-            var message = {message:'minSelected',data:{min:1,max:1}};
+            var message = {message:'selectAnElement',data:{min:1,max:1}};
             var key = 'client';
 
             if( !UtilsService.get(key,req.body))
@@ -446,6 +561,42 @@ module.exports=
             }
 
 
+            module.exports.process(errors,req,res,next);
+        },
+        Currency:function (req,res,next) {
+
+            var errors = {};
+
+            var length = {min:3,max:100};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'name';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+            var length = {min:3,max:10};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'iso_code';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
+
+
+
+            var length = {min:1,max:3};
+            var lengthMessage = {message:'lengthBetween',data:length};
+            var key = 'simbol';
+            if(!validator.isLength(UtilsService.get(key,req.body),length))
+            {
+                errors[key] = [];
+                errors[key].push(lengthMessage);
+            }
             module.exports.process(errors,req,res,next);
         }
 

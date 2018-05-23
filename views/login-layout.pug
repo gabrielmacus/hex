@@ -5,6 +5,7 @@ html
 
         script.
 
+            /*
             app.config(function ($routeProvider) {
                 $routeProvider
                     .when("/", {
@@ -12,7 +13,7 @@ html
                         controller:"login-controller"
                     })
 
-            });
+            });*/
 
 
             app.controller('login-controller', function ($rootScope,$scope, $cookies) {
@@ -22,6 +23,7 @@ html
                 $scope.login=function () {
                     $scope.status = 'sending';
                     $scope.errorMsg = "";
+
                     axios.post('/auth/token', $scope.user)
                         .then(function (response) {
 
@@ -79,7 +81,7 @@ html
 
             });
 
-    body.login(data-ng-app="app" )
+    body.login(data-ng-app="app",data-ng-controller="login-controller" )
 
         main
             block content

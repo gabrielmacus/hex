@@ -71,7 +71,8 @@
         <td class="actions-cell" data-ng-if="getActions(i)">
 
             <div class="actions-wrapper">
-                <a class="button open-actions" data-ng-class="{opened:dropdown[i._id]}" data-ng-click="toggleDropdown(i)" >{{'actions' | translate}} <img class="dropdown-icon" src="/images/drop-down-arrow.svg"></a>
+
+                <a  class="button open-actions" data-ng-class="{opened:dropdown[i._id]}" data-ng-click="toggleDropdown(i)" >{{'actions' | translate}} <img class="dropdown-icon" src="/images/drop-down-arrow.svg"></a>
                 <ul class="fade actions" data-ng-if="dropdown[i._id]">
                     <li  data-ng-class="a.class"  data-ng-repeat="a in getActions(i)" data-ng-click="a.action(i);dropdown[i._id]=false">{{a.text | translate}}</li>
                 </ul>
