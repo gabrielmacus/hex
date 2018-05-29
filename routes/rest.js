@@ -180,6 +180,25 @@ router.get('/:model/:id',function (req,res,next) {
 })
 //Update one
 router.put('/:model/:id',
+
+    function(req,res,next){
+
+           //Loads the item that will be updated
+        req.model.findOne({_id:req.params.id})
+            .exec(function (err,item) {
+
+                if(err)
+                {
+                    return UtilsService.ErrorHandler(err,req,res,next);
+                }
+
+                req.itemToUpdate = item;
+                next();
+
+            });
+
+
+    },
     function(req,res,next){
         //Validation middleware
     if(ValidationService[req.model.modelName])
@@ -193,6 +212,7 @@ router.put('/:model/:id',
 
 },
     function (req,res,next) {
+
 
         //Middleware: PRE UPDATE
         UtilsService.CallMiddleware(req,res,next,'pre','update');
@@ -274,6 +294,7 @@ router.put('/:model/:id',
 router.delete('/:model/:id',function (req,res,next) {
 
 
+
     if(!ObjectID.isValid(req.id))
     {
         return  next();
@@ -288,6 +309,8 @@ router.delete('/:model/:id',function (req,res,next) {
         {
             console.error(err);
         }
+
+        req.itemToDelete = result;
 
         var status =200;
         async.series([
@@ -315,41 +338,28 @@ router.delete('/:model/:id',function (req,res,next) {
                     return res.status(status).json(result);
                 }
 
-
-
                 result.remove(function (err) {
                     if(err)
                     {
-                        //TODO: Handle errors
-                        console.log(err);
+                        return UtilsService.ErrorHandler(err,req,res,next);
                     }
 
-                    return res.json({});
+                    next();
                 })
-                /*
-                req.model.remove(query).exec(function (err) {
-                    if(err)
-                    {
-                        //TODO: Handle errors
-                        console.log(err);
-                    }
-
-                    return res.json({});
-                });*/
 
             }
         ]);
 
-
-
-
-
-
     });
 
 
+}, function (req,res,next) {
 
+    //Middleware: POST DELETE
+    UtilsService.CallMiddleware(req,res,next,'post','delete');
 
+},function (req,res,next) {
+    res.json({});
 });
 //Read many
 //TODO: set middleware
